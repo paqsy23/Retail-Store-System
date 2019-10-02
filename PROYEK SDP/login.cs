@@ -30,7 +30,7 @@ namespace PROYEK_SDP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OracleCommand cmd = new OracleCommand("select id_pegawai,password from pegawai", conn);
+            OracleCommand cmd = new OracleCommand("select id_pegawai,password from pegawai where id_pegawai='"+textBox1.Text+"'", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
