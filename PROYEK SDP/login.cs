@@ -19,12 +19,21 @@ namespace PROYEK_SDP
         {
             InitializeComponent(); Master m = new Master();
             m.Visible = true;
+            try
+            {
+                conn = new OracleConnection("username : system; password : maximillian99");
+                conn.Open();
+            }
+            catch
+            {
+
+            }
             
         }
 
         private void login_Load(object sender, EventArgs e)
         {
-            conn.Open();
+            
 
         }
 
@@ -44,22 +53,7 @@ namespace PROYEK_SDP
                 
             }
 
-            try
-            {
-                string query = "select * from pegawai where id_pegawai = '" + user + "'";
-                OracleDataAdapter oda = new OracleDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                oda.Fill(dt);
-                if (dt.Rows.Count > 0)
-                {
-                    MessageBox.Show("Selamat Datang " + dt.Rows[0][1].ToString());
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
     }
 }
