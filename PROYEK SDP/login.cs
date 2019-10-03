@@ -19,26 +19,30 @@ namespace PROYEK_SDP
         {
             InitializeComponent(); Master m = new Master();
             m.Visible = true;
-            try
-            {
-                conn = new OracleConnection("user id=system;password=maximillian99");
-                conn.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void login_Load(object sender, EventArgs e)
         {
+            conn.Open();
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string user = textBox1.Text;
-            string pass = textBox2.Text;
+            OracleCommand cmd = new OracleCommand("select id_pegawai,password from pegawai where id_pegawai='"+textBox1.Text+"'", conn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                
+                if (textBox1.Text== row["id_pegawai"].ToString()&&textBox2.Text== row["password"].ToString())
+                {
+                    MessageBox.Show("true");
+                }
+                
+            }
 
             try
             {
