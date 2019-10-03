@@ -73,9 +73,9 @@ create table dtrans_in (
 	stock_masuk number,
 	harga_beli number,
 	subtotal number,
-	id_pegawai varchar(6) constraint fk_pegHout references pegawai(id_pegawai), --- pengurus
-	id_supir varchar2(6) constraint fk_sopHout references pegawai(id_pegawai), --- supir
-	id_mobil varchar2(7) constraint fk_mobHout references mobil(id_mobil)
+	id_pegawai varchar(6) constraint fk_pegHin references pegawai(id_pegawai), --- pengurus
+	id_supir varchar2(6) constraint fk_sopHin references pegawai(id_pegawai), --- supir
+	id_mobil varchar2(7) constraint fk_mobHin references mobil(id_mobil)
 );
 
 create table htrans_out (
