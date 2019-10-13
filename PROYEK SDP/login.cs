@@ -14,17 +14,26 @@ namespace PROYEK_SDP
     
     public partial class login : Form
     {
-        OracleConnection conn = new OracleConnection("data source = orcl; user id = n217116624; password=217116624");
+        OracleConnection conn;
         public login()
         {
             InitializeComponent(); Master m = new Master();
             m.Visible = true;
+            try
+            {
+                conn = new OracleConnection("username : system; password : maximillian99");
+                conn.Open();
+            }
+            catch
+            {
+
+            }
             
         }
 
         private void login_Load(object sender, EventArgs e)
         {
-            conn.Open();
+            
 
         }
 
@@ -44,6 +53,7 @@ namespace PROYEK_SDP
                 
             }
 
+            
         }
     }
 }
