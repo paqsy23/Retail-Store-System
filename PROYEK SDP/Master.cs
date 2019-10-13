@@ -24,5 +24,12 @@ namespace PROYEK_SDP
             b.Size = new Size(this.Width,this.Height);
             b.Visible = true;
         }
+
+        private void Master_Load(object sender, EventArgs e)
+        {
+            login f1 = new login();
+            f1.MdiParent = this;
+            f1.Show();
+        }
     }
 }

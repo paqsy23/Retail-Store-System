@@ -14,31 +14,22 @@ namespace PROYEK_SDP
     
     public partial class login : Form
     {
-        OracleConnection conn;
+        OracleConnection conn = new OracleConnection("data source=orcl; user id=n217116624;password=217116624;");
         public login()
         {
-            InitializeComponent(); Master m = new Master();
-            m.Visible = true;
-            try
-            {
-                conn = new OracleConnection("username : system; password : maximillian99");
-                conn.Open();
-            }
-            catch
-            {
-
-            }
-            
+            InitializeComponent();
+            conn.Open();   
         }
 
         private void login_Load(object sender, EventArgs e)
         {
-            
+           
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             OracleCommand cmd = new OracleCommand("select id_pegawai,password from pegawai where id_pegawai='"+textBox1.Text+"'", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -49,6 +40,7 @@ namespace PROYEK_SDP
                 if (textBox1.Text== row["id_pegawai"].ToString()&&textBox2.Text== row["password"].ToString())
                 {
                     MessageBox.Show("true");
+                    this.Close();
                 }
                 
             }
