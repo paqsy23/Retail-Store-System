@@ -35,13 +35,15 @@ create table gudang (
 );
 
 create table barang (
-	id_barang varchar2(7) primary key, --- BG + autogenerate + size(S,M,L,XL)
+	id_barang varchar2(7) , --- BG + autogenerate + size(S,M,L,XL)
 	id_jenis_barang varchar2(6) constraint fk_idJenis references jenis_barang(id_jenis_barang),
 	id_gudang varchar2(6) constraint fk_idGud references gudang(id_gudang),
 	nama_barang varchar2(25),
+    warna_barang varchar2(15),
 	stock number,
 	harga_jual number,
-	harga_beli number
+	harga_beli number,
+    constraint pk_brg primary key(id_barang,warna_barang)
 );
 
 create table buyer (
@@ -128,7 +130,7 @@ insert into gudang values('GD0001','Basuki Rahmat 98');
 insert into gudang values('GD0002','Keputran 123');
 insert into gudang values('GD0003','A Yani 67');
 
-insert into barang values('BG0001S','KE0001','GD0002','Kemeja Kotak Merah (S)',10,70000,85000);
+insert into barang values('BG0001S','KE0001','GD0002','Kemeja Kotak(S)','merah',10,70000,85000);
 insert into barang values('BG0001M','KA0001','GD0001','Kaos Merah (M)',15,60000,75000);
 insert into barang values('BG001XL','KP0001','GD0002','Kemeja Panjang Biru (XL)',20,85000,95000);
 insert into barang values('BG0002S','CP0002','GD0002','Celana Pendek Jeans (S)',15,75000,90000);
