@@ -35,8 +35,8 @@ create table barang (
 	warna_barang varchar2(15),
 	ukuran varchar2(3),
 	stock number,
-	harga_jual number,
 	harga_beli number,
+	harga_jual number
 );
 
 create table buyer (
