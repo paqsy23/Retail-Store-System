@@ -51,6 +51,17 @@ namespace PROYEK_SDP
             DataSet ds = new DataSet();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            textBox9.Text = "";
+            textBox10.Text = "";
+            textBox11.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -79,8 +90,8 @@ namespace PROYEK_SDP
                                         counter++;
                                     }
                                 }
-                                id = id + counter;
-                                String insert = "insert into pegawai values('" + id + "', '" + textBox1.Text + "', '" + textBox3.Text + "', '" + textBox4.Text + "', '" + textBox2.Text + "', '" + textBox5.Text + "')";
+                                
+                                String insert = "insert into pegawai values('"+id+"'||lpad('" + counter + "',3,'0'), '" + textBox1.Text + "', '" + textBox3.Text + "', '" + textBox4.Text + "', '" + textBox2.Text + "', '" + textBox5.Text + "')";
                                 cmd.CommandText = insert;
                                 cmd.ExecuteNonQuery();
                                 tampilPegawai();
