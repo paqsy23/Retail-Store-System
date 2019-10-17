@@ -31,5 +31,12 @@ namespace PROYEK_SDP
             f1.MdiParent = this;
             f1.Show();
         }
+
+        private void pegawaiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Pegawai p1 = new Pegawai();
+            p1.MdiParent = this;
+            p1.Show();
+        }
     }
 }

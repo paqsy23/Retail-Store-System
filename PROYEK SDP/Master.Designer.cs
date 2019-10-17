@@ -32,6 +32,7 @@
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterJualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterPenyesuaianBarangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pegawaiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,7 +41,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.masterToolStripMenuItem,
             this.masterJualToolStripMenuItem,
-            this.masterPenyesuaianBarangToolStripMenuItem});
+            this.masterPenyesuaianBarangToolStripMenuItem,
+            this.pegawaiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1237, 24);
@@ -66,6 +68,13 @@
             this.masterPenyesuaianBarangToolStripMenuItem.Size = new System.Drawing.Size(164, 20);
             this.masterPenyesuaianBarangToolStripMenuItem.Text = "Master Penyesuaian barang";
             // 
+            // pegawaiToolStripMenuItem
+            // 
+            this.pegawaiToolStripMenuItem.Name = "pegawaiToolStripMenuItem";
+            this.pegawaiToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.pegawaiToolStripMenuItem.Text = "Pegawai";
+            this.pegawaiToolStripMenuItem.Click += new System.EventHandler(this.pegawaiToolStripMenuItem_Click);
+            // 
             // Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -77,6 +86,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Master";
             this.Text = "login";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Master_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -91,5 +101,6 @@
         private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem masterJualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem masterPenyesuaianBarangToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pegawaiToolStripMenuItem;
     }
 }

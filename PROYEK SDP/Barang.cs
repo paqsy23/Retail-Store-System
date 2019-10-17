@@ -138,7 +138,7 @@ namespace PROYEK_SDP
                     indexkosong = "0" + indexkosong;
                 }
                 id = id + indexkosong;
-                cmd.CommandText = "insert into barang values('"+id+"', '"+comboBox5.SelectedValue+"', '"+comboBox7.Text+"', '"+textBox2.Text+"', '"+textBox3.Text+"', '"+comboBox6.Text+"',"+textBox4.Text+","+textBox6.Text+","+textBox5.Text+")";
+                cmd.CommandText = "insert into barang values('"+id+"', '"+comboBox5.SelectedValue+"', '"+comboBox7.Text+"', '"+textBox2.Text+"', '"+textBox3.Text+"', '"+comboBox6.Text+"',"+textBox4.Text+","+textBox5.Text+","+textBox6.Text+")";
                 cmd.ExecuteNonQuery();
                 
             }
@@ -148,6 +148,7 @@ namespace PROYEK_SDP
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             textBox7.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

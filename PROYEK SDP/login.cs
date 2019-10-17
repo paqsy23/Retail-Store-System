@@ -14,7 +14,7 @@ namespace PROYEK_SDP
     
     public partial class login : Form
     {
-        OracleConnection conn = new OracleConnection("data source=orcl; user id=n217116624;password=217116624;");
+        OracleConnection conn = new OracleConnection(" user id=admin1;password=admin;");
         public login()
         {
             InitializeComponent();
