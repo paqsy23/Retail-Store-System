@@ -117,15 +117,13 @@ namespace PROYEK_SDP
 
         private void button3_Click(object sender, EventArgs e)
         {
-                OracleCommand cmd = new OracleCommand("select id_pegawai from pegawai", conn);
-                OracleDataAdapter da = new OracleDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                String delete = "delete from pegawai where id_pegawai = '" + textBox11.Text + "'";
-                cmd.CommandText = delete;
-                cmd.ExecuteNonQuery();
-                tampilPegawai();
-                MessageBox.Show(cmd.CommandText);
+             OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conn;
+            String delete = "delete from pegawai where id_pegawai = '" + textBox11.Text + "'";
+            cmd.CommandText = delete;
+            cmd.ExecuteNonQuery();
+            tampilPegawai();
+            MessageBox.Show(cmd.CommandText);
         }
     }
 }
