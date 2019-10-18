@@ -47,17 +47,6 @@ namespace PROYEK_SDP
             DataSet ds = new DataSet();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
-            textBox5.Text = "";
-            textBox6.Text = "";
-            textBox7.Text = "";
-            textBox8.Text = "";
-            textBox9.Text = "";
-            textBox10.Text = "";
-            textBox11.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -74,7 +63,7 @@ namespace PROYEK_SDP
                     {
                         if (textBox4.Text != "")
                         {
-                            if (textBox5.Text != "" && textBox5.Text.Length>10)
+                            if (textBox5.Text != "" && textBox5.Text.Length > 10)
                             {
                                 int counter = 1;
                                 String id = textBox3.Text.Substring(0, 3);
@@ -83,12 +72,12 @@ namespace PROYEK_SDP
                                 {
                                     if (row["id_pegawai"].ToString().Contains(id))
                                     {
-                                        counter = Int32.Parse( row["id_pegawai"].ToString().Substring(3)) + 1;
-                                        
+                                        counter = Int32.Parse(row["id_pegawai"].ToString().Substring(3)) + 1;
+
                                     }
                                 }
-                                String nama=textBox1.Text;
-                                id = id+ counter.ToString().PadLeft(3,'0');
+                                String nama = textBox1.Text;
+                                id = id + counter.ToString().PadLeft(3, '0');
                                 Boolean cek_nomor = true;
                                 try
                                 {
@@ -144,7 +133,7 @@ namespace PROYEK_SDP
                 cek_nomor = false;
             }
 
-            if (cek_nomor==true)
+            if (cek_nomor == true)
             {
                 String nama = textBox1.Text;
                 OracleCommand command = new OracleCommand();
@@ -164,12 +153,12 @@ namespace PROYEK_SDP
 
                 tampilPegawai();
             }
-            
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-             OracleCommand cmd = new OracleCommand();
+            OracleCommand cmd = new OracleCommand();
             cmd.Connection = conn;
             String delete = "delete from pegawai where id_pegawai = '" + textBox11.Text + "'";
             cmd.CommandText = delete;
