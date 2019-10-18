@@ -33,40 +33,31 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.keysearch = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.warnatext = new System.Windows.Forms.TextBox();
             this.Inset = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.hargajual = new System.Windows.Forms.TextBox();
+            this.stockbox = new System.Windows.Forms.TextBox();
+            this.hargabeli = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.combogudang = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.comboukuran = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.combojenis = new System.Windows.Forms.ComboBox();
+            this.namatext = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.idtext = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.valuetext = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -99,14 +90,16 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.groupBox1.Controls.Add(this.valuetext);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.keysearch);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(288, 174);
+            this.groupBox1.Size = new System.Drawing.Size(288, 139);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
@@ -121,48 +114,40 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox2
+            // keysearch
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(81, 49);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(193, 21);
-            this.comboBox2.TabIndex = 6;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.keysearch.FormattingEnabled = true;
+            this.keysearch.Items.AddRange(new object[] {
             "ID_BARANG",
             "NAMA_BARANG",
             "WARNA_BARANG",
             "UKURAN"});
-            this.comboBox1.Location = new System.Drawing.Point(81, 22);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(193, 21);
-            this.comboBox1.TabIndex = 5;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.keysearch.Location = new System.Drawing.Point(81, 22);
+            this.keysearch.Name = "keysearch";
+            this.keysearch.Size = new System.Drawing.Size(193, 21);
+            this.keysearch.TabIndex = 5;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.groupBox2.Controls.Add(this.warnatext);
             this.groupBox2.Controls.Add(this.Inset);
-            this.groupBox2.Controls.Add(this.textBox6);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.hargajual);
+            this.groupBox2.Controls.Add(this.stockbox);
+            this.groupBox2.Controls.Add(this.hargabeli);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.comboBox7);
+            this.groupBox2.Controls.Add(this.combogudang);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.comboBox6);
+            this.groupBox2.Controls.Add(this.comboukuran);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.comboBox5);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.combojenis);
+            this.groupBox2.Controls.Add(this.namatext);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.idtext);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(12, 192);
             this.groupBox2.Name = "groupBox2";
@@ -171,12 +156,12 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Barang";
             // 
-            // textBox3
+            // warnatext
             // 
-            this.textBox3.Location = new System.Drawing.Point(88, 128);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(186, 20);
-            this.textBox3.TabIndex = 20;
+            this.warnatext.Location = new System.Drawing.Point(88, 128);
+            this.warnatext.Name = "warnatext";
+            this.warnatext.Size = new System.Drawing.Size(186, 20);
+            this.warnatext.TabIndex = 20;
             // 
             // Inset
             // 
@@ -188,26 +173,26 @@
             this.Inset.UseVisualStyleBackColor = true;
             this.Inset.Click += new System.EventHandler(this.Inset_Click);
             // 
-            // textBox6
+            // hargajual
             // 
-            this.textBox6.Location = new System.Drawing.Point(88, 247);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(186, 20);
-            this.textBox6.TabIndex = 21;
+            this.hargajual.Location = new System.Drawing.Point(88, 247);
+            this.hargajual.Name = "hargajual";
+            this.hargajual.Size = new System.Drawing.Size(186, 20);
+            this.hargajual.TabIndex = 21;
             // 
-            // textBox4
+            // stockbox
             // 
-            this.textBox4.Location = new System.Drawing.Point(88, 154);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(186, 20);
-            this.textBox4.TabIndex = 17;
+            this.stockbox.Location = new System.Drawing.Point(88, 154);
+            this.stockbox.Name = "stockbox";
+            this.stockbox.Size = new System.Drawing.Size(186, 20);
+            this.stockbox.TabIndex = 17;
             // 
-            // textBox5
+            // hargabeli
             // 
-            this.textBox5.Location = new System.Drawing.Point(88, 216);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(186, 20);
-            this.textBox5.TabIndex = 18;
+            this.hargabeli.Location = new System.Drawing.Point(88, 216);
+            this.hargabeli.Name = "hargabeli";
+            this.hargabeli.Size = new System.Drawing.Size(186, 20);
+            this.hargabeli.TabIndex = 18;
             // 
             // label13
             // 
@@ -227,13 +212,13 @@
             this.label12.TabIndex = 15;
             this.label12.Text = "Harga Beli";
             // 
-            // comboBox7
+            // combogudang
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(88, 181);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(186, 21);
-            this.comboBox7.TabIndex = 14;
+            this.combogudang.FormattingEnabled = true;
+            this.combogudang.Location = new System.Drawing.Point(88, 181);
+            this.combogudang.Name = "combogudang";
+            this.combogudang.Size = new System.Drawing.Size(186, 21);
+            this.combogudang.TabIndex = 14;
             // 
             // label11
             // 
@@ -271,18 +256,18 @@
             this.label8.TabIndex = 8;
             this.label8.Text = "Ukuruan";
             // 
-            // comboBox6
+            // comboukuran
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
+            this.comboukuran.FormattingEnabled = true;
+            this.comboukuran.Items.AddRange(new object[] {
             "S",
             "M",
             "L",
             "XL"});
-            this.comboBox6.Location = new System.Drawing.Point(88, 101);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(186, 21);
-            this.comboBox6.TabIndex = 7;
+            this.comboukuran.Location = new System.Drawing.Point(88, 101);
+            this.comboukuran.Name = "comboukuran";
+            this.comboukuran.Size = new System.Drawing.Size(186, 21);
+            this.comboukuran.TabIndex = 7;
             // 
             // label7
             // 
@@ -293,20 +278,20 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Jenis";
             // 
-            // comboBox5
+            // combojenis
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(88, 74);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(186, 21);
-            this.comboBox5.TabIndex = 4;
+            this.combojenis.FormattingEnabled = true;
+            this.combojenis.Location = new System.Drawing.Point(88, 74);
+            this.combojenis.Name = "combojenis";
+            this.combojenis.Size = new System.Drawing.Size(186, 21);
+            this.combojenis.TabIndex = 4;
             // 
-            // textBox2
+            // namatext
             // 
-            this.textBox2.Location = new System.Drawing.Point(88, 48);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(186, 20);
-            this.textBox2.TabIndex = 3;
+            this.namatext.Location = new System.Drawing.Point(88, 48);
+            this.namatext.Name = "namatext";
+            this.namatext.Size = new System.Drawing.Size(186, 20);
+            this.namatext.TabIndex = 3;
             // 
             // label6
             // 
@@ -317,12 +302,12 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "Nama";
             // 
-            // textBox1
+            // idtext
             // 
-            this.textBox1.Location = new System.Drawing.Point(88, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(186, 20);
-            this.textBox1.TabIndex = 1;
+            this.idtext.Location = new System.Drawing.Point(88, 19);
+            this.idtext.Name = "idtext";
+            this.idtext.Size = new System.Drawing.Size(186, 20);
+            this.idtext.TabIndex = 1;
             // 
             // label5
             // 
@@ -333,99 +318,31 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "ID";
             // 
-            // groupBox3
+            // valuetext
             // 
-            this.groupBox3.Controls.Add(this.textBox9);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.textBox8);
-            this.groupBox3.Controls.Add(this.textBox7);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.label15);
-            this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Location = new System.Drawing.Point(12, 525);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(288, 127);
-            this.groupBox3.TabIndex = 11;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Tambah Stock";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(81, 72);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(186, 20);
-            this.textBox9.TabIndex = 21;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(88, 98);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 21;
-            this.button2.Text = "Tambah";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(81, 46);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(186, 20);
-            this.textBox8.TabIndex = 24;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(81, 19);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(186, 20);
-            this.textBox7.TabIndex = 23;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(-2, 71);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(56, 13);
-            this.label16.TabIndex = 22;
-            this.label16.Text = "Harga Beli";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(19, 45);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(35, 13);
-            this.label15.TabIndex = 21;
-            this.label15.Text = "Stock";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(36, 19);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(18, 13);
-            this.label14.TabIndex = 20;
-            this.label14.Text = "ID";
+            this.valuetext.Location = new System.Drawing.Point(81, 52);
+            this.valuetext.Name = "valuetext";
+            this.valuetext.Size = new System.Drawing.Size(193, 20);
+            this.valuetext.TabIndex = 10;
             // 
             // Barang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1128, 675);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Barang";
             this.Text = "Barang";
+            this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.Barang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -437,35 +354,27 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox keysearch;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox idtext;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox warnatext;
         private System.Windows.Forms.Button Inset;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox hargajual;
+        private System.Windows.Forms.TextBox stockbox;
+        private System.Windows.Forms.TextBox hargabeli;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.ComboBox combogudang;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox comboukuran;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ComboBox combojenis;
+        private System.Windows.Forms.TextBox namatext;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox valuetext;
     }
 }
