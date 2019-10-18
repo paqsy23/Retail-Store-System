@@ -139,8 +139,23 @@ namespace PROYEK_SDP
                 }
                 id = id + indexkosong;
                 cmd.CommandText = "insert into barang values('"+id+"', '"+comboBox5.SelectedValue+"', '"+comboBox7.Text+"', '"+textBox2.Text+"', '"+textBox3.Text+"', '"+comboBox6.Text+"',"+textBox4.Text+","+textBox5.Text+","+textBox6.Text+")";
+                MessageBox.Show(cmd.CommandText);
                 cmd.ExecuteNonQuery();
                 
+            }
+            else
+            {
+                id = (nama.Substring(0, 2)  + warna.Substring(0, 2)).ToUpper() + comboBox6.SelectedIndex;
+                OracleCommand cmd = new OracleCommand("select count(id_barang)+1 from barang where id_barang LIKE '%" + id + "%'", conn);
+                string indexkosong = cmd.ExecuteScalar().ToString();
+                for (int i = indexkosong.Length; i < 3; i++)
+                {
+                    indexkosong = "0" + indexkosong;
+                }
+                id = id + indexkosong;
+                cmd.CommandText = "insert into barang values('" + id + "', '" + comboBox5.SelectedValue + "', '" + comboBox7.Text + "', '" + textBox2.Text + "', '" + textBox3.Text + "', '" + comboBox6.Text + "'," + textBox4.Text + "," + textBox5.Text + "," + textBox6.Text + ")";
+                MessageBox.Show(cmd.CommandText);
+                cmd.ExecuteNonQuery();
             }
             refresh();
         }

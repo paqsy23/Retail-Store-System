@@ -78,7 +78,7 @@ namespace PROYEK_SDP
                     {
                         if (textBox4.Text != "")
                         {
-                            if (textBox5.Text != "" && textBox5.Text.Length>10)
+                            if (textBox5.Text != "" && textBox5.Text.Length>8)
                             {
                                 int counter = 1;
                                 String id = textBox3.Text.Substring(0, 3);
