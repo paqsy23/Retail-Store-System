@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace PROYEK_SDP
 {
     public partial class Pegawai : Form
     {
-        OracleConnection conn = new OracleConnection(" user id=n217116624;password=217116624;");
+        OracleConnection conn = new OracleConnection(" user id=admin1;password=admin;");
         public Pegawai()
         {
             InitializeComponent();
@@ -35,11 +36,6 @@ namespace PROYEK_SDP
             label5.Text = "Nomor tlpn :";
 
             label11.Text = "ID_Pegawai :";
-            label6.Text = "Nama       :";
-            label7.Text = "Password   :";
-            label8.Text = "Jabatan    :";
-            label9.Text = "Alamat     :";
-            label10.Text = "Nomor tlpn :";
 
             tampilPegawai();
         }
@@ -51,17 +47,6 @@ namespace PROYEK_SDP
             DataSet ds = new DataSet();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
-            textBox5.Text = "";
-            textBox6.Text = "";
-            textBox7.Text = "";
-            textBox8.Text = "";
-            textBox9.Text = "";
-            textBox10.Text = "";
-            textBox11.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -78,7 +63,7 @@ namespace PROYEK_SDP
                     {
                         if (textBox4.Text != "")
                         {
-                            if (textBox5.Text != "" && textBox5.Text.Length>8)
+                            if (textBox5.Text != "" && textBox5.Text.Length > 10)
                             {
                                 int counter = 1;
                                 String id = textBox3.Text.Substring(0, 3);
@@ -87,56 +72,117 @@ namespace PROYEK_SDP
                                 {
                                     if (row["id_pegawai"].ToString().Contains(id))
                                     {
-                                        counter++;
+                                        counter = Int32.Parse(row["id_pegawai"].ToString().Substring(3)) + 1;
+
                                     }
                                 }
-                                
-                                String insert = "insert into pegawai values('"+id+"'||lpad('" + counter + "',3,'0'), '" + textBox1.Text + "', '" + textBox3.Text + "', '" + textBox4.Text + "', '" + textBox2.Text + "', '" + textBox5.Text + "')";
-                                cmd.CommandText = insert;
-                                cmd.ExecuteNonQuery();
-                                tampilPegawai();
+                                String nama = textBox1.Text;
+                                id = id + counter.ToString().PadLeft(3, '0');
+                                Boolean cek_nomor = true;
+                                try
+                                {
+                                    Int32.Parse(textBox5.Text);
+                                }
+                                catch (Exception ex)
+                                {
+
+                                    MessageBox.Show("Nomor Telpn hanya boleh angka");
+                                    cek_nomor = false;
+                                }
+                                if (cek_nomor == true)
+                                {
+                                    try
+                                    {
+                                        OracleCommand command = new OracleCommand();
+                                        command.Connection = conn;
+                                        command.CommandText = "insert into pegawai(id_pegawai, nama_pegawai, jabatan, alamat_pegawai, password, nomor_telp) values(:id_pegawai, :nama_pegawai, :jabatan, :alamat_pegawai, :password, :nomor_telp)";
+                                        command.Parameters.Add("id_pegawai", id);
+                                        command.Parameters.Add("nama_pegawai", nama);
+                                        command.Parameters.Add("jabatan", textBox3.Text);
+                                        command.Parameters.Add("alamat_pegawai", textBox4.Text);
+                                        command.Parameters.Add("password", textBox2.Text);
+                                        command.Parameters.Add("nomor_telp", textBox5.Text);
+
+                                        command.ExecuteNonQuery();
+                                        tampilPegawai();
+                                    }
+                                    catch (Exception ex)
+                                    {
+
+                                        MessageBox.Show(ex.Message.ToString());
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
         }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            textBox11.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            textBox6.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            textBox7.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-            textBox8.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-            textBox9.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            textBox10.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Boolean cek_nomor = true;
+            try
+            {
+                Int32.Parse(textBox5.Text);
+            }
+            catch (Exception ex)
+            {
 
-            OracleCommand cmd = new OracleCommand("select id_pegawai from pegawai", conn);
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
+                MessageBox.Show("Nomor Telpn hanya boleh angka");
+                cek_nomor = false;
+            }
 
-            String update = "update pegawai set nama_pegawai = '" + textBox6.Text + "', alamat_pegawai = '" + textBox9.Text + "', password = '" + textBox7.Text + "', nomor_telp = '" + textBox10.Text + "' where id_pegawai = '"+textBox11.Text+"'";
-            cmd.CommandText = update;
-            cmd.ExecuteNonQuery();
-            tampilPegawai();
+            if (cek_nomor == true)
+            {
+                String nama = textBox1.Text;
+                OracleCommand command = new OracleCommand();
+                command.Connection = conn;
+                String update = "update pegawai set nama_pegawai = : nama_pegawai, alamat_pegawai = :alamat_pegawai, password = :password, nomor_telp = :nomor_telp where id_pegawai = '" + textBox11.Text + "'";
+                command.CommandText = update;
+                command.Parameters.Add("nama_pegawai", nama);
+                command.Parameters.Add("alamat_pegawai", textBox4.Text);
+                command.Parameters.Add("password", textBox2.Text);
+                command.Parameters.Add("nomor_telp", textBox5.Text);
+
+                command.ExecuteNonQuery();
+                button1.Enabled = !false;
+                button2.Enabled = !true;
+                button3.Enabled = !true;
+                textBox3.Enabled = !false;
+
+                tampilPegawai();
+            }
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-                OracleCommand cmd = new OracleCommand("select id_pegawai from pegawai", conn);
-                OracleDataAdapter da = new OracleDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                String delete = "delete from pegawai where id_pegawai = '" + textBox11.Text + "'";
-                cmd.CommandText = delete;
-                cmd.ExecuteNonQuery();
-                tampilPegawai();
-                MessageBox.Show(cmd.CommandText);
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conn;
+            String delete = "delete from pegawai where id_pegawai = '" + textBox11.Text + "'";
+            cmd.CommandText = delete;
+            cmd.ExecuteNonQuery();
+            tampilPegawai();
+            button1.Enabled = !false;
+            button2.Enabled = !true;
+            button3.Enabled = !true;
+            textBox3.Enabled = !false;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            textBox11.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+            textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            textBox3.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            textBox4.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            textBox5.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+
+            button1.Enabled = false;
+            button2.Enabled = true;
+            button3.Enabled = true;
+            textBox3.Enabled = false;
         }
     }
 }
