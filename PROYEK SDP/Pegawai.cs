@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace PROYEK_SDP
 {
     public partial class Pegawai : Form
     {
-        OracleConnection conn = new OracleConnection(" user id=n217116624;password=217116624;");
+        OracleConnection conn = new OracleConnection(" user id=admin1;password=admin;");
         public Pegawai()
         {
             InitializeComponent();
@@ -79,11 +80,39 @@ namespace PROYEK_SDP
                                         counter++;
                                     }
                                 }
+                                String nama=textBox1.Text;
+                                //if (nama.Contains("'"))
+                                //{
+                                //    nama = textBox1.Text.Substring(0, textBox1.Text.IndexOf("'")) + "'" + textBox1.Text.Substring(textBox1.Text.IndexOf("'"));
+                                //}
+                                //MessageBox.Show(nama);
                                 id = id + counter;
-                                String insert = "insert into pegawai values('" + id + "', '" + textBox1.Text + "', '" + textBox3.Text + "', '" + textBox4.Text + "', '" + textBox2.Text + "', '" + textBox5.Text + "')";
-                                cmd.CommandText = insert;
-                                cmd.ExecuteNonQuery();
-                                tampilPegawai();
+                                //String insert = "insert into pegawai values(lpad('" + id + "',3,'0'), '" + nama + "', '" + textBox3.Text + "', '" + textBox4.Text + "', '" + textBox2.Text + "', '" + textBox5.Text + "')";
+                                //cmd.CommandText = insert;
+                                try
+                                {
+                                    OracleCommand command = new OracleCommand();
+                                    command.Connection = conn;
+                                    command.CommandText = "insert into pegawai(id_pegawai, nama_pegawai, jabatan, alamat_pegawai, password, nomor_telp) values(:id_pegawai, :nama_pegawai, :jabatan, :alamat_pegawai, :password, :nomor_telp)";
+                                    command.Parameters.Add("id_pegawai", id);
+                                    command.Parameters.Add("nama_pegawai", nama);
+                                    command.Parameters.Add("jabatan", textBox3.Text);
+                                    command.Parameters.Add("alamat_pegawai", textBox4.Text);
+                                    command.Parameters.Add("password", textBox2.Text);
+                                    command.Parameters.Add("nomor_telp", textBox5.Text);
+                                    
+                                    
+                                    //command.Parameters.Add()
+                                    MessageBox.Show(command.Parameters[0].Value.ToString());
+                                    command.ExecuteNonQuery();
+                                    tampilPegawai();
+                                }
+                                catch (Exception ex)
+                                {
+
+                                    MessageBox.Show(ex.Message.ToString());
+                                }
+                                
                             }
                         }
                     }
