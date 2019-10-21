@@ -32,7 +32,30 @@ namespace PROYEK_SDP
             conn.Open();
             this.Top = 0;
             this.Left = 0;
+            combopaten();
             refresh();
+        }
+        private void combopaten()
+        {
+            foreach (Control c in groupBox1.Controls)
+            {
+                if (c is ComboBox)
+                {
+                    ComboBox ComboBox = c as ComboBox;
+                    ComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+                    
+                }
+            }
+            foreach (Control c in groupBox2.Controls)
+            {
+                if (c is ComboBox)
+                {
+                    ComboBox ComboBox = c as ComboBox;
+                    ComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                }
+            }
+
         }
         private void PaintBorderlessGroupBox(object sender, PaintEventArgs p)
         {
@@ -171,9 +194,6 @@ namespace PROYEK_SDP
         {
             
         }
-
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (checksearch() == true)
