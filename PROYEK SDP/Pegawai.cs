@@ -59,14 +59,14 @@ namespace PROYEK_SDP
             {
                 if (textBox2.Text != "")
                 {
-                    if (textBox3.Text != "")
+                    if (comboBox1.SelectedItem.ToString() != "")
                     {
                         if (textBox4.Text != "")
                         {
                             if (textBox5.Text != "" && textBox5.Text.Length > 10)
                             {
                                 int counter = 1;
-                                String id = textBox3.Text.Substring(0, 3);
+                                String id = comboBox1.SelectedItem.ToString().Substring(0, 3);
                                 id = id.ToUpper();
                                 foreach (DataRow row in ds.Tables[0].Rows)
                                 {
@@ -98,7 +98,7 @@ namespace PROYEK_SDP
                                         command.CommandText = "insert into pegawai(id_pegawai, nama_pegawai, jabatan, alamat_pegawai, password, nomor_telp) values(:id_pegawai, :nama_pegawai, :jabatan, :alamat_pegawai, :password, :nomor_telp)";
                                         command.Parameters.Add("id_pegawai", id);
                                         command.Parameters.Add("nama_pegawai", nama);
-                                        command.Parameters.Add("jabatan", textBox3.Text);
+                                        command.Parameters.Add("jabatan", comboBox1.SelectedItem.ToString());
                                         command.Parameters.Add("alamat_pegawai", textBox4.Text);
                                         command.Parameters.Add("password", textBox2.Text);
                                         command.Parameters.Add("nomor_telp", textBox5.Text);
@@ -149,7 +149,7 @@ namespace PROYEK_SDP
                 button1.Enabled = !false;
                 button2.Enabled = !true;
                 button3.Enabled = !true;
-                textBox3.Enabled = !false;
+                comboBox1.Enabled = !false;
 
                 tampilPegawai();
             }
@@ -167,7 +167,7 @@ namespace PROYEK_SDP
             button1.Enabled = !false;
             button2.Enabled = !true;
             button3.Enabled = !true;
-            textBox3.Enabled = !false;
+            comboBox1.Enabled = !false;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -175,14 +175,14 @@ namespace PROYEK_SDP
             textBox11.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-            textBox3.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            comboBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             textBox4.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             textBox5.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
 
             button1.Enabled = false;
             button2.Enabled = true;
             button3.Enabled = true;
-            textBox3.Enabled = false;
+            comboBox1.Enabled = false;
         }
     }
 }
