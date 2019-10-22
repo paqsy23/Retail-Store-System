@@ -14,7 +14,7 @@ namespace PROYEK_SDP
     
     public partial class login : Form
     {
-        OracleConnection conn = new OracleConnection(" user id=n217116624;password=217116624;");
+        OracleConnection conn = new OracleConnection(" user id=admin1;password=admin;");
         public login()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace PROYEK_SDP
 
         private void login_Load(object sender, EventArgs e)
         {
-           
+            this.Location = new Point(this.Parent.Width / 2 - this.Width / 2, this.Parent.Height / 2 - this.Height / 2);
 
         }
 

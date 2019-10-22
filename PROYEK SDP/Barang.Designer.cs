@@ -36,6 +36,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.keysearch = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numericjual = new System.Windows.Forms.NumericUpDown();
+            this.numericbeli = new System.Windows.Forms.NumericUpDown();
+            this.numericstock = new System.Windows.Forms.NumericUpDown();
             this.warnatext = new System.Windows.Forms.TextBox();
             this.Inset = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -52,15 +55,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.idtext = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericstock = new System.Windows.Forms.NumericUpDown();
-            this.numericbeli = new System.Windows.Forms.NumericUpDown();
-            this.numericjual = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericstock)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericbeli)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericjual)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericbeli)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericstock)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -68,7 +68,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(317, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(799, 651);
+            this.dataGridView1.Size = new System.Drawing.Size(671, 576);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -165,6 +165,27 @@
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Barang";
+            // 
+            // numericjual
+            // 
+            this.numericjual.Location = new System.Drawing.Point(88, 248);
+            this.numericjual.Name = "numericjual";
+            this.numericjual.Size = new System.Drawing.Size(186, 20);
+            this.numericjual.TabIndex = 23;
+            // 
+            // numericbeli
+            // 
+            this.numericbeli.Location = new System.Drawing.Point(88, 214);
+            this.numericbeli.Name = "numericbeli";
+            this.numericbeli.Size = new System.Drawing.Size(186, 20);
+            this.numericbeli.TabIndex = 22;
+            // 
+            // numericstock
+            // 
+            this.numericstock.Location = new System.Drawing.Point(88, 153);
+            this.numericstock.Name = "numericstock";
+            this.numericstock.Size = new System.Drawing.Size(186, 20);
+            this.numericstock.TabIndex = 21;
             // 
             // warnatext
             // 
@@ -307,37 +328,18 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "ID";
             // 
-            // numericstock
-            // 
-            this.numericstock.Location = new System.Drawing.Point(88, 153);
-            this.numericstock.Name = "numericstock";
-            this.numericstock.Size = new System.Drawing.Size(186, 20);
-            this.numericstock.TabIndex = 21;
-            // 
-            // numericbeli
-            // 
-            this.numericbeli.Location = new System.Drawing.Point(88, 214);
-            this.numericbeli.Name = "numericbeli";
-            this.numericbeli.Size = new System.Drawing.Size(186, 20);
-            this.numericbeli.TabIndex = 22;
-            // 
-            // numericjual
-            // 
-            this.numericjual.Location = new System.Drawing.Point(88, 248);
-            this.numericjual.Name = "numericjual";
-            this.numericjual.Size = new System.Drawing.Size(186, 20);
-            this.numericjual.TabIndex = 23;
-            // 
             // Barang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1128, 675);
+            this.ClientSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Barang";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Barang";
             this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.Barang_Load);
@@ -346,9 +348,9 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericstock)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericbeli)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericjual)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericbeli)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericstock)).EndInit();
             this.ResumeLayout(false);
 
         }

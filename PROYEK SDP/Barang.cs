@@ -12,7 +12,7 @@ namespace PROYEK_SDP
 {
     public partial class Barang : Form
     {
-        OracleConnection conn = new OracleConnection("data source=orcl; user id=n217116624;password=217116624;");
+        OracleConnection conn = new OracleConnection("data source=orcl; user id=admin1;password=admin;");
         public Barang()
         {
             InitializeComponent();
@@ -25,6 +25,7 @@ namespace PROYEK_SDP
 
         private void Barang_Load(object sender, EventArgs e)
         {
+            this.Location = new Point(0, 0);
             idtext.Enabled = false;
             groupBox1.Paint += PaintBorderlessGroupBox;
             groupBox2.Paint += PaintBorderlessGroupBox;

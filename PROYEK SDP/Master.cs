@@ -12,6 +12,9 @@ namespace PROYEK_SDP
 {
     public partial class Master : Form
     {
+        Barang b = new Barang();
+        login f1 = new login();
+        Pegawai p1 = new Pegawai();
         public Master()
         {
             InitializeComponent();
@@ -19,23 +22,32 @@ namespace PROYEK_SDP
 
         private void masterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Barang b = new Barang();
+            b = new Barang();
             b.MdiParent = this;
-            b.Size = new Size(this.Width,this.Height);
-            b.Visible = true;
+            this.Width = b.Width + 20;
+            this.Height = b.Height + 67;
+            b.Show();
+            f1.Close();
+            p1.Close();
         }
 
         private void Master_Load(object sender, EventArgs e)
         {
-            login f1 = new login();
+            f1 = new login();
             f1.MdiParent = this;
+            b.Close();
             f1.Show();
+            p1.Close();
         }
 
         private void pegawaiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Pegawai p1 = new Pegawai();
+            p1 = new Pegawai();
             p1.MdiParent = this;
+            this.Width = p1.Width;
+            this.Height = p1.Height + 24;
+            b.Close();
+            f1.Close();
             p1.Show();
         }
     }
