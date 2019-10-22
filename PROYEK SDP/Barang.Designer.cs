@@ -32,14 +32,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.valuetext = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.keysearch = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.warnatext = new System.Windows.Forms.TextBox();
             this.Inset = new System.Windows.Forms.Button();
-            this.hargajual = new System.Windows.Forms.TextBox();
-            this.stockbox = new System.Windows.Forms.TextBox();
-            this.hargabeli = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.combogudang = new System.Windows.Forms.ComboBox();
@@ -54,10 +52,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.idtext = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.valuetext = new System.Windows.Forms.TextBox();
+            this.numericstock = new System.Windows.Forms.NumericUpDown();
+            this.numericbeli = new System.Windows.Forms.NumericUpDown();
+            this.numericjual = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericstock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericbeli)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericjual)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -104,6 +107,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
             // 
+            // valuetext
+            // 
+            this.valuetext.Location = new System.Drawing.Point(81, 52);
+            this.valuetext.Name = "valuetext";
+            this.valuetext.Size = new System.Drawing.Size(193, 20);
+            this.valuetext.TabIndex = 10;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(81, 91);
@@ -130,11 +140,11 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.groupBox2.Controls.Add(this.numericjual);
+            this.groupBox2.Controls.Add(this.numericbeli);
+            this.groupBox2.Controls.Add(this.numericstock);
             this.groupBox2.Controls.Add(this.warnatext);
             this.groupBox2.Controls.Add(this.Inset);
-            this.groupBox2.Controls.Add(this.hargajual);
-            this.groupBox2.Controls.Add(this.stockbox);
-            this.groupBox2.Controls.Add(this.hargabeli);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.combogudang);
@@ -172,27 +182,6 @@
             this.Inset.Text = "Insert";
             this.Inset.UseVisualStyleBackColor = true;
             this.Inset.Click += new System.EventHandler(this.Inset_Click);
-            // 
-            // hargajual
-            // 
-            this.hargajual.Location = new System.Drawing.Point(88, 247);
-            this.hargajual.Name = "hargajual";
-            this.hargajual.Size = new System.Drawing.Size(186, 20);
-            this.hargajual.TabIndex = 21;
-            // 
-            // stockbox
-            // 
-            this.stockbox.Location = new System.Drawing.Point(88, 154);
-            this.stockbox.Name = "stockbox";
-            this.stockbox.Size = new System.Drawing.Size(186, 20);
-            this.stockbox.TabIndex = 17;
-            // 
-            // hargabeli
-            // 
-            this.hargabeli.Location = new System.Drawing.Point(88, 216);
-            this.hargabeli.Name = "hargabeli";
-            this.hargabeli.Size = new System.Drawing.Size(186, 20);
-            this.hargabeli.TabIndex = 18;
             // 
             // label13
             // 
@@ -318,12 +307,26 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "ID";
             // 
-            // valuetext
+            // numericstock
             // 
-            this.valuetext.Location = new System.Drawing.Point(81, 52);
-            this.valuetext.Name = "valuetext";
-            this.valuetext.Size = new System.Drawing.Size(193, 20);
-            this.valuetext.TabIndex = 10;
+            this.numericstock.Location = new System.Drawing.Point(88, 153);
+            this.numericstock.Name = "numericstock";
+            this.numericstock.Size = new System.Drawing.Size(186, 20);
+            this.numericstock.TabIndex = 21;
+            // 
+            // numericbeli
+            // 
+            this.numericbeli.Location = new System.Drawing.Point(88, 214);
+            this.numericbeli.Name = "numericbeli";
+            this.numericbeli.Size = new System.Drawing.Size(186, 20);
+            this.numericbeli.TabIndex = 22;
+            // 
+            // numericjual
+            // 
+            this.numericjual.Location = new System.Drawing.Point(88, 248);
+            this.numericjual.Name = "numericjual";
+            this.numericjual.Size = new System.Drawing.Size(186, 20);
+            this.numericjual.TabIndex = 23;
             // 
             // Barang
             // 
@@ -343,6 +346,9 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericstock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericbeli)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericjual)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -360,9 +366,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox warnatext;
         private System.Windows.Forms.Button Inset;
-        private System.Windows.Forms.TextBox hargajual;
-        private System.Windows.Forms.TextBox stockbox;
-        private System.Windows.Forms.TextBox hargabeli;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox combogudang;
@@ -376,5 +379,8 @@
         private System.Windows.Forms.TextBox namatext;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox valuetext;
+        private System.Windows.Forms.NumericUpDown numericjual;
+        private System.Windows.Forms.NumericUpDown numericbeli;
+        private System.Windows.Forms.NumericUpDown numericstock;
     }
 }
