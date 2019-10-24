@@ -25,6 +25,7 @@ namespace PROYEK_SDP
 
         private void Barang_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Normal;
             this.Location = new Point(0, 0);
             idtext.Enabled = false;
             groupBox1.Paint += PaintBorderlessGroupBox;
