@@ -51,6 +51,7 @@
             // 
             // masterToolStripMenuItem
             // 
+            this.masterToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.masterToolStripMenuItem.Name = "masterToolStripMenuItem";
             this.masterToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.masterToolStripMenuItem.Text = "Master Barang";

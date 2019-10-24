@@ -131,7 +131,7 @@ namespace PROYEK_SDP
             catch (Exception ex)
             {
 
-                MessageBox.Show("Nomor Telpn hanya boleh angka");
+                MessageBox.Show("Nomor Telpn hanya boleh angka -> " + textBox5.Text);
                 cek_nomor = false;
             }
 
@@ -169,6 +169,16 @@ namespace PROYEK_SDP
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            tampilPegawai();
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
             textBox11.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
             textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             textBox2.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
@@ -191,11 +201,6 @@ namespace PROYEK_SDP
             button3.Visible = true;
             button4.Visible = true;
             comboBox1.Enabled = false;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            tampilPegawai();
         }
     }
 }
