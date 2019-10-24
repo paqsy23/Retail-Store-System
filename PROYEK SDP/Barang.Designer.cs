@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Barang));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.valuetext = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.keysearch = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.numericjual = new System.Windows.Forms.NumericUpDown();
@@ -56,23 +55,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.idtext = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dataGridView1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.button1 = new Bunifu.Framework.UI.BunifuTileButton();
+            this.valuetext = new Bunifu.Framework.UI.BunifuTextbox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericjual)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericbeli)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericstock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(317, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(671, 576);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label1
             // 
@@ -103,27 +95,10 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(288, 139);
+            this.groupBox1.Size = new System.Drawing.Size(288, 149);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
-            // 
-            // valuetext
-            // 
-            this.valuetext.Location = new System.Drawing.Point(81, 52);
-            this.valuetext.Name = "valuetext";
-            this.valuetext.Size = new System.Drawing.Size(193, 20);
-            this.valuetext.TabIndex = 10;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(81, 91);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // keysearch
             // 
@@ -162,7 +137,7 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(12, 192);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(288, 314);
+            this.groupBox2.Size = new System.Drawing.Size(288, 317);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Barang";
@@ -329,15 +304,74 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "ID";
             // 
+            // dataGridView1
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.DoubleBuffered = true;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
+            this.dataGridView1.HeaderBgColor = System.Drawing.Color.DodgerBlue;
+            this.dataGridView1.HeaderForeColor = System.Drawing.Color.Black;
+            this.dataGridView1.Location = new System.Drawing.Point(306, 12);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridView1.Size = new System.Drawing.Size(682, 497);
+            this.dataGridView1.TabIndex = 11;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.button1.color = System.Drawing.Color.SeaGreen;
+            this.button1.colorActive = System.Drawing.Color.MediumSeaGreen;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImagePosition = 10;
+            this.button1.ImageZoom = 20;
+            this.button1.LabelPosition = 29;
+            this.button1.LabelText = "Search";
+            this.button1.Location = new System.Drawing.Point(106, 88);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(72, 54);
+            this.button1.TabIndex = 12;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // valuetext
+            // 
+            this.valuetext.BackColor = System.Drawing.Color.Silver;
+            this.valuetext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("valuetext.BackgroundImage")));
+            this.valuetext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.valuetext.ForeColor = System.Drawing.Color.SeaGreen;
+            this.valuetext.Icon = ((System.Drawing.Image)(resources.GetObject("valuetext.Icon")));
+            this.valuetext.Location = new System.Drawing.Point(81, 49);
+            this.valuetext.Name = "valuetext";
+            this.valuetext.Size = new System.Drawing.Size(193, 32);
+            this.valuetext.TabIndex = 12;
+            this.valuetext.text = "";
+            // 
             // Barang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.ClientSize = new System.Drawing.Size(1000, 521);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Barang";
@@ -345,7 +379,6 @@
             this.Text = "Barang";
             this.TransparencyKey = System.Drawing.Color.White;
             this.Load += new System.EventHandler(this.Barang_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -353,17 +386,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericjual)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericbeli)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericstock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox keysearch;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox idtext;
@@ -382,9 +413,11 @@
         private System.Windows.Forms.ComboBox combojenis;
         private System.Windows.Forms.TextBox namatext;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox valuetext;
         private System.Windows.Forms.NumericUpDown numericjual;
         private System.Windows.Forms.NumericUpDown numericbeli;
         private System.Windows.Forms.NumericUpDown numericstock;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid dataGridView1;
+        private Bunifu.Framework.UI.BunifuTextbox valuetext;
+        private Bunifu.Framework.UI.BunifuTileButton button1;
     }
 }

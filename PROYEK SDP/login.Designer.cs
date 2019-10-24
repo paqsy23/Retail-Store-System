@@ -39,11 +39,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(67, 63);
+            this.label2.Location = new System.Drawing.Point(76, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Login:";
+            this.label2.Text = "ID : ";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -67,10 +68,10 @@
             this.btnLogin.ImageZoom = 30;
             this.btnLogin.LabelPosition = 29;
             this.btnLogin.LabelText = "Login";
-            this.btnLogin.Location = new System.Drawing.Point(152, 148);
+            this.btnLogin.Location = new System.Drawing.Point(137, 148);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 62);
+            this.btnLogin.Size = new System.Drawing.Size(90, 62);
             this.btnLogin.TabIndex = 17;
             this.btnLogin.Click += new System.EventHandler(this.bunifuTileButton1_Click);
             // 

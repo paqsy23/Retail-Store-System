@@ -73,7 +73,7 @@ namespace PROYEK_SDP
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
-            if (textBox1.Text != "" && textBox2.Text != "" && comboBox1.SelectedIndex != -1 && textBox4.Text != "" && textBox5.Text != "" && textBox5.Text.Length > 7)
+            if (textBox1.Text != "" && textBox2.Text != "" && comboBox1.SelectedIndex != -1 && textBox4.Text != "" && textBox5.Text != "")
             {
                 int counter = 1;
                 String id = comboBox1.SelectedItem.ToString().Substring(0, 3);
@@ -90,11 +90,14 @@ namespace PROYEK_SDP
                 Boolean cek_nomor = true;
                 try
                 {
-                    Int32.Parse(textBox5.Text);
+                    Int64.Parse(textBox5.Text);
+                    if (textBox5.Text.Length < 8 || textBox5.Text.Length > 12)
+                    {
+                        cek_nomor = false;
+                    }
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Nomor Telpn hanya boleh angka");
                     cek_nomor = false;
                 }
                 if (cek_nomor == true)
@@ -117,6 +120,14 @@ namespace PROYEK_SDP
                         MessageBox.Show(ex.Message.ToString());
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Nomor Telpn hanya boleh angka, Input nomor telepon terlalu panjang atau Nomor kurang");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Tolong isi data diri dengan lengkap.");
             }
             tampilPegawai();
         }
@@ -126,28 +137,40 @@ namespace PROYEK_SDP
             Boolean cek_nomor = true;
             try
             {
-                Int32.Parse(textBox5.Text);
+                Int64.Parse(textBox5.Text);
+                if (textBox5.Text.Length < 8 || textBox5.Text.Length > 12)
+                {
+                    cek_nomor = false;
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                MessageBox.Show("Nomor Telpn hanya boleh angka -> " + textBox5.Text);
                 cek_nomor = false;
             }
-
-            if (cek_nomor == true)
+            if (textBox1.Text != "" && textBox2.Text != "" && comboBox1.SelectedIndex != -1 && textBox4.Text != "" && textBox5.Text != "")
             {
-                String nama = textBox1.Text;
-                OracleCommand command = new OracleCommand();
-                command.Connection = conn;
-                String update = "update pegawai set nama_pegawai = : nama_pegawai, alamat_pegawai = :alamat_pegawai, password = :password, nomor_telp = :nomor_telp where id_pegawai = '" + textBox11.Text + "'";
-                command.CommandText = update;
-                command.Parameters.Add("nama_pegawai", nama);
-                command.Parameters.Add("alamat_pegawai", textBox4.Text);
-                command.Parameters.Add("password", textBox2.Text);
-                command.Parameters.Add("nomor_telp", textBox5.Text);
+                if (cek_nomor == true)
+                {
+                    String nama = textBox1.Text;
+                    OracleCommand command = new OracleCommand();
+                    command.Connection = conn;
+                    String update = "update pegawai set nama_pegawai = : nama_pegawai, alamat_pegawai = :alamat_pegawai, password = :password, nomor_telp = :nomor_telp where id_pegawai = '" + textBox11.Text + "'";
+                    command.CommandText = update;
+                    command.Parameters.Add("nama_pegawai", nama);
+                    command.Parameters.Add("alamat_pegawai", textBox4.Text);
+                    command.Parameters.Add("password", textBox2.Text);
+                    command.Parameters.Add("nomor_telp", textBox5.Text);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    MessageBox.Show("Nomor Telpn hanya boleh angka, Input nomor telepon terlalu panjang atau Nomor kurang");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Tolong isi data diri dengan lengkap.");
             }
             tampilPegawai();
 

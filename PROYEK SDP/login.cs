@@ -80,16 +80,19 @@ namespace PROYEK_SDP
                     PostLogin p1;
                     Master m = new Master();
                     p1 = new PostLogin();
-                    p1.MdiParent = (Form)m;
+                    p1.MdiParent = this.ParentForm;
                     this.Width = p1.Width;
                     this.Height = p1.Height + 24;
                     this.Close();
                     p1.Show();
-                    MessageBox.Show("true");
-                    this.Close();
                 }
 
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
