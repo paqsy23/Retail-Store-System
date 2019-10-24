@@ -7,6 +7,9 @@ drop table htrans_in cascade constraint purge;
 drop table dtrans_in cascade constraint purge;
 drop table htrans_out cascade constraint purge;
 drop table dtrans_out cascade constraint purge;
+drop table temp_hpp cascade constraint purge;
+drop table hPengiriman cascade constraint purge;
+drop table dPengiriman cascade constraint purge;
 
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
