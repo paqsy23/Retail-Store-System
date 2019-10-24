@@ -89,8 +89,10 @@ create table dtrans_out (
 );
 
 create table temp_hpp ( --- untuk history update harga
+	id_barang varchar2(8) constraint fk_brgHPP references barang(id_barang),
 	stock_masuk number, --- stock barang masuk di htrans
 	stock_awal number, --- stock awal barang di table barang
+	stock_total number,
 	harga_beli_baru number, --- harga beli di htrans
 	harga_beli_awal number, --- harga beli di table barang
 	harga_baru number --- hasil perhitungan
