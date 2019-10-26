@@ -14,10 +14,11 @@ namespace PROYEK_SDP
     
     public partial class login : Form
     {
-        OracleConnection conn = new OracleConnection(" user id=admin1;password=admin;");
-        public login()
+        OracleConnection conn;
+        public login(string path)
         {
             InitializeComponent();
+            conn = new OracleConnection(path);
             conn.Open();   
         }
 

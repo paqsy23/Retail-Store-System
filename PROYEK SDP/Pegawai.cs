@@ -14,10 +14,11 @@ namespace PROYEK_SDP
 {
     public partial class Pegawai : Form
     {
-        OracleConnection conn = new OracleConnection(" user id=admin1;password=admin;");
-        public Pegawai()
+        OracleConnection conn;
+        public Pegawai(string path)
         {
             InitializeComponent();
+            conn = new OracleConnection(path);
             conn.Open();
 
         }
@@ -30,7 +31,6 @@ namespace PROYEK_SDP
         private void Pegawai_Load(object sender, EventArgs e)
         {
             this.Location = new Point(0, 0);
-            //this.Width = 1000;
             label1.Text = "Nama       :";
             label2.Text = "Password   :";
             label3.Text = "Jabatan    :";
@@ -39,9 +39,9 @@ namespace PROYEK_SDP
 
             label11.Text = "ID_Pegawai :";
 
-            button2.Location = new Point(button2.Location.X, button1.Location.Y);
-            button3.Location = new Point(button3.Location.X, button1.Location.Y);
-            button4.Location = new Point(button4.Location.X, button1.Location.Y);
+            bunifuFlatButton4.Location = new Point(bunifuFlatButton4.Location.X, bunifuFlatButton3.Location.Y);
+            bunifuFlatButton3.Location = new Point(bunifuFlatButton3.Location.X, bunifuFlatButton2.Location.Y);
+            bunifuFlatButton2.Location = new Point(bunifuFlatButton2.Location.X, bunifuFlatButton1.Location.Y);
 
             tampilPegawai();
         }
@@ -59,10 +59,10 @@ namespace PROYEK_SDP
             textBox4.Text = "";
             textBox5.Text = "";
             comboBox1.SelectedIndex = -1;
-            button1.Visible = true;
-            button2.Visible = false;
-            button3.Visible = false;
-            button4.Visible = false;
+            bunifuFlatButton1.Visible = true;
+            bunifuFlatButton2.Visible = false;
+            bunifuFlatButton3.Visible = false;
+            bunifuFlatButton4.Visible = false;
             comboBox1.Enabled = true;
             comboBox1.Text = "";
         }
@@ -184,9 +184,6 @@ namespace PROYEK_SDP
             cmd.CommandText = delete;
             cmd.ExecuteNonQuery();
             tampilPegawai();
-            button1.Enabled = !false;
-            button2.Enabled = !true;
-            button3.Enabled = !true;
             comboBox1.Enabled = !false;
         }
 
@@ -219,10 +216,10 @@ namespace PROYEK_SDP
                 comboBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             }
 
-            button1.Visible = false;
-            button2.Visible = true;
-            button3.Visible = true;
-            button4.Visible = true;
+            bunifuFlatButton1.Visible = false;
+            bunifuFlatButton2.Visible = true;
+            bunifuFlatButton3.Visible = true;
+            bunifuFlatButton4.Visible = true;
             comboBox1.Enabled = false;
         }
     }

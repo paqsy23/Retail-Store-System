@@ -12,10 +12,11 @@ namespace PROYEK_SDP
 {
     public partial class Barang : Form
     {
-        OracleConnection conn = new OracleConnection(" user id=admin1;password=admin;");
-        public Barang()
+        OracleConnection conn;
+        public Barang(string path)
         {
             InitializeComponent();
+            conn = new OracleConnection(path);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -213,7 +214,6 @@ namespace PROYEK_SDP
                     MessageBox.Show(cmd.CommandText);
                     cmd.ExecuteNonQuery();
                 }
-                
                 
             }
             else
