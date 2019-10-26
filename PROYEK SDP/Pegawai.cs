@@ -15,10 +15,10 @@ namespace PROYEK_SDP
     public partial class Pegawai : Form
     {
         OracleConnection conn;
-        public Pegawai(string path)
+        public Pegawai(string paths)
         {
             InitializeComponent();
-            conn = new OracleConnection(path);
+            conn = new OracleConnection(paths);
             conn.Open();
 
         }
