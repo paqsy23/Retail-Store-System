@@ -33,6 +33,7 @@
             this.masterJualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterPenyesuaianBarangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pegawaiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.masterBeliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,7 +43,8 @@
             this.masterToolStripMenuItem,
             this.masterJualToolStripMenuItem,
             this.masterPenyesuaianBarangToolStripMenuItem,
-            this.pegawaiToolStripMenuItem});
+            this.pegawaiToolStripMenuItem,
+            this.masterBeliToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(984, 24);
@@ -76,6 +78,13 @@
             this.pegawaiToolStripMenuItem.Text = "Pegawai";
             this.pegawaiToolStripMenuItem.Click += new System.EventHandler(this.pegawaiToolStripMenuItem_Click);
             // 
+            // masterBeliToolStripMenuItem
+            // 
+            this.masterBeliToolStripMenuItem.Name = "masterBeliToolStripMenuItem";
+            this.masterBeliToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.masterBeliToolStripMenuItem.Text = "Master Beli";
+            this.masterBeliToolStripMenuItem.Click += new System.EventHandler(this.masterBeliToolStripMenuItem_Click);
+            // 
             // Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -103,5 +112,6 @@
         private System.Windows.Forms.ToolStripMenuItem masterJualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem masterPenyesuaianBarangToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pegawaiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem masterBeliToolStripMenuItem;
     }
 }

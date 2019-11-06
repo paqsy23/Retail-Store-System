@@ -13,6 +13,7 @@ namespace PROYEK_SDP
 {
     public partial class Master : Form
     {
+        beli be;
         Barang b;
         login f1;
         Pegawai p1;
@@ -26,7 +27,7 @@ namespace PROYEK_SDP
             baca.ReadStartElement("data");
             string user = baca.ReadElementString("user");
             string pass = baca.ReadElementString("pass");
-            path = "user id="+user+";password="+pass+";";
+            path = "user id=" + user + ";password=" + pass + ";";
             baca.ReadEndElement();
             baca.Close();
             b = new Barang(path);
@@ -47,6 +48,7 @@ namespace PROYEK_SDP
             masterJualToolStripMenuItem.Enabled = true;
             masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
             pegawaiToolStripMenuItem.Enabled = true;
+            masterBeliToolStripMenuItem.Enabled = true;
 
         }
 
@@ -72,6 +74,32 @@ namespace PROYEK_SDP
             masterJualToolStripMenuItem.Enabled = true;
             masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
             pegawaiToolStripMenuItem.Enabled = false;
+            masterBeliToolStripMenuItem.Enabled = true;
         }
+
+        private void masterBeliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            be = new beli(path);
+            be.MdiParent = this;
+            this.Width = p1.Width + 20;
+            this.Height = p1.Height + 67;
+            b.Close();
+            f1.Close();
+            be.Show();
+            masterToolStripMenuItem.Enabled = true;
+            masterJualToolStripMenuItem.Enabled = true;
+            masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
+            pegawaiToolStripMenuItem.Enabled = true;
+            masterBeliToolStripMenuItem.Enabled = false;
+        }
+    }
+}
+class logins
+{
+    private static string h_username="";
+    public static string username
+    {
+        get { return h_username; }
+        set { h_username = value; }
     }
 }

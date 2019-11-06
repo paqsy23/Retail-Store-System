@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Barang));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Barang));
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.valuetext = new Bunifu.Framework.UI.BunifuTextbox();
+            this.button1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.keysearch = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.combosupplier = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.numericjual = new System.Windows.Forms.NumericUpDown();
             this.numericbeli = new System.Windows.Forms.NumericUpDown();
             this.numericstock = new System.Windows.Forms.NumericUpDown();
@@ -56,8 +60,6 @@
             this.idtext = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.button1 = new Bunifu.Framework.UI.BunifuTileButton();
-            this.valuetext = new Bunifu.Framework.UI.BunifuTextbox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericjual)).BeginInit();
@@ -100,6 +102,39 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
             // 
+            // valuetext
+            // 
+            this.valuetext.BackColor = System.Drawing.Color.Silver;
+            this.valuetext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("valuetext.BackgroundImage")));
+            this.valuetext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.valuetext.ForeColor = System.Drawing.Color.SeaGreen;
+            this.valuetext.Icon = ((System.Drawing.Image)(resources.GetObject("valuetext.Icon")));
+            this.valuetext.Location = new System.Drawing.Point(81, 49);
+            this.valuetext.Name = "valuetext";
+            this.valuetext.Size = new System.Drawing.Size(193, 32);
+            this.valuetext.TabIndex = 12;
+            this.valuetext.text = "";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.SeaGreen;
+            this.button1.color = System.Drawing.Color.SeaGreen;
+            this.button1.colorActive = System.Drawing.Color.MediumSeaGreen;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImagePosition = 10;
+            this.button1.ImageZoom = 20;
+            this.button1.LabelPosition = 29;
+            this.button1.LabelText = "Search";
+            this.button1.Location = new System.Drawing.Point(106, 88);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(72, 54);
+            this.button1.TabIndex = 12;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // keysearch
             // 
             this.keysearch.FormattingEnabled = true;
@@ -116,6 +151,8 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.groupBox2.Controls.Add(this.combosupplier);
+            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.numericjual);
             this.groupBox2.Controls.Add(this.numericbeli);
             this.groupBox2.Controls.Add(this.numericstock);
@@ -137,10 +174,27 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(12, 192);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(288, 317);
+            this.groupBox2.Size = new System.Drawing.Size(288, 368);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Input Barang";
+            // 
+            // combosupplier
+            // 
+            this.combosupplier.FormattingEnabled = true;
+            this.combosupplier.Location = new System.Drawing.Point(88, 280);
+            this.combosupplier.Name = "combosupplier";
+            this.combosupplier.Size = new System.Drawing.Size(186, 21);
+            this.combosupplier.TabIndex = 25;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(0, 283);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 13);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Supplier(blm buat)";
             // 
             // numericjual
             // 
@@ -172,7 +226,7 @@
             // 
             // Inset
             // 
-            this.Inset.Location = new System.Drawing.Point(88, 285);
+            this.Inset.Location = new System.Drawing.Point(103, 328);
             this.Inset.Name = "Inset";
             this.Inset.Size = new System.Drawing.Size(75, 23);
             this.Inset.TabIndex = 19;
@@ -330,45 +384,12 @@
             this.dataGridView1.Size = new System.Drawing.Size(682, 497);
             this.dataGridView1.TabIndex = 11;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.button1.color = System.Drawing.Color.SeaGreen;
-            this.button1.colorActive = System.Drawing.Color.MediumSeaGreen;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImagePosition = 10;
-            this.button1.ImageZoom = 20;
-            this.button1.LabelPosition = 29;
-            this.button1.LabelText = "Search";
-            this.button1.Location = new System.Drawing.Point(106, 88);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(72, 54);
-            this.button1.TabIndex = 12;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // valuetext
-            // 
-            this.valuetext.BackColor = System.Drawing.Color.Silver;
-            this.valuetext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("valuetext.BackgroundImage")));
-            this.valuetext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.valuetext.ForeColor = System.Drawing.Color.SeaGreen;
-            this.valuetext.Icon = ((System.Drawing.Image)(resources.GetObject("valuetext.Icon")));
-            this.valuetext.Location = new System.Drawing.Point(81, 49);
-            this.valuetext.Name = "valuetext";
-            this.valuetext.Size = new System.Drawing.Size(193, 32);
-            this.valuetext.TabIndex = 12;
-            this.valuetext.text = "";
-            // 
             // Barang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1000, 521);
+            this.ClientSize = new System.Drawing.Size(1000, 589);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -419,5 +440,7 @@
         private Bunifu.Framework.UI.BunifuCustomDataGrid dataGridView1;
         private Bunifu.Framework.UI.BunifuTextbox valuetext;
         private Bunifu.Framework.UI.BunifuTileButton button1;
+        private System.Windows.Forms.ComboBox combosupplier;
+        private System.Windows.Forms.Label label2;
     }
 }

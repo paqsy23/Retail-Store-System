@@ -41,6 +41,7 @@ namespace PROYEK_SDP
                 if (textBox1.Text== row["id_pegawai"].ToString()&&textBox2.Text== row["password"].ToString())
                 {
                     PostLogin p1;
+                    logins.username = textBox1.Text;
                     Master m = new Master();
                     p1 = new PostLogin();
                     p1.MdiParent = (Form)m;

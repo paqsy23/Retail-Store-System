@@ -70,6 +70,7 @@ namespace PROYEK_SDP
             isigudang();
             tampilbarang();
             isijenis();
+            isisupplier();
             conn.Close();
         }
         private void isigudang()
@@ -93,6 +94,16 @@ namespace PROYEK_SDP
             combojenis.DataSource = ds.AsDataView();
             combojenis.DisplayMember = "NAMA_JENIS_BARANG";
             combojenis.ValueMember = "ID_JENIS_BARANG";
+        }
+        private void isisupplier()
+        {
+            OracleCommand cmd = new OracleCommand("select ID_SUPPLIER,NAMA_SUPPLIER from SUPPLIER   ", conn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataTable ds = new DataTable();
+            da.Fill(ds);
+            combosupplier.DataSource = ds.AsDataView();
+            combosupplier.DisplayMember = "NAMA_SUPPLIER";
+            combosupplier.ValueMember = "ID_SUPPLIER";
         }
         private void tampilbarang()
         {
@@ -203,14 +214,14 @@ namespace PROYEK_SDP
                     id = id + indexkosong;
                     cmd.CommandText = "insert into barang(id_barang, id_jenis_barang, id_gudang, nama_barang, warna_barang, ukuran, stock ,harga_beli, harga_jual) values(:id_barang, :id_jenis_barang, :id_gudang, :nama_barang, :warna_barang, :ukuran, :stock, :harga_beli, :harga_jual)";
                     cmd.Parameters.Add("id_barang", id);
-                    cmd.Parameters.Add("id_jenis_barang", combojenis);
-                    cmd.Parameters.Add("id_gudang", combogudang);
-                    cmd.Parameters.Add("nama_barang", namatext);
-                    cmd.Parameters.Add("warna_barang", warnatext);
-                    cmd.Parameters.Add("ukuran", comboukuran);
-                    cmd.Parameters.Add("stock", numericstock);
-                    cmd.Parameters.Add("harga_beli", numericbeli);
-                    cmd.Parameters.Add("harga_jual", numericjual);
+                    cmd.Parameters.Add("id_jenis_barang", combojenis.SelectedValue);
+                    cmd.Parameters.Add("id_gudang", combogudang.SelectedValue);
+                    cmd.Parameters.Add("nama_barang", namatext.Text);
+                    cmd.Parameters.Add("warna_barang", warnatext.Text);
+                    cmd.Parameters.Add("ukuran", comboukuran.SelectedValue);
+                    cmd.Parameters.Add("stock", numericstock.Value);
+                    cmd.Parameters.Add("harga_beli", numericbeli.Value);
+                    cmd.Parameters.Add("harga_jual", numericjual.Value);
                     MessageBox.Show(cmd.CommandText);
                     cmd.ExecuteNonQuery();
                 }
