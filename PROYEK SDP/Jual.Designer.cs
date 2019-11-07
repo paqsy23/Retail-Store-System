@@ -72,6 +72,7 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // bunifuFlatButton1
             // 
@@ -106,6 +107,7 @@
             this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bunifuFlatButton1.Textcolor = System.Drawing.Color.White;
             this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuFlatButton1.Click += new System.EventHandler(this.bunifuFlatButton1_Click);
             // 
             // bunifuDropdown6
             // 
@@ -234,7 +236,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -243,7 +245,7 @@
             this.dataGridView1.DoubleBuffered = true;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.HeaderBgColor = System.Drawing.Color.SeaGreen;
-            this.dataGridView1.HeaderForeColor = System.Drawing.Color.SeaGreen;
+            this.dataGridView1.HeaderForeColor = System.Drawing.Color.White;
             this.dataGridView1.Location = new System.Drawing.Point(306, 29);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
