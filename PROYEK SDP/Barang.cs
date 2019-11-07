@@ -286,5 +286,10 @@ namespace PROYEK_SDP
             }
             conn.Close();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
