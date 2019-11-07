@@ -64,6 +64,7 @@
             this.masterJualToolStripMenuItem.Name = "masterJualToolStripMenuItem";
             this.masterJualToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
             this.masterJualToolStripMenuItem.Text = "Master Jual";
+            this.masterJualToolStripMenuItem.Click += new System.EventHandler(this.masterJualToolStripMenuItem_Click);
             // 
             // masterPenyesuaianBarangToolStripMenuItem
             // 
