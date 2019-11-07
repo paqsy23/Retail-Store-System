@@ -121,7 +121,7 @@ namespace PROYEK_SDP
 }
 class logins
 {
-    private static string h_username="";
+    private static string h_username="ADMIN";
     public static string username
     {
         get { return h_username; }
