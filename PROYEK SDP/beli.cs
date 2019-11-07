@@ -22,9 +22,11 @@ namespace PROYEK_SDP
         private void beli_Load(object sender, EventArgs e)
         {
             tampilbarang();
+
         }
         private void tampilbarang()
         {
+            
             OracleCommand cmd = new OracleCommand("select * from barang", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();

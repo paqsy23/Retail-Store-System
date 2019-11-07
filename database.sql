@@ -81,7 +81,7 @@ create table htrans_out (
 	total_harga number
 );
 
-create table dtrans_out (
+create table dtran_out (
 	id_htrans_out varchar2(12) constraint fk_Hout references htrans_out(id_htrans_out),
 	id_barang varchar2(8) constraint fk_brgHout references barang(id_barang),
 	stock_keluar number,
