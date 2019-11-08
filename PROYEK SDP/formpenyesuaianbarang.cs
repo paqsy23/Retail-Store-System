@@ -54,11 +54,11 @@ namespace PROYEK_SDP
             numjual.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[5].Value.ToString());
         }
 
-        private void btnupdate_Click(object sender, EventArgs e)
+
+        private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
             try
             {
-
                 conn.Open();
                 int stock = Convert.ToInt32(numstock.Value);
                 String gudang = cbgudang.Text;
@@ -70,10 +70,10 @@ namespace PROYEK_SDP
                 conn.Close();
                 tampilbarang();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-}
+        }
     }
 }
