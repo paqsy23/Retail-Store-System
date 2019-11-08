@@ -21,6 +21,7 @@ namespace PROYEK_SDP
 
         private void beli_Load(object sender, EventArgs e)
         {
+            textBox2.Enabled = false;
             tampilbarang();
 
         }
@@ -65,8 +66,8 @@ namespace PROYEK_SDP
                 int stock_awal = Int32.Parse(cmd.ExecuteScalar().ToString());
                 cmd.CommandText = "select harga_beli from barang where id_barang='" + textBox2.Text + "'";
                 int harga_awal = Int32.Parse(cmd.ExecuteScalar().ToString());
-                int harga_barang_baru = Int32.Parse(numericUpDown1.Text);
-                int stock_tambahan = Int32.Parse(numericUpDown2.Text);
+                int harga_barang_baru = (int)numericUpDown2.Value;
+                int stock_tambahan = (int)numericUpDown1.Value;
                 int stock_total = stock_awal + stock_tambahan;
                 int hargabaru = (stock_awal * harga_awal + harga_barang_baru * stock_tambahan) / stock_total;
                 cmd.CommandText = "update barang set stock=" + stock_total + ", harga_beli=" + hargabaru + " where id_barang='" + textBox2.Text + "'";
@@ -97,7 +98,7 @@ namespace PROYEK_SDP
 
         private void bunifuCustomDataGrid1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-           textBox2.Text= bunifuCustomDataGrid1.SelectedCells[0].Value.ToString();
+           textBox2.Text= bunifuCustomDataGrid1[0,e.RowIndex].Value.ToString();
         }
     }
 }
