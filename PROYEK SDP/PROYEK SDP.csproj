@@ -65,6 +65,12 @@
     <Compile Include="beli.Designer.cs">
       <DependentUpon>beli.cs</DependentUpon>
     </Compile>
+    <Compile Include="formpenyesuaianbarang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formpenyesuaianbarang.Designer.cs">
+      <DependentUpon>formpenyesuaianbarang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Jual.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="beli.resx">
       <DependentUpon>beli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formpenyesuaianbarang.resx">
+      <DependentUpon>formpenyesuaianbarang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Jual.resx">
       <DependentUpon>Jual.cs</DependentUpon>

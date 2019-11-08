@@ -71,6 +71,7 @@
             this.masterPenyesuaianBarangToolStripMenuItem.Name = "masterPenyesuaianBarangToolStripMenuItem";
             this.masterPenyesuaianBarangToolStripMenuItem.Size = new System.Drawing.Size(164, 20);
             this.masterPenyesuaianBarangToolStripMenuItem.Text = "Master Penyesuaian barang";
+            this.masterPenyesuaianBarangToolStripMenuItem.Click += new System.EventHandler(this.masterPenyesuaianBarangToolStripMenuItem_Click);
             // 
             // pegawaiToolStripMenuItem
             // 

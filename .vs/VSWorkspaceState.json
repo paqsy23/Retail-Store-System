@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\PROYEK SDP",
-    "\\PROYEK SDP\\bin",
-    "\\PROYEK SDP\\bin\\Debug"
+    "\\PROYEK SDP"
   ],
-  "SelectedNode": "\\PROYEK SDP\\bin\\Debug\\Bunifu_UI_v1.52.dll",
+  "SelectedNode": "\\PROYEK SDP\\login.cs",
   "PreviewInSolutionExplorer": false
 }
