@@ -61,7 +61,8 @@ create table htrans_in (
 	id_htrans_in varchar2(12) primary key, --- HI + DD + MM + YY + autogenerate
 	id_supplier varchar2(6) constraint fk_idSupp references supplier(id_supplier),
 	id_gudang varchar2(6) constraint fk_gudHin references gudang(id_gudang),
-	tanggal_trans date,
+	tanggal_trans datetime,
+	laba number,
 	total_harga number
 );
 
@@ -71,13 +72,14 @@ create table dtrans_in (
 	stock_masuk number,
 	harga_beli number,
 	subtotal number,
+	total_stock number,
 	id_penanggungjawab varchar(6) constraint fk_pegHin references pegawai(id_pegawai) --- pengurus
 );
 
 create table htrans_out (
 	id_htrans_out varchar2(12) primary key, --- HO + DD + MM + YY + autogenerate
 	id_buyer varchar2(6) constraint fk_idBuy references buyer(id_buyer),
-	tanggal_trans date,
+	tanggal_trans datetime,
 	total_harga number
 );
 
@@ -87,6 +89,7 @@ create table dtran_out (
 	stock_keluar number,
 	harga_jual number,
 	subtotal number,
+	sisa_stock number,
 	status number, --- 0: default, 1: cancel
 	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai) --- pengurus
 );
