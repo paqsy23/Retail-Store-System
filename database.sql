@@ -10,6 +10,7 @@ drop table dtrans_out cascade constraint purge;
 drop table temp_hpp cascade constraint purge;
 drop table hPengiriman cascade constraint purge;
 drop table dPengiriman cascade constraint purge;
+drop table gudang cascade constraint purge;
 
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
@@ -62,6 +63,7 @@ create table htrans_in (
 	id_supplier varchar2(6) constraint fk_idSupp references supplier(id_supplier),
 	id_gudang varchar2(6) constraint fk_gudHin references gudang(id_gudang),
 	tanggal_trans date,
+	laba number,
 	total_harga number
 );
 
@@ -71,6 +73,7 @@ create table dtrans_in (
 	stock_masuk number,
 	harga_beli number,
 	subtotal number,
+	total_stock number,
 	id_penanggungjawab varchar(6) constraint fk_pegHin references pegawai(id_pegawai) --- pengurus
 );
 
@@ -81,12 +84,13 @@ create table htrans_out (
 	total_harga number
 );
 
-create table dtran_out (
+create table dtrans_out (
 	id_htrans_out varchar2(12) constraint fk_Hout references htrans_out(id_htrans_out),
 	id_barang varchar2(8) constraint fk_brgHout references barang(id_barang),
 	stock_keluar number,
 	harga_jual number,
 	subtotal number,
+	sisa_stock number,
 	status number, --- 0: default, 1: cancel
 	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai) --- pengurus
 );
