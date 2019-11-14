@@ -49,10 +49,10 @@ namespace PROYEK_SDP
         {
             int index = e.RowIndex;
             edid.Text = dataGridView1.Rows[index].Cells[0].Value.ToString();
-            numstock.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[4].Value.ToString());
+            numstock.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[6].Value.ToString());
             cbgudang.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
-            numbeli.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[6].Value.ToString());
-            numjual.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[5].Value.ToString());
+            numbeli.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[7].Value.ToString());
+            numjual.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[8].Value.ToString());
         }
 
 
