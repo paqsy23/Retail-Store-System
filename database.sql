@@ -10,6 +10,7 @@ drop table dtrans_out cascade constraint purge;
 drop table temp_hpp cascade constraint purge;
 drop table hPengiriman cascade constraint purge;
 drop table dPengiriman cascade constraint purge;
+drop table gudang cascade constraint purge;
 
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
@@ -61,7 +62,7 @@ create table htrans_in (
 	id_htrans_in varchar2(12) primary key, --- HI + DD + MM + YY + autogenerate
 	id_supplier varchar2(6) constraint fk_idSupp references supplier(id_supplier),
 	id_gudang varchar2(6) constraint fk_gudHin references gudang(id_gudang),
-	tanggal_trans datetime,
+	tanggal_trans date,
 	laba number,
 	total_harga number
 );
@@ -79,11 +80,11 @@ create table dtrans_in (
 create table htrans_out (
 	id_htrans_out varchar2(12) primary key, --- HO + DD + MM + YY + autogenerate
 	id_buyer varchar2(6) constraint fk_idBuy references buyer(id_buyer),
-	tanggal_trans datetime,
+	tanggal_trans date,
 	total_harga number
 );
 
-create table dtran_out (
+create table dtrans_out (
 	id_htrans_out varchar2(12) constraint fk_Hout references htrans_out(id_htrans_out),
 	id_barang varchar2(8) constraint fk_brgHout references barang(id_barang),
 	stock_keluar number,
