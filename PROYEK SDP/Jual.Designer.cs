@@ -251,14 +251,16 @@
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridView1.Size = new System.Drawing.Size(482, 269);
             this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Jual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 316);
+            this.ClientSize = new System.Drawing.Size(800, 342);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Jual";
             this.Text = "Jual";
             this.Load += new System.EventHandler(this.Jual_Load);

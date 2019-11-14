@@ -18,6 +18,10 @@ namespace PROYEK_SDP
         public Jual(string path)
         {
             InitializeComponent();
+            bunifuDropdown5.AddItem("budi");
+            bunifuDropdown5.AddItem("andi");
+            bunifuDropdown5.AddItem("kevin");
+            bunifuDropdown5.AddItem("lala");
             conn = new OracleConnection(path);
         }
 
@@ -111,6 +115,11 @@ namespace PROYEK_SDP
                 conn.Close();
             }
             
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 
