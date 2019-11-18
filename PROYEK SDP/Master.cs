@@ -18,6 +18,7 @@ namespace PROYEK_SDP
         login f1;
         Pegawai p1;
         Jual j1;
+        supplier s;
         formpenyesuaianbarang fp;
         string path = "";
         public Master()
@@ -38,6 +39,7 @@ namespace PROYEK_SDP
             j1 = new Jual(path);
             be = new beli(path);
             fp = new formpenyesuaianbarang(path);
+            s = new supplier(path);
         }
 
         private void masterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,6 +52,7 @@ namespace PROYEK_SDP
             f1.Close();
             p1.Close();
             j1.Close();
+            s.Close();
             masterToolStripMenuItem.Enabled = false;
             masterJualToolStripMenuItem.Enabled = true;
             masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
@@ -67,6 +70,7 @@ namespace PROYEK_SDP
             p1.Close();
             j1.Close();
             fp.Close();
+            s.Close();
         }
 
         private void pegawaiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -80,7 +84,7 @@ namespace PROYEK_SDP
             j1.Close();
             p1.Show();
             fp.Close();
-
+            s.Close();
             masterToolStripMenuItem.Enabled = true;
             masterJualToolStripMenuItem.Enabled = true;
             masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
@@ -99,6 +103,7 @@ namespace PROYEK_SDP
             j1.Close();
             be.Show();
             fp.Close();
+            s.Close();
             masterToolStripMenuItem.Enabled = true;
             masterJualToolStripMenuItem.Enabled = true;
             masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
@@ -117,6 +122,7 @@ namespace PROYEK_SDP
             be.Close();
             j1.Show();
             fp.Close();
+            s.Close();
             masterToolStripMenuItem.Enabled = true;
             masterJualToolStripMenuItem.Enabled = false;
             masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
@@ -133,12 +139,31 @@ namespace PROYEK_SDP
             be.Close();
             j1.Close();
             fp.Show();
+            s.Close();
             masterToolStripMenuItem.Enabled = true;
             masterJualToolStripMenuItem.Enabled = true;
             masterPenyesuaianBarangToolStripMenuItem.Enabled = false;
             pegawaiToolStripMenuItem.Enabled = true;
             masterBeliToolStripMenuItem.Enabled = true;
 
+        }
+
+        private void supplierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            s = new supplier(path);
+            s.MdiParent = this;
+            s.Show();
+            b.Close();
+            f1.Close();
+            be.Close();
+            j1.Close();
+            fp.Close();
+            masterToolStripMenuItem.Enabled = true;
+            masterJualToolStripMenuItem.Enabled = true;
+            masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
+            pegawaiToolStripMenuItem.Enabled = true;
+            masterBeliToolStripMenuItem.Enabled = true;
+            supplierToolStripMenuItem.Enabled = false;
         }
     }
 }
