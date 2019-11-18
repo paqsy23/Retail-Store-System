@@ -20,6 +20,7 @@ namespace PROYEK_SDP
         Jual j1;
         supplier s;
         formpenyesuaianbarang fp;
+        pembeli pem;
         string path = "";
         public Master()
         {
@@ -33,6 +34,7 @@ namespace PROYEK_SDP
             path = "user id=" + user + ";password=" + pass + ";";
             baca.ReadEndElement();
             baca.Close();
+            pem = new pembeli(path);
             b = new Barang(path);
             f1 = new login(path);
             p1 = new Pegawai(path);
@@ -104,6 +106,7 @@ namespace PROYEK_SDP
             be.Show();
             fp.Close();
             s.Close();
+            p1.Close();
             masterToolStripMenuItem.Enabled = true;
             masterJualToolStripMenuItem.Enabled = true;
             masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
@@ -122,6 +125,7 @@ namespace PROYEK_SDP
             be.Close();
             j1.Show();
             fp.Close();
+            p1.Close();
             s.Close();
             masterToolStripMenuItem.Enabled = true;
             masterJualToolStripMenuItem.Enabled = false;
@@ -138,6 +142,7 @@ namespace PROYEK_SDP
             f1.Close();
             be.Close();
             j1.Close();
+            p1.Close();
             fp.Show();
             s.Close();
             masterToolStripMenuItem.Enabled = true;
@@ -156,6 +161,7 @@ namespace PROYEK_SDP
             b.Close();
             f1.Close();
             be.Close();
+            p1.Close();
             j1.Close();
             fp.Close();
             masterToolStripMenuItem.Enabled = true;
@@ -164,6 +170,13 @@ namespace PROYEK_SDP
             pegawaiToolStripMenuItem.Enabled = true;
             masterBeliToolStripMenuItem.Enabled = true;
             supplierToolStripMenuItem.Enabled = false;
+        }
+
+        private void pembeliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pem = new pembeli(path);
+            pem.MdiParent = this;
+            pem.Show();
         }
     }
 }

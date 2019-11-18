@@ -95,6 +95,12 @@
     <Compile Include="Pegawai.Designer.cs">
       <DependentUpon>Pegawai.cs</DependentUpon>
     </Compile>
+    <Compile Include="pembeli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pembeli.Designer.cs">
+      <DependentUpon>pembeli.cs</DependentUpon>
+    </Compile>
     <Compile Include="PostLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pegawai.resx">
       <DependentUpon>Pegawai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pembeli.resx">
+      <DependentUpon>pembeli.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PostLogin.resx">
       <DependentUpon>PostLogin.cs</DependentUpon>

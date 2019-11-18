@@ -18,10 +18,6 @@ namespace PROYEK_SDP
         public Jual(string path)
         {
             InitializeComponent();
-            bunifuDropdown5.AddItem("budi");
-            bunifuDropdown5.AddItem("andi");
-            bunifuDropdown5.AddItem("kevin");
-            bunifuDropdown5.AddItem("lala");
             conn = new OracleConnection(path);
         }
 
@@ -44,34 +40,31 @@ namespace PROYEK_SDP
         {
             OracleCommand cmd = new OracleCommand("select * from barang", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
+            DataTable ds = new DataTable();
             da.Fill(ds);
-            foreach (DataRow item in ds.Tables[0].Rows)
-            {
-                bunifuDropdown1.AddItem(item[0].ToString());
-            }
+            comboBox1.DataSource = ds.AsDataView();
+            comboBox1.DisplayMember = "ID_BARANG";
+            comboBox1.ValueMember = "ID_BARANG";
         }
         public void isi_supir()
         {
             OracleCommand cmd = new OracleCommand("select * from pegawai where jabatan='Supir'", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
+            DataTable ds = new DataTable();
             da.Fill(ds);
-            foreach (DataRow item in ds.Tables[0].Rows)
-            {
-                bunifuDropdown5.AddItem(item[1].ToString());
-            }
+            comboBox2.DataSource = ds.AsDataView();
+            comboBox2.DisplayMember = "NAMA_PEGAWAI";
+            comboBox2.ValueMember = "ID_PEGAWAI";
         }
         public void isi_mobil()
         {
             OracleCommand cmd = new OracleCommand("select * from mobil", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
+            DataTable ds = new DataTable();
             da.Fill(ds);
-            foreach (DataRow item in ds.Tables[0].Rows)
-            {
-                bunifuDropdown6.AddItem(item[1].ToString());
-            }
+            comboBox3.DataSource = ds.AsDataView();
+            comboBox3.DisplayMember = "NAMA_MOBIL";
+            comboBox3.ValueMember = "ID_MOBIL";
         }
         private void Jual_Load(object sender, EventArgs e)
         {
@@ -81,15 +74,9 @@ namespace PROYEK_SDP
 
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
-            OracleCommand cmd = new OracleCommand("select * from barang where id_barang = '"+bunifuDropdown1.selectedValue.ToString()+"'", conn);
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            int stok = 0;
-            foreach (DataRow item in ds.Tables[0].Rows)
-            {
-                stok = Int16.Parse(item[6].ToString());
-            }
+            conn.Open();
+            OracleCommand cmd2 = new OracleCommand("select stock from barang where id_barang = '" + comboBox1.Text + "'", conn);
+            int stok = Convert.ToInt32(cmd2.ExecuteScalar().ToString());
             stok = stok - (int)numericUpDown1.Value;
             if (stok<0)
             {
@@ -97,10 +84,9 @@ namespace PROYEK_SDP
             }
             else
             {
-                conn.Open();
                 OracleCommand command = new OracleCommand();
                 command.Connection = conn;
-                String update = "update barang set stock=" + stok + "where id_barang = '" + bunifuDropdown1.selectedValue.ToString() + "'";
+                String update = "update barang set stock=" + stok + "where id_barang = '" + comboBox1.Text + "'";
                 command.CommandText = update;
                 command.ExecuteNonQuery();
                 refresh();
@@ -112,6 +98,15 @@ namespace PROYEK_SDP
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OracleCommand cmd = new OracleCommand("select * from barang where id_barang='"+comboBox1.Text+"'", conn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
         }
     }
 
