@@ -11,6 +11,7 @@ drop table temp_hpp cascade constraint purge;
 drop table hPengiriman cascade constraint purge;
 drop table dPengiriman cascade constraint purge;
 drop table gudang cascade constraint purge;
+drop table mobil cascade constraint purge;
 
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
@@ -29,6 +30,13 @@ create table jenis_barang (
 create table gudang (
 	id_gudang varchar2(6) primary key, --- GD + autogenerate
 	lokasi_gudang varchar2(20)
+);
+
+create table mobil (
+	id_mobil varchar2(6) primary key,
+	plat_nomor varchar2(6) unique,
+	nama_mobil varchar2(25),
+	kapasitas number
 );
 
 create table barang (
@@ -124,6 +132,10 @@ insert into pegawai values('PEG003','Jonny Hughes','Pegawai','Jetis Wetan 97','P
 insert into pegawai values('SUP001','Graham Duffield','Supir','Dukuh Pakis X/76','SUP001','0317325638');
 insert into pegawai values('SUP002','Magno Vieira','Supir','Raya Darmo 59','SUP001','088880829101');
 insert into pegawai values('ADMIN','Admin','Admin','-','admin','-');
+
+insert into mobil values('KD0001','L1234KL','Hilux',);
+insert into mobil values('KD0002','L6834ZX','Grand Max',);
+insert into mobil values('KD0003','L7089IO','L3000',);
 
 insert into jenis_barang values('KE0001','Kemeja');
 insert into jenis_barang values('KA0001','Kaos');
