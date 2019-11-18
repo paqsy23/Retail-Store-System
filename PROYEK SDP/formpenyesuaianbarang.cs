@@ -14,7 +14,6 @@ namespace PROYEK_SDP
     public partial class formpenyesuaianbarang : Form
     {
         OracleConnection conn;
-        int a;
         public formpenyesuaianbarang(String path)
         {
             InitializeComponent(); 
