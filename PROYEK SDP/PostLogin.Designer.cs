@@ -89,7 +89,7 @@
             this.button3.ImageZoom = 50;
             this.button3.LabelPosition = 41;
             this.button3.LabelText = "Jual";
-            this.button3.Location = new System.Drawing.Point(521, 131);
+            this.button3.Location = new System.Drawing.Point(241, 272);
             this.button3.Margin = new System.Windows.Forms.Padding(6);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(128, 129);
@@ -107,7 +107,7 @@
             this.button6.ImagePosition = 20;
             this.button6.ImageZoom = 50;
             this.button6.LabelPosition = 41;
-            this.button6.LabelText = "Tile 1";
+            this.button6.LabelText = "Supplier";
             this.button6.Location = new System.Drawing.Point(521, 272);
             this.button6.Margin = new System.Windows.Forms.Padding(6);
             this.button6.Name = "button6";
@@ -126,7 +126,7 @@
             this.button5.ImagePosition = 20;
             this.button5.ImageZoom = 50;
             this.button5.LabelPosition = 41;
-            this.button5.LabelText = "Tile 1";
+            this.button5.LabelText = "Beli";
             this.button5.Location = new System.Drawing.Point(381, 272);
             this.button5.Margin = new System.Windows.Forms.Padding(6);
             this.button5.Name = "button5";
@@ -139,14 +139,14 @@
             this.button4.color = System.Drawing.Color.SeaGreen;
             this.button4.colorActive = System.Drawing.Color.MediumSeaGreen;
             this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Font = new System.Drawing.Font("Century Gothic", 15.75F);
+            this.button4.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImagePosition = 20;
+            this.button4.ImagePosition = 18;
             this.button4.ImageZoom = 50;
-            this.button4.LabelPosition = 41;
-            this.button4.LabelText = "Tile 1";
-            this.button4.Location = new System.Drawing.Point(241, 272);
+            this.button4.LabelPosition = 38;
+            this.button4.LabelText = "Penyesuaian";
+            this.button4.Location = new System.Drawing.Point(521, 131);
             this.button4.Margin = new System.Windows.Forms.Padding(6);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(128, 129);
