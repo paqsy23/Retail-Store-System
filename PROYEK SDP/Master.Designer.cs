@@ -34,6 +34,7 @@
             this.masterPenyesuaianBarangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pegawaiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterBeliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.supplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +45,8 @@
             this.masterJualToolStripMenuItem,
             this.masterPenyesuaianBarangToolStripMenuItem,
             this.pegawaiToolStripMenuItem,
-            this.masterBeliToolStripMenuItem});
+            this.masterBeliToolStripMenuItem,
+            this.supplierToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(984, 24);
@@ -87,6 +89,13 @@
             this.masterBeliToolStripMenuItem.Text = "Master Beli";
             this.masterBeliToolStripMenuItem.Click += new System.EventHandler(this.masterBeliToolStripMenuItem_Click);
             // 
+            // supplierToolStripMenuItem
+            // 
+            this.supplierToolStripMenuItem.Name = "supplierToolStripMenuItem";
+            this.supplierToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.supplierToolStripMenuItem.Text = "Supplier";
+            this.supplierToolStripMenuItem.Click += new System.EventHandler(this.supplierToolStripMenuItem_Click);
+            // 
             // Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,5 +124,6 @@
         private System.Windows.Forms.ToolStripMenuItem masterPenyesuaianBarangToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pegawaiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem masterBeliToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem supplierToolStripMenuItem;
     }
 }
