@@ -133,9 +133,9 @@ insert into pegawai values('SUP001','Graham Duffield','Supir','Dukuh Pakis X/76'
 insert into pegawai values('SUP002','Magno Vieira','Supir','Raya Darmo 59','SUP001','088880829101');
 insert into pegawai values('ADMIN','Admin','Admin','-','admin','-');
 
-insert into mobil values('KD0001','L1234KL','Hilux',);
-insert into mobil values('KD0002','L6834ZX','Grand Max',);
-insert into mobil values('KD0003','L7089IO','L3000',);
+insert into mobil values('KD0001','L1234KL','Hilux',20);
+insert into mobil values('KD0002','L6834ZX','Grand Max',15);
+insert into mobil values('KD0003','L7089IO','L3000',18);
 
 insert into jenis_barang values('KE0001','Kemeja');
 insert into jenis_barang values('KA0001','Kaos');
