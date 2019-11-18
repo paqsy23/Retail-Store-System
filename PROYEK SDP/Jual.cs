@@ -72,7 +72,7 @@ namespace PROYEK_SDP
 
             foreach (DataRow item in ds.Tables[0].Rows)
             {
-                bunifuDropdown6.AddItem(item[1].ToString());
+                bunifuDropdown6.AddItem(item[2].ToString());
             }
         }
         private void Jual_Load(object sender, EventArgs e)
