@@ -57,7 +57,6 @@ namespace PROYEK_SDP
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
-
             foreach (DataRow item in ds.Tables[0].Rows)
             {
                 bunifuDropdown5.AddItem(item[1].ToString());
@@ -69,7 +68,6 @@ namespace PROYEK_SDP
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
-
             foreach (DataRow item in ds.Tables[0].Rows)
             {
                 bunifuDropdown6.AddItem(item[1].ToString());
@@ -93,7 +91,6 @@ namespace PROYEK_SDP
                 stok = Int16.Parse(item[6].ToString());
             }
             stok = stok - (int)numericUpDown1.Value;
-            
             if (stok<0)
             {
                 MessageBox.Show("Stok Tidak Mencukupi");
