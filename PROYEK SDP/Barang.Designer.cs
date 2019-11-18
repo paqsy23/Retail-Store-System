@@ -200,6 +200,11 @@
             // numericjual
             // 
             this.numericjual.Location = new System.Drawing.Point(88, 248);
+            this.numericjual.Maximum = new decimal(new int[] {
+            -727379969,
+            232,
+            0,
+            0});
             this.numericjual.Name = "numericjual";
             this.numericjual.Size = new System.Drawing.Size(186, 20);
             this.numericjual.TabIndex = 23;
@@ -207,6 +212,11 @@
             // numericbeli
             // 
             this.numericbeli.Location = new System.Drawing.Point(88, 214);
+            this.numericbeli.Maximum = new decimal(new int[] {
+            -727379969,
+            232,
+            0,
+            0});
             this.numericbeli.Name = "numericbeli";
             this.numericbeli.Size = new System.Drawing.Size(186, 20);
             this.numericbeli.TabIndex = 22;
@@ -214,6 +224,11 @@
             // numericstock
             // 
             this.numericstock.Location = new System.Drawing.Point(88, 153);
+            this.numericstock.Maximum = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            0});
             this.numericstock.Name = "numericstock";
             this.numericstock.Size = new System.Drawing.Size(186, 20);
             this.numericstock.TabIndex = 21;
