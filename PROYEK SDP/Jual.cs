@@ -80,10 +80,6 @@ namespace PROYEK_SDP
             refresh();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
@@ -96,7 +92,6 @@ namespace PROYEK_SDP
             {
                 stok = Int16.Parse(item[6].ToString());
             }
-            //int stok = Int16.Parse( ds.Tables[0].Columns[6].ToString());
             stok = stok - (int)numericUpDown1.Value;
             
             if (stok<0)
@@ -117,9 +112,9 @@ namespace PROYEK_SDP
             
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
     }
 
