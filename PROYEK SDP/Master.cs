@@ -17,6 +17,7 @@ namespace PROYEK_SDP
         public Master()
         {
             InitializeComponent();
+
             //Load Login.xml
             XmlTextReader baca = new XmlTextReader(Application.StartupPath + "\\login.xml");
             baca.ReadStartElement("data");
@@ -26,13 +27,27 @@ namespace PROYEK_SDP
             baca.ReadEndElement();
             baca.Close();
         }
-        
-        private void Master_Load(object sender, EventArgs e)
+
+        private void masterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            showLogin();
+            b = new Barang(path);
+            b.MdiParent = this;
+            this.Width = b.Width + 20;
+            this.Height = b.Height + 67;
+            b.Show();
+            f1.Close();
+            p1.Close();
+            j1.Close();
+            s.Close();
+            masterToolStripMenuItem.Enabled = false;
+            masterJualToolStripMenuItem.Enabled = true;
+            masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
+            pegawaiToolStripMenuItem.Enabled = true;
+            masterBeliToolStripMenuItem.Enabled = true;
+
         }
 
-        public void showLogin()
+        private void Master_Load(object sender, EventArgs e)
         {
             login f1 = new login(path);
             f1.MdiParent = this;
@@ -115,6 +130,13 @@ namespace PROYEK_SDP
             this.Height = ps.Height + 44;
             ps.Show();
 
+        }
+
+        private void pembeliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pem = new pembeli(path);
+            pem.MdiParent = this;
+            pem.Show();
         }
     }
 }

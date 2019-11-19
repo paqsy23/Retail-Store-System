@@ -46,19 +46,20 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.bunifuFlatButton1);
-            this.groupBox1.Controls.Add(this.bunifuDropdown6);
-            this.groupBox1.Controls.Add(this.bunifuDropdown5);
-            this.groupBox1.Controls.Add(this.bunifuDropdown1);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
             this.groupBox1.Controls.Add(this.label8);
@@ -81,7 +82,7 @@
             this.bunifuFlatButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.bunifuFlatButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bunifuFlatButton1.BorderRadius = 0;
-            this.bunifuFlatButton1.ButtonText = "bunifuFlatButton1";
+            this.bunifuFlatButton1.ButtonText = "jual";
             this.bunifuFlatButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bunifuFlatButton1.DisabledColor = System.Drawing.Color.Gray;
             this.bunifuFlatButton1.Iconcolor = System.Drawing.Color.Transparent;
@@ -96,61 +97,19 @@
             this.bunifuFlatButton1.IconVisible = true;
             this.bunifuFlatButton1.IconZoom = 90D;
             this.bunifuFlatButton1.IsTab = false;
-            this.bunifuFlatButton1.Location = new System.Drawing.Point(25, 212);
+            this.bunifuFlatButton1.Location = new System.Drawing.Point(81, 208);
             this.bunifuFlatButton1.Name = "bunifuFlatButton1";
             this.bunifuFlatButton1.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.bunifuFlatButton1.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.bunifuFlatButton1.OnHoverTextColor = System.Drawing.Color.White;
             this.bunifuFlatButton1.selected = false;
-            this.bunifuFlatButton1.Size = new System.Drawing.Size(241, 48);
+            this.bunifuFlatButton1.Size = new System.Drawing.Size(143, 43);
             this.bunifuFlatButton1.TabIndex = 15;
-            this.bunifuFlatButton1.Text = "bunifuFlatButton1";
+            this.bunifuFlatButton1.Text = "jual";
             this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bunifuFlatButton1.Textcolor = System.Drawing.Color.White;
             this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuFlatButton1.Click += new System.EventHandler(this.bunifuFlatButton1_Click);
-            // 
-            // bunifuDropdown6
-            // 
-            this.bunifuDropdown6.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuDropdown6.BorderRadius = 3;
-            this.bunifuDropdown6.ForeColor = System.Drawing.Color.White;
-            this.bunifuDropdown6.Items = new string[0];
-            this.bunifuDropdown6.Location = new System.Drawing.Point(81, 141);
-            this.bunifuDropdown6.Name = "bunifuDropdown6";
-            this.bunifuDropdown6.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
-            this.bunifuDropdown6.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.bunifuDropdown6.selectedIndex = -1;
-            this.bunifuDropdown6.Size = new System.Drawing.Size(193, 25);
-            this.bunifuDropdown6.TabIndex = 36;
-            // 
-            // bunifuDropdown5
-            // 
-            this.bunifuDropdown5.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuDropdown5.BorderRadius = 3;
-            this.bunifuDropdown5.ForeColor = System.Drawing.Color.White;
-            this.bunifuDropdown5.Items = new string[0];
-            this.bunifuDropdown5.Location = new System.Drawing.Point(81, 110);
-            this.bunifuDropdown5.Name = "bunifuDropdown5";
-            this.bunifuDropdown5.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
-            this.bunifuDropdown5.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.bunifuDropdown5.selectedIndex = -1;
-            this.bunifuDropdown5.Size = new System.Drawing.Size(193, 25);
-            this.bunifuDropdown5.TabIndex = 35;
-            // 
-            // bunifuDropdown1
-            // 
-            this.bunifuDropdown1.BackColor = System.Drawing.Color.Transparent;
-            this.bunifuDropdown1.BorderRadius = 3;
-            this.bunifuDropdown1.ForeColor = System.Drawing.Color.White;
-            this.bunifuDropdown1.Items = new string[0];
-            this.bunifuDropdown1.Location = new System.Drawing.Point(81, 18);
-            this.bunifuDropdown1.Name = "bunifuDropdown1";
-            this.bunifuDropdown1.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
-            this.bunifuDropdown1.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
-            this.bunifuDropdown1.selectedIndex = -1;
-            this.bunifuDropdown1.Size = new System.Drawing.Size(193, 25);
-            this.bunifuDropdown1.TabIndex = 15;
             // 
             // label9
             // 
@@ -226,7 +185,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(48, 30);
+            this.label4.Location = new System.Drawing.Point(48, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(21, 13);
             this.label4.TabIndex = 4;
@@ -259,18 +218,30 @@
             this.dataGridView1.TabIndex = 14;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
-            // pictureBox1
+            // comboBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::PROYEK_SDP.Properties.Resources.circled_left;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(45, 45);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.btnBack);
-            this.pictureBox1.MouseEnter += new System.EventHandler(this.Hover_MouseEnter);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(81, 21);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(193, 21);
+            this.comboBox1.TabIndex = 31;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(81, 111);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(193, 21);
+            this.comboBox2.TabIndex = 32;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(81, 143);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(193, 21);
+            this.comboBox3.TabIndex = 33;
             // 
             // Jual
             // 
@@ -310,6 +281,5 @@
         private Bunifu.Framework.UI.BunifuDropdown bunifuDropdown6;
         private Bunifu.Framework.UI.BunifuDropdown bunifuDropdown5;
         private Bunifu.Framework.UI.BunifuDropdown bunifuDropdown1;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

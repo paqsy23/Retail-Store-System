@@ -166,7 +166,25 @@ namespace PROYEK_SDP
             }
             return true;
         }
-        private void Inset_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            conn.Open();
+            if (checksearch() == true)
+            {
+                OracleCommand cmd = new OracleCommand("select * from barang where " + keysearch.Text + "='" + valuetext.Text + "'", conn);
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                dataGridView1.DataSource = ds.Tables[0];
+            }
+            else
+            {
+                MessageBox.Show("Pastikan Form Terisi Dengan Benar");
+            }
+            conn.Close();
+        }
+
+        private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
             conn.Open();
             string id;
@@ -174,15 +192,15 @@ namespace PROYEK_SDP
             string nama = this.namatext.Text;
             if (checkform() == true)
             {
-                
+
                 if (nama.Contains(" "))
                 {
                     int ctr = 1;
-                    string temp = nama.Substring(nama.IndexOf(" ") + ctr,1);
-                    while (temp=="'" ||temp==" ")
+                    string temp = nama.Substring(nama.IndexOf(" ") + ctr, 1);
+                    while (temp == "'" || temp == " ")
                     {
                         ctr++;
-                        temp = nama.Substring(nama.IndexOf(" ") + ctr,1);
+                        temp = nama.Substring(nama.IndexOf(" ") + ctr, 1);
                     }
                     MessageBox.Show(temp);
 
@@ -210,7 +228,7 @@ namespace PROYEK_SDP
                 }
                 else
                 {
-                    
+
                     id = (nama.Substring(0, 2) + warna.Substring(0, 2)).ToUpper() + comboukuran.SelectedIndex;
                     OracleCommand cmd = new OracleCommand("select count(id_barang)+1 from barang where id_barang LIKE '%" + id + "%'", conn);
                     string indexkosong = cmd.ExecuteScalar().ToString();
@@ -233,8 +251,8 @@ namespace PROYEK_SDP
                     cmd.ExecuteNonQuery();
                 }
                 DateTime dateTime = DateTime.UtcNow.Date;
-                int total= (int)numericbeli.Value * (int)numericstock.Value;
-                string id_htrans ="HI"+(dateTime.ToString("ddMMyyyy"));
+                int total = (int)numericbeli.Value * (int)numericstock.Value;
+                string id_htrans = "HI" + (dateTime.ToString("ddMMyyyy"));
                 OracleCommand cmds = new OracleCommand("select count(id_htrans_in)+1 from htrans_in where id_htrans_in LIKE '%" + id_htrans + "%'", conn);
                 string indexkosongs = cmds.ExecuteScalar().ToString();
                 for (int i = indexkosongs.Length; i < 2; i++)
@@ -246,9 +264,9 @@ namespace PROYEK_SDP
                 cmds.Parameters.Add("id_htrans_in", id_htrans);
                 cmds.Parameters.Add("id_supplier", combosupplier.SelectedValue);
                 cmds.Parameters.Add("id_gudang", combogudang.SelectedValue);
-                cmds.Parameters.Add("total_harga", (int)numericbeli.Value*(int)numericstock.Value);
+                cmds.Parameters.Add("total_harga", (int)numericbeli.Value * (int)numericstock.Value);
                 cmds.ExecuteNonQuery();
-                cmds.CommandText = "insert into dtrans_in values('"+id_htrans+"','"+id+"',"+(int)numericstock.Value+","+numericbeli.Value+","+total+",'"+logins.username+"')";
+                cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + id + "'," + (int)numericstock.Value + "," + numericbeli.Value + "," + total + ",'" + logins.username + "')";
                 cmds.ExecuteNonQuery();
                 //cmds.CommandText = "insert into dtrans_in (id_htrans_in, id_barang, stock_masuk, harga_beli, subtotal, id_penanggungjawab) values ( :id_htrans_in, :id_barang, :stock_masuk, :harga_beli, :subtotal, :id_penanggungjawab)";
                 //cmds.Parameters.Add("id_htrans_in", id_htrans);
