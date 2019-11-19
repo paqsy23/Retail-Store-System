@@ -14,10 +14,11 @@ namespace PROYEK_SDP
     public partial class Jual : Form
     {
         OracleConnection conn;
-        
+        public Master parent;
         public Jual(string path)
         {
             InitializeComponent();
+            this.Location = new Point(0, 0);
             bunifuDropdown5.AddItem("budi");
             bunifuDropdown5.AddItem("andi");
             bunifuDropdown5.AddItem("kevin");
@@ -114,7 +115,19 @@ namespace PROYEK_SDP
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
+        }
+
+        private void btnBack(object sender, EventArgs e)
+        {
+            parent.showPostLogin();
+            this.Close();
+        }
+
+        private void Hover_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox ini = (PictureBox)sender;
+            ini.Cursor = Cursors.Hand;
         }
     }
 

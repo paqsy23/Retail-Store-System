@@ -34,22 +34,23 @@
             this.btnLogin = new Bunifu.Framework.UI.BunifuTileButton();
             this.textBox1 = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.textBox2 = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(76, 58);
+            this.label2.Location = new System.Drawing.Point(46, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "ID : ";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 98);
+            this.label3.Location = new System.Drawing.Point(17, 104);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 13);
             this.label3.TabIndex = 11;
@@ -68,12 +69,12 @@
             this.btnLogin.ImageZoom = 30;
             this.btnLogin.LabelPosition = 29;
             this.btnLogin.LabelText = "Login";
-            this.btnLogin.Location = new System.Drawing.Point(137, 148);
+            this.btnLogin.Location = new System.Drawing.Point(107, 154);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(90, 62);
             this.btnLogin.TabIndex = 17;
-            this.btnLogin.Click += new System.EventHandler(this.bunifuTileButton1_Click);
+            this.btnLogin.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
@@ -87,7 +88,7 @@
             this.textBox1.LineIdleColor = System.Drawing.Color.Gray;
             this.textBox1.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.textBox1.LineThickness = 3;
-            this.textBox1.Location = new System.Drawing.Point(110, 52);
+            this.textBox1.Location = new System.Drawing.Point(80, 58);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(175, 29);
@@ -101,35 +102,47 @@
             this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBox2.HintForeColor = System.Drawing.Color.Empty;
             this.textBox2.HintText = "";
-            this.textBox2.isPassword = false;
+            this.textBox2.isPassword = true;
             this.textBox2.LineFocusedColor = System.Drawing.Color.Blue;
             this.textBox2.LineIdleColor = System.Drawing.Color.Gray;
             this.textBox2.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.textBox2.LineThickness = 3;
-            this.textBox2.Location = new System.Drawing.Point(110, 89);
+            this.textBox2.Location = new System.Drawing.Point(80, 95);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(175, 29);
             this.textBox2.TabIndex = 19;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.textBox2.OnValueChanged += new System.EventHandler(this.textBox2_OnValueChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnLogin);
+            this.panel1.Location = new System.Drawing.Point(60, 44);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(288, 265);
+            this.panel1.TabIndex = 20;
             // 
             // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 282);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.btnLogin);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(600, 400);
+            this.ControlBox = false;
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "login";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.login_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -139,6 +152,7 @@
         private Bunifu.Framework.UI.BunifuTileButton btnLogin;
         private Bunifu.Framework.UI.BunifuMaterialTextbox textBox1;
         private Bunifu.Framework.UI.BunifuMaterialTextbox textBox2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

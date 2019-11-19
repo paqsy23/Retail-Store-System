@@ -15,22 +15,19 @@ namespace PROYEK_SDP
     public partial class login : Form
     {
         OracleConnection conn;
+        public Master parent;
         public login(string path)
         {
             InitializeComponent();
             conn = new OracleConnection(path);
-            conn.Open();   
-        }
-
-        private void login_Load(object sender, EventArgs e)
-        {
-            this.Location = new Point(this.Parent.Width / 2 - this.Width / 2, this.Parent.Height / 2 - this.Height / 2);
-
+            conn.Open();
+            this.Location = new Point(0, 0);
+            panel1.Location = new Point(this.Width / 2 - panel1.Width / 2, this.Height / 2 - panel1.Height / 2);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            bool cek = false;
             OracleCommand cmd = new OracleCommand("select id_pegawai,password from pegawai where id_pegawai='"+textBox1.Text+"'", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -40,61 +37,19 @@ namespace PROYEK_SDP
                 
                 if (textBox1.Text== row["id_pegawai"].ToString()&&textBox2.Text== row["password"].ToString())
                 {
-                    PostLogin p1;
                     logins.username = textBox1.Text;
-                    Master m = new Master();
-                    p1 = new PostLogin();
-                    p1.MdiParent = (Form)m;
-                    this.Width = p1.Width;
-                    this.Height = p1.Height + 24;
+                    parent.showPostLogin();
                     this.Close();
-                    p1.Show();
-                    MessageBox.Show("true");
-                    this.Close();
+                    cek = true;
                 }
                 
             }
-
-            
+            if (!cek) MessageBox.Show("Password Salah!");
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void textBox2_OnValueChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuTileButton1_Click(object sender, EventArgs e)
-        {
-            OracleCommand cmd = new OracleCommand("select id_pegawai,password from pegawai where id_pegawai='" + textBox1.Text + "'", conn);
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            foreach (DataRow row in ds.Tables[0].Rows)
-            {
-
-                if (textBox1.Text == row["id_pegawai"].ToString() && textBox2.Text == row["password"].ToString())
-                {
-                    PostLogin p1;
-                    Master m = new Master();
-                    p1 = new PostLogin();
-                    p1.MdiParent = this.ParentForm;
-                    this.Width = p1.Width;
-                    this.Height = p1.Height + 24;
-                    this.Close();
-                    p1.Show();
-                }
-
-            }
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
+            textBox2.isPassword = true;
         }
     }
 }

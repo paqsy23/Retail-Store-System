@@ -15,12 +15,13 @@ namespace PROYEK_SDP
     public partial class Pegawai : Form
     {
         OracleConnection conn;
+        public Master parent;
         public Pegawai(string paths)
         {
             InitializeComponent();
+            this.Location = new Point(0, 0);
             conn = new OracleConnection(paths);
             conn.Open();
-
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -221,6 +222,18 @@ namespace PROYEK_SDP
             bunifuFlatButton3.Visible = true;
             bunifuFlatButton4.Visible = true;
             comboBox1.Enabled = false;
+        }
+
+        private void btnBack(object sender, EventArgs e)
+        {
+            parent.showPostLogin();
+            this.Close();
+        }
+
+        private void Hover_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox ini = (PictureBox)sender;
+            ini.Cursor = Cursors.Hand;
         }
     }
 }

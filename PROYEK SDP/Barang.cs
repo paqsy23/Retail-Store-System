@@ -13,10 +13,17 @@ namespace PROYEK_SDP
     public partial class Barang : Form
     {
         OracleConnection conn;
+        public Master parent;
         public Barang(string path)
         {
             InitializeComponent();
             conn = new OracleConnection(path);
+        }
+
+        private void Hover_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox ini = (PictureBox)sender;
+            ini.Cursor = Cursors.Hand;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -265,8 +272,10 @@ namespace PROYEK_SDP
         {
             
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btnBack (object sender, EventArgs e)
         {
+            parent.showPostLogin();
+            this.Close();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
