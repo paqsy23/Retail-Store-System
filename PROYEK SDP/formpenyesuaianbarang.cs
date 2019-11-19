@@ -14,14 +14,13 @@ namespace PROYEK_SDP
     public partial class formpenyesuaianbarang : Form
     {
         OracleConnection conn;
+        public Master parent;
         int a;
         public formpenyesuaianbarang(String path)
         {
             InitializeComponent(); 
             this.WindowState = FormWindowState.Normal;
             this.Location = new Point(0, 0);
-            this.Top = 0;
-            this.Left = 0;
             conn = new OracleConnection(path);
             tampilbarang();
             isicbgudang();
@@ -75,6 +74,18 @@ namespace PROYEK_SDP
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnBack(object sender, EventArgs e)
+        {
+            parent.showPostLogin();
+            this.Close();
+        }
+
+        private void Hover_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox ini = (PictureBox)sender;
+            ini.Cursor = Cursors.Hand;
         }
     }
 }

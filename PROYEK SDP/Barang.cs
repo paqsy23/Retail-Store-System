@@ -13,10 +13,17 @@ namespace PROYEK_SDP
     public partial class Barang : Form
     {
         OracleConnection conn;
+        public Master parent;
         public Barang(string path)
         {
             InitializeComponent();
             conn = new OracleConnection(path);
+        }
+
+        private void Hover_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox ini = (PictureBox)sender;
+            ini.Cursor = Cursors.Hand;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -277,6 +284,37 @@ namespace PROYEK_SDP
             }
             conn.Close();
             refresh();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            conn.Open();
+            if (checksearch() == true)
+            {
+                OracleCommand cmd = new OracleCommand("select * from barang where " + keysearch.Text + "='" + valuetext.Text + "'", conn);
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                dataGridView1.DataSource = ds.Tables[0];
+            }
+            else
+            {
+                MessageBox.Show("Pastikan Form Terisi Dengan Benar");
+            }
+            conn.Close();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
