@@ -14,10 +14,11 @@ namespace PROYEK_SDP
     public partial class Jual : Form
     {
         OracleConnection conn;
-        
+        public Master parent;
         public Jual(string path)
         {
             InitializeComponent();
+            this.Location = new Point(0, 0);
             bunifuDropdown5.AddItem("budi");
             bunifuDropdown5.AddItem("andi");
             bunifuDropdown5.AddItem("kevin");
@@ -44,7 +45,7 @@ namespace PROYEK_SDP
         {
             OracleCommand cmd = new OracleCommand("select * from barang", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
+            DataTable ds = new DataTable();
             da.Fill(ds);
             foreach (DataRow item in ds.Tables[0].Rows)
             {
@@ -69,11 +70,9 @@ namespace PROYEK_SDP
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
-
-            foreach (DataRow item in ds.Tables[0].Rows)
-            {
-                bunifuDropdown6.AddItem(item[1].ToString());
-            }
+            comboBox3.DataSource = ds.AsDataView();
+            comboBox3.DisplayMember = "NAMA_MOBIL";
+            comboBox3.ValueMember = "ID_MOBIL";
         }
         private void Jual_Load(object sender, EventArgs e)
         {
@@ -93,17 +92,15 @@ namespace PROYEK_SDP
                 stok = Int16.Parse(item[6].ToString());
             }
             stok = stok - (int)numericUpDown1.Value;
-            
             if (stok<0)
             {
                 MessageBox.Show("Stok Tidak Mencukupi");
             }
             else
             {
-                conn.Open();
                 OracleCommand command = new OracleCommand();
                 command.Connection = conn;
-                String update = "update barang set stock=" + stok + "where id_barang = '" + bunifuDropdown1.selectedValue.ToString() + "'";
+                String update = "update barang set stock=" + stok + "where id_barang = '" + comboBox1.Text + "'";
                 command.CommandText = update;
                 command.ExecuteNonQuery();
                 refresh();
@@ -114,7 +111,19 @@ namespace PROYEK_SDP
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
+        }
+
+        private void btnBack(object sender, EventArgs e)
+        {
+            parent.showPostLogin();
+            this.Close();
+        }
+
+        private void Hover_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox ini = (PictureBox)sender;
+            ini.Cursor = Cursors.Hand;
         }
     }
 

@@ -13,12 +13,6 @@ namespace PROYEK_SDP
 {
     public partial class Master : Form
     {
-        beli be;
-        Barang b;
-        login f1;
-        Pegawai p1;
-        Jual j1;
-        formpenyesuaianbarang fp;
         string path = "";
         public Master()
         {
@@ -32,12 +26,6 @@ namespace PROYEK_SDP
             path = "user id=" + user + ";password=" + pass + ";";
             baca.ReadEndElement();
             baca.Close();
-            b = new Barang(path);
-            f1 = new login(path);
-            p1 = new Pegawai(path);
-            j1 = new Jual(path);
-            be = new beli(path);
-            fp = new formpenyesuaianbarang(path);
         }
 
         private void masterToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,6 +38,7 @@ namespace PROYEK_SDP
             f1.Close();
             p1.Close();
             j1.Close();
+            s.Close();
             masterToolStripMenuItem.Enabled = false;
             masterJualToolStripMenuItem.Enabled = true;
             masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
@@ -60,85 +49,94 @@ namespace PROYEK_SDP
 
         private void Master_Load(object sender, EventArgs e)
         {
-            f1 = new login(path);
+            login f1 = new login(path);
             f1.MdiParent = this;
-            b.Close();
+            f1.parent = this;
+            this.Width = f1.Width + 20;
+            this.Height = f1.Height + 44;
+            f1.Location = new Point(0, 0);
             f1.Show();
-            p1.Close();
-            j1.Close();
-            fp.Close();
         }
 
-        private void pegawaiToolStripMenuItem_Click(object sender, EventArgs e)
+        public void showBarang()
         {
-            p1 = new Pegawai(path);
+            Barang b = new Barang(path);
+            b.MdiParent = this;
+            b.parent = this;
+            b.Location = new Point(0, 0);
+            b.Show();
+        }
+
+        public void showPegawai()
+        {
+            Pegawai p1 = new Pegawai(path);
             p1.MdiParent = this;
-            this.Width = p1.Width + 20;
-            this.Height = p1.Height + 67;
-            b.Close();
-            f1.Close();
-            j1.Close();
+            p1.parent = this;
+            p1.Location = new Point(0, 0);
             p1.Show();
-            fp.Close();
-
-            masterToolStripMenuItem.Enabled = true;
-            masterJualToolStripMenuItem.Enabled = true;
-            masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
-            pegawaiToolStripMenuItem.Enabled = false;
-            masterBeliToolStripMenuItem.Enabled = true;
         }
 
-        private void masterBeliToolStripMenuItem_Click(object sender, EventArgs e)
+        public void showBeli()
         {
-            be = new beli(path);
+            beli be = new beli(path);
             be.MdiParent = this;
-            this.Width = p1.Width + 20;
-            this.Height = p1.Height + 67;
-            b.Close();
-            f1.Close();
-            j1.Close();
+            be.parent = this;
+            be.Location = new Point(0, 0);
+            this.Width = be.Width + 20;
+            this.Height = be.Height + 44;
             be.Show();
-            fp.Close();
-            masterToolStripMenuItem.Enabled = true;
-            masterJualToolStripMenuItem.Enabled = true;
-            masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
-            pegawaiToolStripMenuItem.Enabled = true;
-            masterBeliToolStripMenuItem.Enabled = false;
         }
 
-        private void masterJualToolStripMenuItem_Click(object sender, EventArgs e)
+        public void showJual()
         {
-            j1 = new Jual(path);
+            Jual j1 = new Jual(path);
             j1.MdiParent = this;
-            this.Width = p1.Width + 20;
-            this.Height = p1.Height + 67;
-            b.Close();
-            f1.Close();
-            be.Close();
+            j1.parent = this;
+            j1.Location = new Point(0, 0);
+            this.Width = j1.Width + 20;
+            this.Height = j1.Height + 44;
             j1.Show();
-            fp.Close();
-            masterToolStripMenuItem.Enabled = true;
-            masterJualToolStripMenuItem.Enabled = false;
-            masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
-            pegawaiToolStripMenuItem.Enabled = true;
-            masterBeliToolStripMenuItem.Enabled = true;
         }
 
-        private void masterPenyesuaianBarangToolStripMenuItem_Click(object sender, EventArgs e)
+        public void showPenyesuaian()
         {
-            fp = new formpenyesuaianbarang(path);
+            formpenyesuaianbarang fp = new formpenyesuaianbarang(path);
             fp.MdiParent = this;
-            b.Close();
-            f1.Close();
-            be.Close();
-            j1.Close();
+            fp.parent = this;
+            fp.Location = new Point(0, 0);
+            this.Width = fp.Width + 20;
+            this.Height = fp.Height + 44;
             fp.Show();
-            masterToolStripMenuItem.Enabled = true;
-            masterJualToolStripMenuItem.Enabled = true;
-            masterPenyesuaianBarangToolStripMenuItem.Enabled = false;
-            pegawaiToolStripMenuItem.Enabled = true;
-            masterBeliToolStripMenuItem.Enabled = true;
+        }
 
+        public void showSupplier()
+        {
+            supplier s = new supplier(path);
+            s.MdiParent = this;
+            s.parent = this;
+            s.Location = new Point(0, 0);
+            this.Width = s.Width + 20;
+            this.Height = s.Height + 44;
+            s.Show();
+        }
+
+        public void showPostLogin()
+        {
+            PostLogin ps = new PostLogin();
+            ps.MdiParent = this;
+            ps.parent = this;
+            ps.Location = new Point(0, 0);
+            this.Width = ps.Width + 20;
+            this.Height = ps.Height + 44;
+            ps.Show();
+
+        }
+
+        private void pembeliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pem = new pembeli(path);
+            pem.MdiParent = this;
+            pem.Show();
         }
     }
 }

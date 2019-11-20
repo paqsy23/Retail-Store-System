@@ -13,10 +13,14 @@ namespace PROYEK_SDP
     public partial class beli : Form
     {
         OracleConnection conn;
+        public Master parent;
         public beli(string path)
         {
             InitializeComponent();
             conn = new OracleConnection(path);
+            this.Width = 1000;
+            this.Height = 600;
+            this.Location = new Point(0, 0);
         }
 
         private void beli_Load(object sender, EventArgs e)
@@ -99,6 +103,18 @@ namespace PROYEK_SDP
         private void bunifuCustomDataGrid1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
            textBox2.Text= bunifuCustomDataGrid1[0,e.RowIndex].Value.ToString();
+        }
+
+        private void btnBack(object sender, EventArgs e)
+        {
+            parent.showPostLogin();
+            this.Close();
+        }
+
+        private void Hover_MouseEnter(object sender, EventArgs e)
+        {
+            PictureBox ini = (PictureBox)sender;
+            ini.Cursor = Cursors.Hand;
         }
     }
 }
