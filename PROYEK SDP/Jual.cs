@@ -45,11 +45,11 @@ namespace PROYEK_SDP
         {
             OracleCommand cmd = new OracleCommand("select * from barang", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataTable ds = new DataTable();
+            DataSet ds = new DataSet();
             da.Fill(ds);
             foreach (DataRow item in ds.Tables[0].Rows)
             {
-                bunifuDropdown1.AddItem(item[0].ToString());
+                comboBox1.Items.Add(item[0].ToString());
             }
         }
         public void isi_supir()
@@ -61,7 +61,7 @@ namespace PROYEK_SDP
 
             foreach (DataRow item in ds.Tables[0].Rows)
             {
-                bunifuDropdown5.AddItem(item[1].ToString());
+                comboBox2.Items.Add(item[1].ToString());
             }
         }
         public void isi_mobil()
@@ -70,9 +70,10 @@ namespace PROYEK_SDP
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
-            comboBox3.DataSource = ds.AsDataView();
-            comboBox3.DisplayMember = "NAMA_MOBIL";
-            comboBox3.ValueMember = "ID_MOBIL";
+            foreach (DataRow item in ds.Tables[0].Rows)
+            {
+                comboBox3.Items.Add(item[1].ToString());
+            }
         }
         private void Jual_Load(object sender, EventArgs e)
         {

@@ -28,26 +28,12 @@ namespace PROYEK_SDP
             baca.Close();
         }
 
-        private void masterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Master_Load(object sender, EventArgs e)
         {
-            b = new Barang(path);
-            b.MdiParent = this;
-            this.Width = b.Width + 20;
-            this.Height = b.Height + 67;
-            b.Show();
-            f1.Close();
-            p1.Close();
-            j1.Close();
-            s.Close();
-            masterToolStripMenuItem.Enabled = false;
-            masterJualToolStripMenuItem.Enabled = true;
-            masterPenyesuaianBarangToolStripMenuItem.Enabled = true;
-            pegawaiToolStripMenuItem.Enabled = true;
-            masterBeliToolStripMenuItem.Enabled = true;
-
+            showLogin();
         }
 
-        private void Master_Load(object sender, EventArgs e)
+        public void showLogin()
         {
             login f1 = new login(path);
             f1.MdiParent = this;
@@ -130,13 +116,6 @@ namespace PROYEK_SDP
             this.Height = ps.Height + 44;
             ps.Show();
 
-        }
-
-        private void pembeliToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            pem = new pembeli(path);
-            pem.MdiParent = this;
-            pem.Show();
         }
     }
 }
