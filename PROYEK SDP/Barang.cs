@@ -296,7 +296,7 @@ namespace PROYEK_SDP
             this.Close();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             conn.Open();
             if (checksearch() == true)
@@ -312,12 +312,6 @@ namespace PROYEK_SDP
                 MessageBox.Show("Pastikan Form Terisi Dengan Benar");
             }
             conn.Close();
-        }
-
-        private void btnBack(object sender, EventArgs e)
-        {
-            parent.showPostLogin();
-            this.Close();
         }
     }
 }
