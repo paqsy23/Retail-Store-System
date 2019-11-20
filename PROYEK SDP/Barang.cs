@@ -290,8 +290,13 @@ namespace PROYEK_SDP
         {
             
         }
+        private void btnBack (object sender, EventArgs e)
+        {
+            parent.showPostLogin();
+            this.Close();
+        }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             conn.Open();
             if (checksearch() == true)
