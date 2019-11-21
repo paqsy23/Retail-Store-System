@@ -51,7 +51,7 @@ namespace PROYEK_SDP
                 string id="SUP";
                 OracleCommand cmd = new OracleCommand("insert into supplier(id_supplier,nama_supplier,alamat_supplier,email_supplier) values(:id_supplier,:nama_supplier,:alamat_supplier,:email_supplier)", conn);
                 OracleCommand cmds = new OracleCommand("select count(*) from supplier", conn);
-                string temp = cmd.ExecuteScalar().ToString();
+                string temp = Int32.Parse(cmd.ExecuteScalar().ToString()+1)+"";
                 for (int i = temp.Length; i < 3; i++)
                 {
                     id += "0";
