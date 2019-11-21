@@ -43,27 +43,50 @@ namespace PROYEK_SDP
             da.Fill(ds);
            bunifuCustomDataGrid1.DataSource = ds.Tables[0];
         }
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {   
+
             if (bunifuMaterialTextbox2.Text != ""&& bunifuMaterialTextbox3.Text != ""&& bunifuMaterialTextbox4.Text != "")
             {
-                conn.Open();
-                string id="SUP";
-                OracleCommand cmd = new OracleCommand("insert into supplier(id_supplier,nama_supplier,alamat_supplier,email_supplier) values(:id_supplier,:nama_supplier,:alamat_supplier,:email_supplier)", conn);
-                OracleCommand cmds = new OracleCommand("select count(*) from supplier", conn);
-                string temp = Int32.Parse(cmds.ExecuteScalar().ToString())+1+"";
-                for (int i = temp.Length; i < 3; i++)
+                bool cekEmail = IsValidEmail(bunifuMaterialTextbox4.Text);
+                if (cekEmail)
                 {
-                    id += "0";
+
+            
+                    conn.Open();
+                    string id = "SUP";
+                    OracleCommand cmd = new OracleCommand("insert into supplier(id_supplier,nama_supplier,alamat_supplier,email_supplier) values(:id_supplier,:nama_supplier,:alamat_supplier,:email_supplier)", conn);
+                    OracleCommand cmds = new OracleCommand("select count(*) from supplier", conn);
+                    string temp = Int32.Parse(cmds.ExecuteScalar().ToString()) + 1 + "";
+                    for (int i = temp.Length; i < 3; i++)
+                    {
+                        id += "0";
+                    }
+                    id += temp;
+                    cmd.Parameters.Add("id_supplier", id);
+                    cmd.Parameters.Add("nama_supplier", bunifuMaterialTextbox2.Text);
+                    cmd.Parameters.Add("alamat_supplier", bunifuMaterialTextbox3.Text);
+                    cmd.Parameters.Add("email_supplier", bunifuMaterialTextbox4.Text);
+                    cmd.ExecuteNonQuery();
+                    tampilsupplier();
+                    conn.Close();
                 }
-                id += temp;
-                cmd.Parameters.Add("id_supplier",id);
-                cmd.Parameters.Add("nama_supplier", bunifuMaterialTextbox2.Text);
-                cmd.Parameters.Add("alamat_supplier", bunifuMaterialTextbox3.Text);
-                cmd.Parameters.Add("email_supplier", bunifuMaterialTextbox3.Text);
-                cmd.ExecuteNonQuery();
-                tampilsupplier();
-                conn.Close();
+                else
+                {
+                    MessageBox.Show("Pastikan Format Email Benar");
+                }
             }
             else
             {

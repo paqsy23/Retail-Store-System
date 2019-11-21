@@ -37,18 +37,21 @@ namespace PROYEK_SDP
             da.Fill(ds);
             bunifuCustomDataGrid1.DataSource = ds.Tables[0];
         }
-
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         private void btntambah_Click(object sender, EventArgs e)
         {
-            bool email = false;
-            if(edemail.Text.Contains("@") && edemail.Text.Contains(".com"))
-            {
-                email = true;
-            }
-            else
-            {
-                MessageBox.Show("email tidak valid");
-            }
+            bool email = IsValidEmail(edemail.Text);
             if(ednama.Text!="" && edalamat.Text !="" && edemail.Text != "" && email == true)
             {
                 conn.Open();
@@ -90,10 +93,14 @@ namespace PROYEK_SDP
 
         private void btnupdate_Click(object sender, EventArgs e)
         {
-            if(index > -1)
+            bool email = IsValidEmail(edemail.Text);
+            if (index > -1 && email == true)
             {
                 conn.Open();
-                OracleCommand cmds = new OracleCommand("update buyer set nama_buyer='"+ednama.Text+"',alamat_buyer='"+edalamat.Text+"',email_buyer='"+edemail.Text+"' where id_buyer='"+edid.Text+"'", conn);
+                OracleCommand cmds = new OracleCommand("update buyer set nama_buyer=:nama_buyer,alamat_buyer=:alamat_buyer,email_buyer=:email_buyer where id_buyer='"+edid.Text+"'", conn);
+                cmds.Parameters.Add("nama_buyer", ednama.Text);
+                cmds.Parameters.Add("alamat_buyer", edalamat.Text);
+                cmds.Parameters.Add("email_buyer", edemail.Text);
                 cmds.ExecuteNonQuery();
                 conn.Close();
             }

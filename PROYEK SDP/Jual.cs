@@ -174,9 +174,10 @@ namespace PROYEK_SDP
 
         private void bunifuFlatButton2_Click(object sender, EventArgs e)
         {
-            conn.Open();
+           
             if(tempcheckout.Rows.Count > 0)
             {
+                conn.Open();
                 DateTime dateTime = DateTime.UtcNow.Date;
                 string id_htrans = "HO" + (dateTime.ToString("ddMMyyyy"));
                 OracleCommand cmds = new OracleCommand("select count(id_htrans_out)+1 from htrans_out where id_htrans_out LIKE '%" + id_htrans + "%'", conn);
