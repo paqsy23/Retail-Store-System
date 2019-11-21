@@ -37,7 +37,7 @@ namespace PROYEK_SDP
         }
         private void tampilsupplier()
         {
-            OracleCommand cmd = new OracleCommand("select * from supplier", conn);
+            OracleCommand cmd = new OracleCommand("select * from supplier order by id_supplier", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -51,7 +51,7 @@ namespace PROYEK_SDP
                 string id="SUP";
                 OracleCommand cmd = new OracleCommand("insert into supplier(id_supplier,nama_supplier,alamat_supplier,email_supplier) values(:id_supplier,:nama_supplier,:alamat_supplier,:email_supplier)", conn);
                 OracleCommand cmds = new OracleCommand("select count(*) from supplier", conn);
-                string temp = Int32.Parse(cmd.ExecuteScalar().ToString()+1)+"";
+                string temp = Int32.Parse(cmds.ExecuteScalar().ToString())+1+"";
                 for (int i = temp.Length; i < 3; i++)
                 {
                     id += "0";
@@ -60,7 +60,7 @@ namespace PROYEK_SDP
                 cmd.Parameters.Add("id_supplier",id);
                 cmd.Parameters.Add("nama_supplier", bunifuMaterialTextbox2.Text);
                 cmd.Parameters.Add("alamat_supplier", bunifuMaterialTextbox3.Text);
-                cmd.Parameters.Add("email_supplier", bunifuMaterialTextbox3);
+                cmd.Parameters.Add("email_supplier", bunifuMaterialTextbox3.Text);
                 cmd.ExecuteNonQuery();
                 tampilsupplier();
                 conn.Close();
