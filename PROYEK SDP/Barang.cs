@@ -266,7 +266,7 @@ namespace PROYEK_SDP
                 cmds.Parameters.Add("id_gudang", combogudang.SelectedValue);
                 cmds.Parameters.Add("total_harga", (int)numericbeli.Value * (int)numericstock.Value);
                 cmds.ExecuteNonQuery();
-                cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + id + "'," + (int)numericstock.Value + "," + numericbeli.Value + "," + total + ",'" + logins.username + "')";
+                cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + id + "'," + (int)numericstock.Value + "," + numericbeli.Value + "," + total + ","+numericstock.Value+",'" + logins.username + "')";
                 cmds.ExecuteNonQuery();
                 //cmds.CommandText = "insert into dtrans_in (id_htrans_in, id_barang, stock_masuk, harga_beli, subtotal, id_penanggungjawab) values ( :id_htrans_in, :id_barang, :stock_masuk, :harga_beli, :subtotal, :id_penanggungjawab)";
                 //cmds.Parameters.Add("id_htrans_in", id_htrans);

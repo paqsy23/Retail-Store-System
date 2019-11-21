@@ -295,6 +295,7 @@
             this.Name = "pembeli";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "pembeli";
+            this.Load += new System.EventHandler(this.pembeli_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

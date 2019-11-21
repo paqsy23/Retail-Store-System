@@ -121,5 +121,10 @@ namespace PROYEK_SDP
                 cbjenis.SelectedIndex = 1;
             }
         }
+
+        private void pembeli_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
