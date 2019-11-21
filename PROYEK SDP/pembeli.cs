@@ -32,5 +32,10 @@ namespace PROYEK_SDP
         {
 
         }
+
+        private void pembeli_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
