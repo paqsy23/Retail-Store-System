@@ -34,7 +34,7 @@ create table gudang (
 
 create table mobil (
 	id_mobil varchar2(6) primary key,
-	plat_nomor varchar2(6) unique,
+	plat_nomor varchar2(7) unique,
 	nama_mobil varchar2(25),
 	kapasitas number
 );
@@ -88,8 +88,9 @@ create table dtrans_in (
 create table htrans_out (
 	id_htrans_out varchar2(12) primary key, --- HO + DD + MM + YY + autogenerate
 	id_buyer varchar2(6) constraint fk_idBuy references buyer(id_buyer),
-	tanggal_trans date ,
-	total_harga number
+	tanggal_trans date,
+	total_harga number,
+	tanggal_pengiriman date
 );
 
 create table dtrans_out (
