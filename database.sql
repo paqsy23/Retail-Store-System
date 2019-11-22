@@ -167,3 +167,6 @@ insert into supplier values('SP0002','Lionel Foy','Semolowaru Barat 53','lionel1
 insert into supplier values('SP0003','Mark Gibbon','Nginden Utara II/83','mark1@gmail.com');
 insert into supplier values('SP0004','Diomansy Kamara','Dharmawangsa 74','diomansy1@gmail.com');
 insert into supplier values('SP0005','Olusola Omole','Dharmahusada 19','olusola1@gmail.com');
+
+commit;
+

@@ -49,6 +49,8 @@
             // 
             // bunifuCustomDataGrid1
             // 
+            this.bunifuCustomDataGrid1.AllowUserToAddRows = false;
+            this.bunifuCustomDataGrid1.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.bunifuCustomDataGrid1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.bunifuCustomDataGrid1.BackgroundColor = System.Drawing.Color.Gainsboro;
@@ -69,6 +71,7 @@
             this.bunifuCustomDataGrid1.HeaderForeColor = System.Drawing.Color.SeaGreen;
             this.bunifuCustomDataGrid1.Location = new System.Drawing.Point(288, 12);
             this.bunifuCustomDataGrid1.Name = "bunifuCustomDataGrid1";
+            this.bunifuCustomDataGrid1.ReadOnly = true;
             this.bunifuCustomDataGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.bunifuCustomDataGrid1.Size = new System.Drawing.Size(500, 334);
             this.bunifuCustomDataGrid1.TabIndex = 0;
@@ -197,6 +200,7 @@
             // 
             // cbjenis
             // 
+            this.cbjenis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbjenis.FormattingEnabled = true;
             this.cbjenis.Location = new System.Drawing.Point(72, 215);
             this.cbjenis.Name = "cbjenis";

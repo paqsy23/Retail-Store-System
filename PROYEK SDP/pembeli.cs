@@ -119,6 +119,7 @@ namespace PROYEK_SDP
             {
                 cbjenis.SelectedIndex = 1;
             }
+            btntambah.Enabled = false;
         }
 
         private void pembeli_Load(object sender, EventArgs e)
