@@ -117,7 +117,6 @@ namespace PROYEK_SDP
 
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
-            
             OracleCommand cmd = new OracleCommand("select * from barang where id_barang = '"+comboBox1.SelectedItem.ToString()+"'", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -132,7 +131,7 @@ namespace PROYEK_SDP
             {
                 MessageBox.Show("Stok Tidak Mencukupi");
             }
-            else
+            else if(numericUpDown1.Value > 0)
             {
                 conn.Open();
                 OracleCommand command = new OracleCommand();
@@ -174,8 +173,7 @@ namespace PROYEK_SDP
 
         private void bunifuFlatButton2_Click(object sender, EventArgs e)
         {
-           
-            if(tempcheckout.Rows.Count > 0)
+            if (tempcheckout.Rows.Count > 0)
             {
                 conn.Open();
                 DateTime dateTime = DateTime.UtcNow.Date;
@@ -187,39 +185,62 @@ namespace PROYEK_SDP
                     indexkosongs = "0" + indexkosongs;
                 }
                 id_htrans += indexkosongs;
-                OracleCommand cmd2 = new OracleCommand();
-                String inserthtrans = "insert into htrans_out(id_htrans_out, id_buyer, tanggal_trans, total_harga) values(:id_htrans_out,:id_buyer, CURRENT_TIMESTAMP,:total_harga)";
-                cmd2.Parameters.Add("id_htrans_out", id_htrans);
-                cmd2.Parameters.Add("id_buyer", cbpembeli.Text.ToString());
-                cmd2.Parameters.Add("total_harga", total.Text);
-                cmd2.Connection = conn;
-                cmd2.CommandText = inserthtrans;
-                cmd2.ExecuteNonQuery();
-                tempcheckout.Clear();
-                total.Text = "0";
-
-                for (int i = 0; i < tempcheckout.Rows.Count; i++)
+                String temptgl = dateTimePicker1.Value.Date.ToString("dd/MMM/yyyy");
+                int tgl = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("dd"));
+                int bulan = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("MM"));
+                int tahun = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("yyyy"));
+                int tglsekarang = Convert.ToInt32(dateTime.ToString("dd"));
+                int bulansekarang = Convert.ToInt32(dateTime.ToString("MM"));
+                int tahunsekarang = Convert.ToInt32(dateTime.ToString("yyyy"));
+                int tglkirim = tgl + (bulan * 30) + (tahun * 365);
+                int tsekarang = tglsekarang + (bulansekarang * 30) + (tahunsekarang * 365);
+                if (tglkirim >= tsekarang)
                 {
-                    OracleCommand cmd = new OracleCommand();
-                    cmd.Connection = conn;
-                    cmd.Parameters.Add("id_htrans_out", id_htrans);
-                    cmd.Parameters.Add("id_barang",bunifuCustomDataGrid1.Rows[i].Cells[0].ToString());
-
+                    OracleCommand cmd2 = new OracleCommand();
+                    string inserthtrans = "insert into htrans_out(id_htrans_out, id_buyer, tanggal_trans, total_harga,tanggal_pengiriman) values(:id_htrans_out,:id_buyer, current_timestamp,:total_harga,to_date('" + temptgl + "','dd/mon/yyyy'))";
+                    cmd2.Parameters.Add("id_htrans_out", id_htrans);
+                    cmd2.Parameters.Add("id_buyer", cbpembeli.Text.ToString());
+                    cmd2.Parameters.Add("total_harga", total.Text);
+                    cmd2.Connection = conn;
+                    cmd2.CommandText = inserthtrans;
+                    cmd2.ExecuteNonQuery();
+                
+                    for (int i = 0; i < tempcheckout.Rows.Count; i++)
+                    {
+                        OracleCommand command = new OracleCommand("select stock from barang where id_barang='" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'", conn);
+                        int tempsisa = Convert.ToInt32(command.ExecuteScalar().ToString());
+                        OracleCommand command2 = new OracleCommand("select jenis_buyer from buyer where id_buyer='" + cbpembeli.SelectedItem.ToString() + "'", conn);
+                        int tempstatus = Convert.ToInt32(command2.ExecuteScalar().ToString());
+                        OracleCommand cmd3 = new OracleCommand();
+                        string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_keluar, harga_jual,subtotal,sisa_stock,status,id_penanggungjawab) values(:id_htrans_out,:id_barang, :jumlah,:harga_jual,:subtotal,:sisa_stock,:status,:id_kasir)";
+                        cmd3.Connection = conn;
+                        cmd3.Parameters.Add("id_htrans_out", id_htrans);
+                        cmd3.Parameters.Add("id_barang", bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString());
+                        cmd3.Parameters.Add("jumlah", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString()));
+                        cmd3.Parameters.Add("harga_jual", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString()));
+                        cmd3.Parameters.Add("subtotal", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[4].Value.ToString()));
+                        cmd3.Parameters.Add("sisa_stock", tempsisa);
+                        cmd3.Parameters.Add("status", tempstatus);
+                        cmd3.Parameters.Add("id_kasir", logins.username);
+                        cmd3.CommandText = insert;
+                        cmd3.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                    tempcheckout.Clear();
+                    total.Text = "0";
+                 }
+                else
+                {
+                    MessageBox.Show("tanggal pengiriman harus diatas tanggal sekarang");
                 }
-
-
-
-
-                conn.Close();
-                cbpembeli.Enabled = true;
             }
             else
             {
                 MessageBox.Show("silahkan add barang ke cart terlebih dahulu");
             }
-            
+
         }
 
-    }
+        }
 
 }
