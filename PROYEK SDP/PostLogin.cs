@@ -13,7 +13,7 @@ namespace PROYEK_SDP
     public partial class PostLogin : Form
     {
         public Master parent;
-        int a;
+        
         public PostLogin()
         {
             InitializeComponent();
