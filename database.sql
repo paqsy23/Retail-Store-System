@@ -90,8 +90,7 @@ create table htrans_out (
 	id_htrans_out varchar2(12) primary key, --- HO + DD + MM + YY + autogenerate
 	id_buyer varchar2(6) constraint fk_idBuy references buyer(id_buyer),
 	tanggal_trans date,
-	total_harga number,
-	tanggal_pengiriman date
+	total_harga number
 );
 
 create table dtrans_out (

@@ -117,6 +117,16 @@ namespace PROYEK_SDP
             ps.Show();
 
         }
+        public void showPostSuratJalan()
+        {
+            suratjalan ps = new suratjalan(path);
+            ps.MdiParent = this;
+            ps.Location = new Point(0, 0);
+            this.Width = ps.Width + 20;
+            this.Height = ps.Height + 44;
+            ps.Show();
+
+        }
     }
 }
 class logins

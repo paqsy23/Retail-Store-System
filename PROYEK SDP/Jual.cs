@@ -41,8 +41,6 @@ namespace PROYEK_SDP
             isi_checkout();
             isi_id();
             tampilBarang();
-            isi_supir();
-            isi_mobil();
             isi_pembeli();
             int totalharga = 0;
             for (int i = 0; i < tempcheckout.Rows.Count; i++)
@@ -84,31 +82,7 @@ namespace PROYEK_SDP
                 cbpembeli.Items.Add(item[0].ToString());
             }
         }
-        public void isi_supir()
-        {
-            comboBox2.Items.Clear();
-            OracleCommand cmd = new OracleCommand("select * from pegawai where jabatan='Supir'", conn);
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-
-            foreach (DataRow item in ds.Tables[0].Rows)
-            {
-                comboBox2.Items.Add(item[1].ToString());
-            }
-        }
-        public void isi_mobil()
-        {
-            comboBox3.Items.Clear();
-            OracleCommand cmd = new OracleCommand("select * from mobil", conn);
-            OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            foreach (DataRow item in ds.Tables[0].Rows)
-            {
-                comboBox3.Items.Add(item[1].ToString());
-            }
-        }
+        
         private void Jual_Load(object sender, EventArgs e)
         {
             refresh();
@@ -211,19 +185,8 @@ namespace PROYEK_SDP
                         indexkosongs = "0" + indexkosongs;
                     }
                     id_htrans += indexkosongs;
-                    String temptgl = dateTimePicker1.Value.Date.ToString("dd/MMM/yyyy");
-                    int tgl = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("dd"));
-                    int bulan = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("MM"));
-                    int tahun = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("yyyy"));
-                    int tglsekarang = Convert.ToInt32(dateTime.ToString("dd"));
-                    int bulansekarang = Convert.ToInt32(dateTime.ToString("MM"));
-                    int tahunsekarang = Convert.ToInt32(dateTime.ToString("yyyy"));
-                    int tglkirim = tgl + (bulan * 30) + (tahun * 365);
-                    int tsekarang = tglsekarang + (bulansekarang * 30) + (tahunsekarang * 365);
-                    if (tglkirim >= tsekarang)
-                    {
                         OracleCommand cmd2 = new OracleCommand();
-                        string inserthtrans = "insert into htrans_out(id_htrans_out, id_buyer, tanggal_trans, total_harga,tanggal_pengiriman) values(:id_htrans_out,:id_buyer, current_timestamp,:total_harga,to_date('" + temptgl + "','dd/mon/yyyy'))";
+                        string inserthtrans = "insert into htrans_out(id_htrans_out, id_buyer, tanggal_trans, total_harga) values(:id_htrans_out,:id_buyer, current_timestamp,:total_harga)";
                         cmd2.Parameters.Add("id_htrans_out", id_htrans);
                         cmd2.Parameters.Add("id_buyer", cbpembeli.Text.ToString());
                         cmd2.Parameters.Add("total_harga", total.Text);
@@ -263,11 +226,7 @@ namespace PROYEK_SDP
                         conn.Close();
                         total.Text = "0";
                         refresh();
-                    }
-                    else
-                    {
-                        MessageBox.Show("tanggal pengiriman harus diatas tanggal sekarang");
-                    }
+                    
                     conn.Close();
                 }
                 catch (Exception ex)

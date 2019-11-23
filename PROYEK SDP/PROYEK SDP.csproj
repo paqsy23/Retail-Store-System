@@ -115,6 +115,12 @@
     <Compile Include="supplier.Designer.cs">
       <DependentUpon>supplier.cs</DependentUpon>
     </Compile>
+    <Compile Include="suratjalan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="suratjalan.Designer.cs">
+      <DependentUpon>suratjalan.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Barang.resx">
       <DependentUpon>Barang.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +160,9 @@
     </Compile>
     <EmbeddedResource Include="supplier.resx">
       <DependentUpon>supplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="suratjalan.resx">
+      <DependentUpon>suratjalan.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

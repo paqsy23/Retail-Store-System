@@ -61,5 +61,11 @@ namespace PROYEK_SDP
             parent.showLogin();
             this.Close();
         }
+
+        private void bunifuTileButton1_Click(object sender, EventArgs e)
+        {
+            parent.showPostSuratJalan();
+            this.Close();
+        }
     }
 }
