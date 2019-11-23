@@ -155,6 +155,7 @@ namespace PROYEK_SDP
             }
             catch
             {
+                conn.Close();
                 MessageBox.Show("pilih id barang terlebih dahulu");
             }
             
@@ -243,9 +244,11 @@ namespace PROYEK_SDP
                     {
                         MessageBox.Show("tanggal pengiriman harus diatas tanggal sekarang");
                     }
+                    conn.Close();
                 }
                 catch
                 {
+                    conn.Close();
                     MessageBox.Show("pastikan semua field terisi");
                 }
             }
