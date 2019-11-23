@@ -101,7 +101,6 @@ create table dtrans_out (
 	harga_jual number,
 	subtotal number,
 	sisa_stock number,
-	status number, --- 0: default, 1: cancel
 	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai) --- pengurus
 );
 
@@ -156,12 +155,12 @@ insert into barang values('CPBL1001','CP0002','GD0002','Celana Pendek Jeans','Bi
 insert into barang values('KKYE3001','KE0001','GD0003','Kemeja Kotak','Kuning','L',15,70000,85000);
 insert into barang values('CPBL2001','CP0001','GD0002','Celana Panjang Jeans','Hitam','M',10,80000,95000);
 
-insert into buyer values('BY0001','David Bosumtwe','Ngagel Tengah IV/9','david1@gmail.com',perusahaan,1);
-insert into buyer values('BY0002','Adam Bouskouchi','Kupang Krajan V/2','adam1@gmail.com',pribadi,1);
-insert into buyer values('BY0003','David Currie','Barata Jaya III/18','david2@gmail.com',pribadi,1);
-insert into buyer values('BY0004','Curtis Dawes','Ngagel Jaya 53','curtis1@gmail.com',perusahaan,1);
-insert into buyer values('BY0005','Frederik De Jong','Gayungsari VII/7','frederik1@gmail.com',pribadi,1);
-insert into buyer values('BY0006','Joseph Chenwi','Ketintang Barat V/19','joseph1@gmail.com',perusahaan,1);
+insert into buyer values('BY0001','David Bosumtwe','Ngagel Tengah IV/9','david1@gmail.com','perusahaan',1);
+insert into buyer values('BY0002','Adam Bouskouchi','Kupang Krajan V/2','adam1@gmail.com','pribadi',1);
+insert into buyer values('BY0003','David Currie','Barata Jaya III/18','david2@gmail.com','pribadi',1);
+insert into buyer values('BY0004','Curtis Dawes','Ngagel Jaya 53','curtis1@gmail.com','perusahaan',1);
+insert into buyer values('BY0005','Frederik De Jong','Gayungsari VII/7','frederik1@gmail.com','pribadi',1);
+insert into buyer values('BY0006','Joseph Chenwi','Ketintang Barat V/19','joseph1@gmail.com','perusahaan',1);
 
 insert into supplier values('SP0001','Peter Bint','Siwalankerto X/20','peter1@gmail.com');
 insert into supplier values('SP0002','Lionel Foy','Semolowaru Barat 53','lionel1@gmail.com');

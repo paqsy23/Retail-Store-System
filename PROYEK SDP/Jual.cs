@@ -119,7 +119,7 @@ namespace PROYEK_SDP
         {
             try
             {
-                OracleCommand cmd = new OracleCommand("select * from barang where id_barang = '" + comboBox1.SelectedItem.ToString() + "'", conn);
+                OracleCommand cmd = new OracleCommand("select * from barang where id_barang = '" + comboBox1.Text.ToString() + "'", conn);
                 OracleDataAdapter da = new OracleDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
@@ -138,9 +138,6 @@ namespace PROYEK_SDP
                     conn.Open();
                     OracleCommand command = new OracleCommand();
                     command.Connection = conn;
-                    String update = "update barang set stock=" + stok + "where id_barang = '" + comboBox1.Text + "'";
-                    command.CommandText = update;
-                    command.ExecuteNonQuery();
                     String nama = "select nama_barang from barang where id_barang='" + comboBox1.Text + "'";
                     command.CommandText = nama;
                     String tempnama = command.ExecuteScalar().ToString();
@@ -153,14 +150,15 @@ namespace PROYEK_SDP
                     conn.Close();
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 conn.Close();
+                MessageBox.Show(ex.Message);
                 MessageBox.Show("pilih id barang terlebih dahulu");
             }
-            
-            
-        }
+
+
+}
 
         private void btnBack(object sender, EventArgs e)
         {
@@ -218,12 +216,18 @@ namespace PROYEK_SDP
 
                         for (int i = 0; i < tempcheckout.Rows.Count; i++)
                         {
-                            OracleCommand command = new OracleCommand("select stock from barang where id_barang='" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'", conn);
-                            int tempsisa = Convert.ToInt32(command.ExecuteScalar().ToString());
-                            OracleCommand command2 = new OracleCommand("select jenis_buyer from buyer where id_buyer='" + cbpembeli.SelectedItem.ToString() + "'", conn);
-                            int tempstatus = Convert.ToInt32(command2.ExecuteScalar().ToString());
+                            OracleCommand command3 = new OracleCommand();
+                            command3.Connection = conn;
+                            String getstok = "select stock from barang where id_barang = '" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'";
+                            command3.CommandText = getstok;
+                            int stocksekarang = Convert.ToInt32(command3.ExecuteScalar().ToString());
+                            int tempsisa = stocksekarang - Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString());
+                            String update = "update barang set stock=" + tempsisa + "where id_barang = '" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'";
+                            command3.CommandText = update;
+                            command3.ExecuteNonQuery();
+
                             OracleCommand cmd3 = new OracleCommand();
-                            string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_keluar, harga_jual,subtotal,sisa_stock,status,id_penanggungjawab) values(:id_htrans_out,:id_barang, :jumlah,:harga_jual,:subtotal,:sisa_stock,:status,:id_kasir)";
+                            string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_keluar, harga_jual,subtotal,sisa_stock,id_penanggungjawab) values(:id_htrans_out,:id_barang, :jumlah,:harga_jual,:subtotal,:sisa_stock,:id_kasir)";
                             cmd3.Connection = conn;
                             cmd3.Parameters.Add("id_htrans_out", id_htrans);
                             cmd3.Parameters.Add("id_barang", bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString());
@@ -231,7 +235,6 @@ namespace PROYEK_SDP
                             cmd3.Parameters.Add("harga_jual", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString()));
                             cmd3.Parameters.Add("subtotal", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[4].Value.ToString()));
                             cmd3.Parameters.Add("sisa_stock", tempsisa);
-                            cmd3.Parameters.Add("status", tempstatus);
                             cmd3.Parameters.Add("id_kasir", logins.username);
                             cmd3.CommandText = insert;
                             cmd3.ExecuteNonQuery();
@@ -239,6 +242,7 @@ namespace PROYEK_SDP
                         conn.Close();
                         tempcheckout.Clear();
                         total.Text = "0";
+                        refresh();
                     }
                     else
                     {
@@ -246,9 +250,10 @@ namespace PROYEK_SDP
                     }
                     conn.Close();
                 }
-                catch
+                catch (Exception ex)
                 {
                     conn.Close();
+                    MessageBox.Show(ex.Message);
                     MessageBox.Show("pastikan semua field terisi");
                 }
             }
@@ -259,6 +264,6 @@ namespace PROYEK_SDP
 
         }
 
-        }
+    }
 
 }
