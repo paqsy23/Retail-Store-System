@@ -24,6 +24,8 @@ namespace PROYEK_SDP
             cbjenis.SelectedIndex = 0;
             edid.Enabled = false;
             refresh();
+            btnupdate.Visible = false;
+            conn.Close();
         }
         public void refresh()
         {
@@ -31,7 +33,8 @@ namespace PROYEK_SDP
         }
         public void tampilbuyer()
         {
-            OracleCommand cmd = new OracleCommand("select * from buyer", conn);
+            String tampil = "id_buyer as ID,nama_buyer as nama,alamat_buyer as alamat,email_buyer as email,jenis_buyer as jenis";
+            OracleCommand cmd = new OracleCommand("select "+tampil+" from buyer where status_buyer=1", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -49,14 +52,29 @@ namespace PROYEK_SDP
                 return false;
             }
         }
+        bool isValidName(String name)
+        {
+            conn.Open();
+            OracleCommand cmds = new OracleCommand("select count(nama_buyer) from buyer where nama_buyer='"+name+"'", conn);
+            int tempangka =  Convert.ToInt32(cmds.ExecuteScalar().ToString());
+            if(tempangka > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            conn.Close();
+        }
         private void btntambah_Click(object sender, EventArgs e)
         {
             try
             {
                 bool email = IsValidEmail(edemail.Text);
-                if (ednama.Text != "" && edalamat.Text != "" && edemail.Text != "" && email == true)
+                bool ada = isValidName(ednama.Text);
+                if (ednama.Text != "" && edalamat.Text != "" && edemail.Text != "" && email == true && ada == true)
                 {
-                    conn.Open();
                     OracleCommand cmds = new OracleCommand("select count(id_buyer) from buyer", conn);
                     string tempangka = cmds.ExecuteScalar().ToString();
                     String id = "BY";
@@ -66,12 +84,12 @@ namespace PROYEK_SDP
                     else if (temp < 1000) { id = id + "0" + temp.ToString(); }
                     else { id += temp.ToString(); }
                     OracleCommand cmd2 = new OracleCommand();
-                    String insert = "insert into buyer(id_buyer,nama_buyer,alamat_buyer,email_buyer,jenis_buyer) values(:id_buyer,:nama_buyer,:alamat_buyer,:email_buyer,:jenis_buyer)";
+                    String insert = "insert into buyer(id_buyer,nama_buyer,alamat_buyer,email_buyer,jenis_buyer,status_buyer) values(:id_buyer,:nama_buyer,:alamat_buyer,:email_buyer,:jenis_buyer,1)";
                     cmd2.Parameters.Add("id_buyer", id);
                     cmd2.Parameters.Add("nama_buyer", ednama.Text);
                     cmd2.Parameters.Add("alamat_buyer", edalamat.Text);
                     cmd2.Parameters.Add("email_buyer", edemail.Text);
-                    cmd2.Parameters.Add("jenis_buyer", cbjenis.SelectedIndex.ToString());
+                    cmd2.Parameters.Add("jenis_buyer", cbjenis.SelectedItem.ToString());
                     cmd2.Connection = conn;
                     cmd2.CommandText = insert;
                     cmd2.ExecuteNonQuery();
@@ -79,12 +97,14 @@ namespace PROYEK_SDP
                 }
                 else
                 {
+                    conn.Close();
                     MessageBox.Show("semua field harus terisi");
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("pastikan semua terisi");
+                MessageBox.Show("pastikan semua terisi dan nama tidak boleh kembar");
+                MessageBox.Show(ex.Message);
                 conn.Close();
             }
             
@@ -103,9 +123,10 @@ namespace PROYEK_SDP
                     cmds.Parameters.Add("nama_buyer", ednama.Text);
                     cmds.Parameters.Add("alamat_buyer", edalamat.Text);
                     cmds.Parameters.Add("email_buyer", edemail.Text);
-                    cmds.Parameters.Add("status", cbjenis.SelectedIndex.ToString());
+                    cmds.Parameters.Add("status", cbjenis.SelectedItem.ToString());
                     cmds.ExecuteNonQuery();
                     conn.Close();
+                    index = -1;
                 }
                 else
                 {
@@ -128,7 +149,7 @@ namespace PROYEK_SDP
             edalamat.Text = bunifuCustomDataGrid1.Rows[index].Cells[2].Value.ToString();
             edemail.Text = bunifuCustomDataGrid1.Rows[index].Cells[3].Value.ToString();
             String a = bunifuCustomDataGrid1.Rows[index].Cells[4].Value.ToString();
-            if(a == "0")
+            if(a == "pribadi")
             {
                 cbjenis.SelectedIndex = 0;
             }
@@ -136,12 +157,34 @@ namespace PROYEK_SDP
             {
                 cbjenis.SelectedIndex = 1;
             }
-            btntambah.Enabled = false;
+            btntambah.Visible = false;
+            btnupdate.Visible = true;
         }
 
-        private void pembeli_Load(object sender, EventArgs e)
-        {
 
+        private void btndelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (index > -1)
+                {
+                    conn.Open();
+                    OracleCommand cmds = new OracleCommand("update buyer set status_buyer=0 where id_buyer='"+edid.Text+"'", conn);
+                    cmds.ExecuteNonQuery();
+                    conn.Close();
+                    index = -1;
+                }
+                else
+                {
+                    MessageBox.Show("pilih field untuk di delete");
+                }
+            }
+            catch
+            {
+                conn.Close();
+                MessageBox.Show("pilih field terlebih dahulu");
+            }
+            refresh();
         }
     }
 }
