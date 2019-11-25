@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pembeli));
             this.bunifuCustomDataGrid1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.label1 = new System.Windows.Forms.Label();
@@ -45,6 +45,7 @@
             this.btntambah = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnupdate = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btndelete = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.btncancel = new Bunifu.Framework.UI.BunifuFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,19 +53,19 @@
             // 
             this.bunifuCustomDataGrid1.AllowUserToAddRows = false;
             this.bunifuCustomDataGrid1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bunifuCustomDataGrid1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.bunifuCustomDataGrid1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.bunifuCustomDataGrid1.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.bunifuCustomDataGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.bunifuCustomDataGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.bunifuCustomDataGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.bunifuCustomDataGrid1.DoubleBuffered = true;
             this.bunifuCustomDataGrid1.EnableHeadersVisualStyles = false;
@@ -74,7 +75,7 @@
             this.bunifuCustomDataGrid1.Name = "bunifuCustomDataGrid1";
             this.bunifuCustomDataGrid1.ReadOnly = true;
             this.bunifuCustomDataGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.bunifuCustomDataGrid1.Size = new System.Drawing.Size(500, 334);
+            this.bunifuCustomDataGrid1.Size = new System.Drawing.Size(542, 389);
             this.bunifuCustomDataGrid1.TabIndex = 0;
             this.bunifuCustomDataGrid1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bunifuCustomDataGrid1_CellClick);
             // 
@@ -203,7 +204,7 @@
             // 
             this.cbjenis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbjenis.FormattingEnabled = true;
-            this.cbjenis.Location = new System.Drawing.Point(72, 215);
+            this.cbjenis.Location = new System.Drawing.Point(72, 212);
             this.cbjenis.Name = "cbjenis";
             this.cbjenis.Size = new System.Drawing.Size(197, 21);
             this.cbjenis.TabIndex = 11;
@@ -235,7 +236,7 @@
             this.btntambah.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.btntambah.OnHoverTextColor = System.Drawing.Color.White;
             this.btntambah.selected = false;
-            this.btntambah.Size = new System.Drawing.Size(114, 49);
+            this.btntambah.Size = new System.Drawing.Size(245, 49);
             this.btntambah.TabIndex = 12;
             this.btntambah.Text = "tambah";
             this.btntambah.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -270,7 +271,7 @@
             this.btnupdate.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.btnupdate.OnHoverTextColor = System.Drawing.Color.White;
             this.btnupdate.selected = false;
-            this.btnupdate.Size = new System.Drawing.Size(114, 49);
+            this.btnupdate.Size = new System.Drawing.Size(245, 49);
             this.btnupdate.TabIndex = 13;
             this.btnupdate.Text = "update";
             this.btnupdate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -299,13 +300,13 @@
             this.btndelete.IconVisible = true;
             this.btndelete.IconZoom = 90D;
             this.btndelete.IsTab = false;
-            this.btndelete.Location = new System.Drawing.Point(159, 242);
+            this.btndelete.Location = new System.Drawing.Point(24, 297);
             this.btndelete.Name = "btndelete";
             this.btndelete.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
             this.btndelete.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
             this.btndelete.OnHoverTextColor = System.Drawing.Color.White;
             this.btndelete.selected = false;
-            this.btndelete.Size = new System.Drawing.Size(110, 49);
+            this.btndelete.Size = new System.Drawing.Size(245, 49);
             this.btndelete.TabIndex = 14;
             this.btndelete.Text = "delete";
             this.btndelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -313,11 +314,47 @@
             this.btndelete.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btndelete.Click += new System.EventHandler(this.btndelete_Click);
             // 
+            // btncancel
+            // 
+            this.btncancel.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.btncancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.btncancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btncancel.BorderRadius = 0;
+            this.btncancel.ButtonText = "cancel";
+            this.btncancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btncancel.DisabledColor = System.Drawing.Color.Gray;
+            this.btncancel.Iconcolor = System.Drawing.Color.Transparent;
+            this.btncancel.Iconimage = ((System.Drawing.Image)(resources.GetObject("btncancel.Iconimage")));
+            this.btncancel.Iconimage_right = null;
+            this.btncancel.Iconimage_right_Selected = null;
+            this.btncancel.Iconimage_Selected = null;
+            this.btncancel.IconMarginLeft = 0;
+            this.btncancel.IconMarginRight = 0;
+            this.btncancel.IconRightVisible = true;
+            this.btncancel.IconRightZoom = 0D;
+            this.btncancel.IconVisible = true;
+            this.btncancel.IconZoom = 90D;
+            this.btncancel.IsTab = false;
+            this.btncancel.Location = new System.Drawing.Point(24, 352);
+            this.btncancel.Name = "btncancel";
+            this.btncancel.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(139)))), ((int)(((byte)(87)))));
+            this.btncancel.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(129)))), ((int)(((byte)(77)))));
+            this.btncancel.OnHoverTextColor = System.Drawing.Color.White;
+            this.btncancel.selected = false;
+            this.btncancel.Size = new System.Drawing.Size(245, 49);
+            this.btncancel.TabIndex = 15;
+            this.btncancel.Text = "cancel";
+            this.btncancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btncancel.Textcolor = System.Drawing.Color.White;
+            this.btncancel.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncancel.Click += new System.EventHandler(this.btncancel_Click);
+            // 
             // pembeli
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(847, 450);
+            this.Controls.Add(this.btncancel);
             this.Controls.Add(this.btndelete);
             this.Controls.Add(this.btnupdate);
             this.Controls.Add(this.btntambah);
@@ -336,7 +373,6 @@
             this.Name = "pembeli";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "pembeli";
-//            this.Load += new System.EventHandler(this.pembeli_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -359,5 +395,6 @@
         private Bunifu.Framework.UI.BunifuFlatButton btntambah;
         private Bunifu.Framework.UI.BunifuFlatButton btnupdate;
         private Bunifu.Framework.UI.BunifuFlatButton btndelete;
+        private Bunifu.Framework.UI.BunifuFlatButton btncancel;
     }
 }

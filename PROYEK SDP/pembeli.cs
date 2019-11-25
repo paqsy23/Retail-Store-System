@@ -25,6 +25,8 @@ namespace PROYEK_SDP
             edid.Enabled = false;
             refresh();
             btnupdate.Visible = false;
+            btndelete.Visible = false;
+            btncancel.Visible = false;
             conn.Close();
         }
         public void refresh()
@@ -159,6 +161,8 @@ namespace PROYEK_SDP
             }
             btntambah.Visible = false;
             btnupdate.Visible = true;
+            btndelete.Visible = true;
+            btncancel.Visible = true;
         }
 
 
@@ -185,6 +189,20 @@ namespace PROYEK_SDP
                 MessageBox.Show("pilih field terlebih dahulu");
             }
             refresh();
+        }
+
+        private void btncancel_Click(object sender, EventArgs e)
+        {
+            btntambah.Visible = true;
+            btnupdate.Visible = false;
+            btndelete.Visible = false;
+            btncancel.Visible = false;
+            index = -1;
+            edid.Text = "";
+            ednama.Text = "";
+            edalamat.Text = "";
+            edemail.Text = "";
+            cbjenis.SelectedIndex = 0;
         }
     }
 }
