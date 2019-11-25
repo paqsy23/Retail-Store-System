@@ -15,27 +15,27 @@ drop table mobil cascade constraint purge;
 
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
-	nama_pegawai varchar2(20),
+	nama_pegawai varchar2(255),
 	jabatan varchar2(15),
-	alamat_pegawai varchar2(20),
-	password varchar2(15),
+	alamat_pegawai varchar2(255),
+	password varchar2(255),
 	nomor_telp varchar2(13)
 );
 
 create table jenis_barang (
 	id_jenis_barang varchar2(6) primary key, --- substr(nama_jenis_barang,1,2) + autogenerate
-	nama_jenis_barang varchar2(20)
+	nama_jenis_barang varchar2(255)
 );
 
 create table gudang (
 	id_gudang varchar2(6) primary key, --- GD + autogenerate
-	lokasi_gudang varchar2(20)
+	lokasi_gudang varchar2(255)
 );
 
 create table mobil (
 	id_mobil varchar2(6) primary key,
-	plat_nomor varchar2(7) unique,
-	nama_mobil varchar2(25),
+	plat_nomor varchar2(9) unique,
+	nama_mobil varchar2(255),
 	kapasitas number
 );
 
@@ -43,8 +43,8 @@ create table barang (
 	id_barang varchar2(8) primary key,
 	id_jenis_barang varchar2(6) constraint fk_idJenis references jenis_barang(id_jenis_barang),
 	id_gudang varchar2(6) constraint fk_idGud references gudang(id_gudang),
-	nama_barang varchar2(25),
-	warna_barang varchar2(15),
+	nama_barang varchar2(255),
+	warna_barang varchar2(255),
 	ukuran varchar2(3),
 	stock number,
 	harga_beli number,
@@ -53,17 +53,17 @@ create table barang (
 
 create table buyer (
 	id_buyer varchar2(6) primary key, --- BY + autogenerate
-	nama_buyer varchar2(20),
-	alamat_buyer varchar2(20),
-	email_buyer varchar2(20),
+	nama_buyer varchar2(255),
+	alamat_buyer varchar2(255),
+	email_buyer varchar2(255),
 	jenis_buyer varchar2(10),
 	status_buyer number --- 0:dihapus, 1: aktif
 );
 
 create table supplier (
 	id_supplier varchar2(6) primary key, --- SP + autogenerate
-	nama_supplier varchar2(20),
-	alamat_supplier varchar2(20),
+	nama_supplier varchar2(255),
+	alamat_supplier varchar2(255),
 	email_supplier varchar2(255),
     status_delete number 
 );
