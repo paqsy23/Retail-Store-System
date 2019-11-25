@@ -37,7 +37,7 @@ namespace PROYEK_SDP
         }
         private void tampilsupplier()
         {
-            OracleCommand cmd = new OracleCommand("select * from supplier order by id_supplier", conn);
+            OracleCommand cmd = new OracleCommand("select * from supplier where status_delete=0 order by id_supplier", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -67,7 +67,7 @@ namespace PROYEK_SDP
             
                     conn.Open();
                     string id = "SUP";
-                    OracleCommand cmd = new OracleCommand("insert into supplier(id_supplier,nama_supplier,alamat_supplier,email_supplier) values(:id_supplier,:nama_supplier,:alamat_supplier,:email_supplier)", conn);
+                    OracleCommand cmd = new OracleCommand("insert into supplier(id_supplier,nama_supplier,alamat_supplier,email_supplier,status_delete) values(:id_supplier,:nama_supplier,:alamat_supplier,:email_supplier,:status_delete)", conn);
                     OracleCommand cmds = new OracleCommand("select count(*) from supplier", conn);
                     string temp = Int32.Parse(cmds.ExecuteScalar().ToString()) + 1 + "";
                     for (int i = temp.Length; i < 3; i++)
@@ -79,6 +79,7 @@ namespace PROYEK_SDP
                     cmd.Parameters.Add("nama_supplier", bunifuMaterialTextbox2.Text);
                     cmd.Parameters.Add("alamat_supplier", bunifuMaterialTextbox3.Text);
                     cmd.Parameters.Add("email_supplier", bunifuMaterialTextbox4.Text);
+                    cmd.Parameters.Add("status_delete", "0");
                     cmd.ExecuteNonQuery();
                     tampilsupplier();
                     conn.Close();
@@ -97,7 +98,52 @@ namespace PROYEK_SDP
         private void supplier_Load(object sender, EventArgs e)
         {
             conn.Open();
+            bunifuMaterialTextbox1.Enabled = false;
             tampilsupplier();
+            conn.Close();
+        }
+
+        private void bunifuCustomDataGrid1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            bunifuMaterialTextbox1.Text = bunifuCustomDataGrid1[0, e.RowIndex].Value.ToString();
+            bunifuMaterialTextbox2.Text = bunifuCustomDataGrid1[1, e.RowIndex].Value.ToString();
+            bunifuMaterialTextbox3.Text = bunifuCustomDataGrid1[2, e.RowIndex].Value.ToString();
+            bunifuMaterialTextbox4.Text = bunifuCustomDataGrid1[3, e.RowIndex].Value.ToString();
+        }
+
+        private void bunifuFlatButton3_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            string id = bunifuMaterialTextbox1.Text;
+            if (id != "")
+            {
+                OracleCommand cmd = new OracleCommand("update supplier set status_delete=1 where id_supplier='" + id + "'", conn);
+                cmd.ExecuteNonQuery();
+                tampilsupplier();
+                conn.Close();
+            }
+            else
+            {
+                MessageBox.Show("pastikan semua form terisi");
+            }
+        }
+
+        private void bunifuFlatButton2_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            string id = bunifuMaterialTextbox1.Text;
+            if (id != "" && IsValidEmail(bunifuMaterialTextbox4.Text)&&bunifuMaterialTextbox2.Text != "" && bunifuMaterialTextbox3.Text != "" && bunifuMaterialTextbox4.Text != ""){
+                OracleCommand cmd = new OracleCommand("update supplier set nama_supplier= :nama_supplier,email_supplier= :emailsupplier,alamat_supplier= :alamat_supplier where id_supplier='"+id+"'", conn);
+                cmd.Parameters.Add("nama_supplier", bunifuMaterialTextbox2.Text);
+                cmd.Parameters.Add("email_supplier", bunifuMaterialTextbox4.Text);
+                cmd.Parameters.Add("alamat_supplier", bunifuMaterialTextbox3.Text);
+                cmd.ExecuteNonQuery();
+                tampilsupplier();
+            }
+            else
+            {
+                MessageBox.Show("Pastikan Semua from Terisi");
+            }
             conn.Close();
         }
     }

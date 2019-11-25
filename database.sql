@@ -64,7 +64,8 @@ create table supplier (
 	id_supplier varchar2(6) primary key, --- SP + autogenerate
 	nama_supplier varchar2(20),
 	alamat_supplier varchar2(20),
-	email_supplier varchar2(20)
+	email_supplier varchar2(255),
+    status_delete number 
 );
 
 create table htrans_in (
@@ -161,11 +162,11 @@ insert into buyer values('BY0004','Curtis Dawes','Ngagel Jaya 53','curtis1@gmail
 insert into buyer values('BY0005','Frederik De Jong','Gayungsari VII/7','frederik1@gmail.com','pribadi',1);
 insert into buyer values('BY0006','Joseph Chenwi','Ketintang Barat V/19','joseph1@gmail.com','perusahaan',1);
 
-insert into supplier values('SP0001','Peter Bint','Siwalankerto X/20','peter1@gmail.com');
-insert into supplier values('SP0002','Lionel Foy','Semolowaru Barat 53','lionel1@gmail.com');
-insert into supplier values('SP0003','Mark Gibbon','Nginden Utara II/83','mark1@gmail.com');
-insert into supplier values('SP0004','Diomansy Kamara','Dharmawangsa 74','diomansy1@gmail.com');
-insert into supplier values('SP0005','Olusola Omole','Dharmahusada 19','olusola1@gmail.com');
+insert into supplier values('SP0001','Peter Bint','Siwalankerto X/20','peter1@gmail.com',0);
+insert into supplier values('SP0002','Lionel Foy','Semolowaru Barat 53','lionel1@gmail.com',1);
+insert into supplier values('SP0003','Mark Gibbon','Nginden Utara II/83','mark1@gmail.com',0);
+insert into supplier values('SP0004','Diomansy Kamara','Dharmawangsa 74','diomansy1@gmail.com',0);
+insert into supplier values('SP0005','Olusola Omole','Dharmahusada 19','olusola1@gmail.com',0);
 
 commit;
 
