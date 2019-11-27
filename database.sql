@@ -133,7 +133,8 @@ stock_baru number,
 harga_beli_awal number,
 harga_beli_baru number,
 harga_jual_awal number,
-harga_jual_baru number 
+harga_jual_baru number,
+deskripsi varchar2(255)
 );
 insert into pegawai values('MAN001','Lee Philpott','Manager','Ngagel Jaya 54','MAN001','03160600606');
 insert into pegawai values('PEG001','Jonathan Dean','Pegawai','Darmokali V/10','PEG001','081323242089');
