@@ -12,7 +12,7 @@ drop table hPengiriman cascade constraint purge;
 drop table dPengiriman cascade constraint purge;
 drop table gudang cascade constraint purge;
 drop table mobil cascade constraint purge;
-
+drop table history_penyesuaian cascade constraint purge;
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
 	nama_pegawai varchar2(255),
@@ -125,7 +125,16 @@ create table dPengiriman (
 	id_hPengiriman varchar2(12) constraint fk_hKirim references hPengiriman(id_hPengiriman),
 	id_htrans_out varchar2(12) constraint fk_hKirim_out references htrans_out(id_htrans_out)
 );
-
+create table history_penyesuaian(
+id_barang varchar(8) constraint fk_brghp references barang(id_barang),
+tanggal_penyesuaian date,
+stock_awal number,
+stock_baru number,
+harga_beli_awal number,
+harga_beli_baru number,
+harga_jual_awal number,
+harga_jual_baru number 
+);
 insert into pegawai values('MAN001','Lee Philpott','Manager','Ngagel Jaya 54','MAN001','03160600606');
 insert into pegawai values('PEG001','Jonathan Dean','Pegawai','Darmokali V/10','PEG001','081323242089');
 insert into pegawai values('PEG002','Chris Greenhill','Pegawai','Ketintang II/35','PEG002','08793287610');
