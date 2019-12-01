@@ -27,7 +27,17 @@ namespace PROYEK_SDP
         {
             textBox2.Enabled = false;
             tampilbarang();
-
+            isisupplier();
+        }
+        private void isisupplier()
+        {
+            OracleCommand cmd = new OracleCommand("select ID_SUPPLIER,NAMA_SUPPLIER from SUPPLIER   ", conn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataTable ds = new DataTable();
+            da.Fill(ds);
+            combosupplier.DataSource = ds.AsDataView();
+            combosupplier.DisplayMember = "NAMA_SUPPLIER";
+            combosupplier.ValueMember = "ID_SUPPLIER";
         }
         private void tampilbarang()
         {
@@ -86,8 +96,29 @@ namespace PROYEK_SDP
                 cmd.Parameters.Add("harga_beli_awal", harga_awal);
                 cmd.Parameters.Add("harga_baru", hargabaru);
                 cmd.ExecuteNonQuery();
-                conn.Close();
+                
+                DateTime dateTime = DateTime.UtcNow.Date;
+                string id_htrans = "HI" + (dateTime.ToString("ddMMyyyy"));
+                OracleCommand cmds = new OracleCommand("select count(id_htrans_in)+1 from htrans_in where id_htrans_in LIKE '%" + id_htrans + "%'", conn);
+                string indexkosongs = cmds.ExecuteScalar().ToString();
+                cmds.CommandText = "select id_gudang from barang where id_barang='" + textBox2.Text+"'";
+                string idgudang = cmds.ExecuteScalar().ToString();
+                for (int i = indexkosongs.Length; i < 2; i++)
+                {
+                    indexkosongs = "0" + indexkosongs;
+                }
+                int total = (int)numericUpDown1.Value * (int)numericUpDown2.Value;
+                id_htrans += indexkosongs;
+                cmds.CommandText = "insert into htrans_in(id_htrans_in, id_supplier, id_gudang, tanggal_trans, total_harga) values(:id_htrans_in, :id_supplier, :id_gudang, CURRENT_TIMESTAMP, :total_harga)";
+                cmds.Parameters.Add("id_htrans_in", id_htrans);
+                cmds.Parameters.Add("id_supplier", combosupplier.SelectedValue);
+                cmds.Parameters.Add("id_gudang", idgudang);
+                cmds.Parameters.Add("total_harga", (int)numericUpDown1.Value * (int)numericUpDown2.Value);
+                cmds.ExecuteNonQuery();
+                cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + textBox2.Text + "'," + (int)numericUpDown1.Value + "," + numericUpDown2.Value + "," + total + "," + stock_total+ ",'" + logins.username + "')";
+                cmds.ExecuteNonQuery();
                 tampilbarang();
+                conn.Close();
             }
             else
             {

@@ -129,13 +129,28 @@ create table history_penyesuaian(
 id_barang varchar(8) constraint fk_brghp references barang(id_barang),
 tanggal_penyesuaian date,
 stock_awal number,
-stock_baru number,
+stock_baru  number,
 harga_beli_awal number,
 harga_beli_baru number,
 harga_jual_awal number,
 harga_jual_baru number,
 deskripsi varchar2(255)
 );
+
+create or replace view tampil_flow_barang as
+select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Beli' as "Jenis Transaksi", total_stock as "Total Stock",h.tanggal_trans as"Tanggal Transaksi",concat('ID Nota :',d.id_htrans_in) as"Keterangan"
+from dtrans_in d , barang b,htrans_in h
+where b.id_barang=d.id_barang and h.id_htrans_in=d.id_htrans_in
+union all
+select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Jual' as "Jenis Transaksi", stock_baru as "Total Stock",tanggal_penyesuaian as"Tanggal Transaksi",deskripsi as"Keterangan"
+from  barang b ,history_penyesuaian h
+where b.id_barang=h.id_barang
+union all
+select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Penyesuaian' as "Jenis Transaksi", sisa_stock as "Total Stock",h.tanggal_trans as"Tanggal Transaksi",concat('ID Nota :',d.id_htrans_out) as"Keterangan"
+from dtrans_out d , barang b,htrans_out h
+where b.id_barang=d.id_barang and h.id_htrans_out=d.id_htrans_out
+order by 6 desc;
+
 insert into pegawai values('MAN001','Lee Philpott','Manager','Ngagel Jaya 54','MAN001','03160600606');
 insert into pegawai values('PEG001','Jonathan Dean','Pegawai','Darmokali V/10','PEG001','081323242089');
 insert into pegawai values('PEG002','Chris Greenhill','Pegawai','Ketintang II/35','PEG002','08793287610');
