@@ -172,7 +172,7 @@
             this.button7.ImageZoom = 50;
             this.button7.LabelPosition = 41;
             this.button7.LabelText = "LogOut";
-            this.button7.Location = new System.Drawing.Point(445, 351);
+            this.button7.Location = new System.Drawing.Point(585, 351);
             this.button7.Margin = new System.Windows.Forms.Padding(6);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(128, 129);
@@ -192,7 +192,7 @@
             this.bunifuTileButton1.ImageZoom = 50;
             this.bunifuTileButton1.LabelPosition = 41;
             this.bunifuTileButton1.LabelText = "surat jalan";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(165, 210);
+            this.bunifuTileButton1.Location = new System.Drawing.Point(305, 351);
             this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(6);
             this.bunifuTileButton1.Name = "bunifuTileButton1";
             this.bunifuTileButton1.Size = new System.Drawing.Size(128, 129);
