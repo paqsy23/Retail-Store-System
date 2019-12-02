@@ -42,10 +42,10 @@ namespace PROYEK_SDP
             cbgudang.DisplayMember = "ID_GUDANG";
             cbgudang.ValueMember = "ID_GUDANG";
         }
-
+        int index;
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int index = e.RowIndex;
+            index = e.RowIndex;
             edid.Text = dataGridView1.Rows[index].Cells[0].Value.ToString();
             numstock.Value = Convert.ToInt32(dataGridView1.Rows[index].Cells[6].Value.ToString());
             cbgudang.Text = dataGridView1.Rows[index].Cells[2].Value.ToString();
@@ -59,18 +59,49 @@ namespace PROYEK_SDP
             try
             {
                 conn.Open();
+                int stocklama = Convert.ToInt32(dataGridView1.Rows[index].Cells[6].Value.ToString());
+                int hargabelilama = Convert.ToInt32(dataGridView1.Rows[index].Cells[7].Value.ToString());
+                int hargajuallama = Convert.ToInt32(dataGridView1.Rows[index].Cells[8].Value.ToString());
                 int stock = Convert.ToInt32(numstock.Value);
                 String gudang = cbgudang.Text;
                 int hargabeli = Convert.ToInt32(numbeli.Value);
                 int hargajual = Convert.ToInt32(numjual.Value);
-                String query = "update barang set stock='" + stock + "',harga_jual='" + hargajual + "',harga_beli='" + hargabeli + "',id_gudang='" + gudang + "' where id_barang='" + edid.Text + "'";
-                OracleCommand cmd = new OracleCommand(query, conn);
-                cmd.ExecuteNonQuery();
+                
+                if (hargabeli < hargajual && richTextBox1.Text != "")
+                {
+                    OracleCommand cmd2 = new OracleCommand();
+                    string inserthtrans = "insert into history_penyesuaian(id_barang, tanggal_penyesuaian, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi) values(:id_barang, current_timestamp , :stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi)";
+                    cmd2.Parameters.Add("id_barang", dataGridView1.Rows[index].Cells[0].Value.ToString());
+                    cmd2.Parameters.Add("stock_awal", stock);
+                    cmd2.Parameters.Add("stock_baru", numstock.Value);
+                    cmd2.Parameters.Add("harga_beli_awal", hargabelilama);
+                    cmd2.Parameters.Add("harga_beli_baru", hargabeli);
+                    cmd2.Parameters.Add("harga_jual_awal", hargajuallama);
+                    cmd2.Parameters.Add("harga_jual_baru", hargajual);
+                    cmd2.Parameters.Add("deskripsi", richTextBox1.Text);
+                    cmd2.Connection = conn;
+                    cmd2.CommandText = inserthtrans;
+                    cmd2.ExecuteNonQuery();
+
+                    String query = "update barang set stock='" + stock + "',harga_jual='" + hargajual + "',harga_beli='" + hargabeli + "',id_gudang='" + gudang + "' where id_barang='" + edid.Text + "'";
+                    OracleCommand cmd = new OracleCommand(query, conn);
+                    cmd.ExecuteNonQuery();
+                }
+
                 conn.Close();
                 tampilbarang();
+                //kosong semua
+                index = -1;
+                edid.Text = "";
+                numstock.Value = 0;
+                cbgudang.Text = "";
+                numbeli.Value = 0;
+                numjual.Value = 0;
             }
             catch (Exception ex)
             {
+                conn.Close();
+                MessageBox.Show("pilih barang terlebih dahulu");
                 MessageBox.Show(ex.Message);
             }
         }
