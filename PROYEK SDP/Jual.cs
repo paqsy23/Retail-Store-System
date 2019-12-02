@@ -185,47 +185,47 @@ namespace PROYEK_SDP
                         indexkosongs = "0" + indexkosongs;
                     }
                     id_htrans += indexkosongs;
-                        OracleCommand cmd2 = new OracleCommand();
-                        string inserthtrans = "insert into htrans_out(id_htrans_out, id_buyer, tanggal_trans, total_harga) values(:id_htrans_out,:id_buyer, current_timestamp,:total_harga)";
-                        cmd2.Parameters.Add("id_htrans_out", id_htrans);
-                        cmd2.Parameters.Add("id_buyer", cbpembeli.Text.ToString());
-                        cmd2.Parameters.Add("total_harga", total.Text);
-                        cmd2.Connection = conn;
-                        cmd2.CommandText = inserthtrans;
-                        cmd2.ExecuteNonQuery();
+                    OracleCommand cmd2 = new OracleCommand();
+                    string inserthtrans = "insert into htrans_out(id_htrans_out, id_buyer, tanggal_trans, total_harga) values(:id_htrans_out,:id_buyer, current_timestamp,:total_harga)";
+                    cmd2.Parameters.Add("id_htrans_out", id_htrans);
+                    cmd2.Parameters.Add("id_buyer", cbpembeli.Text.ToString());
+                    cmd2.Parameters.Add("total_harga", total.Text);
+                    cmd2.Connection = conn;
+                    cmd2.CommandText = inserthtrans;
+                    cmd2.ExecuteNonQuery();
 
-                        for (int i = tempcheckout.Rows.Count-1; i > -1; i--)
+                    for (int i = tempcheckout.Rows.Count-1; i > -1; i--)
+                    {
+                        OracleCommand command3 = new OracleCommand();
+                        command3.Connection = conn;
+                        String getstok = "select stock from barang where id_barang = '" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'";
+                        command3.CommandText = getstok;
+                        int stocksekarang = Convert.ToInt32(command3.ExecuteScalar().ToString());
+                        int tempsisa = stocksekarang - Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString());
+                        if (tempsisa > 0)
                         {
-                            OracleCommand command3 = new OracleCommand();
-                            command3.Connection = conn;
-                            String getstok = "select stock from barang where id_barang = '" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'";
-                            command3.CommandText = getstok;
-                            int stocksekarang = Convert.ToInt32(command3.ExecuteScalar().ToString());
-                            int tempsisa = stocksekarang - Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString());
-                            if (tempsisa > 0)
-                            {
-                                String update = "update barang set stock=" + tempsisa + "where id_barang = '" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'";
-                                command3.CommandText = update;
-                                command3.ExecuteNonQuery();
+                            String update = "update barang set stock=" + tempsisa + "where id_barang = '" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'";
+                            command3.CommandText = update;
+                            command3.ExecuteNonQuery();
 
-                                OracleCommand cmd3 = new OracleCommand();
-                                string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_keluar, harga_jual,subtotal,sisa_stock,id_penanggungjawab) values(:id_htrans_out,:id_barang, :jumlah,:harga_jual,:subtotal,:sisa_stock,:id_kasir)";
-                                cmd3.Connection = conn;
-                                cmd3.Parameters.Add("id_htrans_out", id_htrans);
-                                cmd3.Parameters.Add("id_barang", bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString());
-                                cmd3.Parameters.Add("jumlah", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString()));
-                                cmd3.Parameters.Add("harga_jual", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString()));
-                                cmd3.Parameters.Add("subtotal", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[4].Value.ToString()));
-                                cmd3.Parameters.Add("sisa_stock", tempsisa);
-                                cmd3.Parameters.Add("id_kasir", logins.username);
-                                cmd3.CommandText = insert;
-                                cmd3.ExecuteNonQuery();
-                                tempcheckout.Rows[i].Delete();
-                            }
+                            OracleCommand cmd3 = new OracleCommand();
+                            string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_keluar, harga_jual,subtotal,sisa_stock,id_penanggungjawab) values(:id_htrans_out,:id_barang, :jumlah,:harga_jual,:subtotal,:sisa_stock,:id_kasir)";
+                            cmd3.Connection = conn;
+                            cmd3.Parameters.Add("id_htrans_out", id_htrans);
+                            cmd3.Parameters.Add("id_barang", bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString());
+                            cmd3.Parameters.Add("jumlah", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString()));
+                            cmd3.Parameters.Add("harga_jual", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString()));
+                            cmd3.Parameters.Add("subtotal", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[4].Value.ToString()));
+                            cmd3.Parameters.Add("sisa_stock", tempsisa);
+                            cmd3.Parameters.Add("id_kasir", logins.username);
+                            cmd3.CommandText = insert;
+                            cmd3.ExecuteNonQuery();
+                            tempcheckout.Rows[i].Delete();
                         }
-                        conn.Close();
-                        total.Text = "0";
-                        refresh();
+                    }
+                    conn.Close();
+                    total.Text = "0";
+                    refresh();
                     
                     conn.Close();
                 }
