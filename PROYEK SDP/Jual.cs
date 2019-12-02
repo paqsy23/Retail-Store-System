@@ -17,7 +17,6 @@ namespace PROYEK_SDP
         public Master parent;
         String path;
         DataTable tempcheckout = new DataTable();
-        int temppembeli = 0;
         public Jual(string path)
         {
             InitializeComponent();
@@ -228,6 +227,8 @@ namespace PROYEK_SDP
                         refresh();
                     
                     conn.Close();
+                    reportNota nota = new reportNota();
+                    nota.ShowDialog();
                 }
                 catch (Exception ex)
                 {
