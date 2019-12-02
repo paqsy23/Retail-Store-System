@@ -21,6 +21,7 @@ namespace PROYEK_SDP
         {
             CrystalReport1 cr = new CrystalReport1();
             cr.SetDatabaseLogon(logins.user, logins.pass);
+            cr.SetParameterValue("tanggal", "");
             crystalReportViewer1.ReportSource = cr;
 
         }

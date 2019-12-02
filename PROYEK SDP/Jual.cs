@@ -208,11 +208,11 @@ namespace PROYEK_SDP
                                 command3.ExecuteNonQuery();
 
                                 OracleCommand cmd3 = new OracleCommand();
-                                string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_keluar, harga_jual,subtotal,sisa_stock,id_penanggungjawab) values(:id_htrans_out,:id_barang, :jumlah,:harga_jual,:subtotal,:sisa_stock,:id_kasir)";
+                                string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_lama, harga_jual,subtotal,sisa_stock,id_penanggungjawab) values(:id_htrans_out,:id_barang, :jumlah,:harga_jual,:subtotal,:sisa_stock,:id_kasir)";
                                 cmd3.Connection = conn;
                                 cmd3.Parameters.Add("id_htrans_out", id_htrans);
                                 cmd3.Parameters.Add("id_barang", bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString());
-                                cmd3.Parameters.Add("jumlah", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString()));
+                                cmd3.Parameters.Add("jumlah", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString())+tempsisa);
                                 cmd3.Parameters.Add("harga_jual", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString()));
                                 cmd3.Parameters.Add("subtotal", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[4].Value.ToString()));
                                 cmd3.Parameters.Add("sisa_stock", tempsisa);
