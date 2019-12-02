@@ -14,7 +14,6 @@ namespace PROYEK_SDP
     public partial class suratjalan : Form
     {
         OracleConnection conn;
-        int a;
         public suratjalan(String path)
         {
             InitializeComponent();

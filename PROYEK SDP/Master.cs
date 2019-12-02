@@ -132,11 +132,11 @@ namespace PROYEK_SDP
 class logins
 {
     private static string h_username="ADMIN";
-    private static string h_user="n217116624";
-    private static string h_pass="217116624";
+    private static string h_user="admin1";
+    private static string h_pass="admin";
     public static string username
     {
-        get { return h_user; }
+        get { return h_username; }
         set { h_username = value; }
     }
     public static string user

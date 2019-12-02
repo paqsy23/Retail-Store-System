@@ -15,7 +15,6 @@ namespace PROYEK_SDP
     {
         OracleConnection conn;
         public Master parent;
-        int a;
         public formpenyesuaianbarang(String path)
         {
             InitializeComponent(); 
