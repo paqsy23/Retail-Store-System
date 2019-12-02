@@ -223,10 +223,11 @@ namespace PROYEK_SDP
                                 cmd3.CommandText = insert;
                                 cmd3.ExecuteNonQuery();
                                 tempcheckout.Rows[i].Delete();
+
                             }
                         }
                         cmds.CommandText = "update htrans_out set total_laba="+acclaba+"where id_htrans_out='"+id_htrans+"'";
-                    cmds.ExecuteNonQuery();
+                        cmds.ExecuteNonQuery();
                         conn.Close();
                         total.Text = "0";
                         refresh();
