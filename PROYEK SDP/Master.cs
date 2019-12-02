@@ -21,9 +21,9 @@ namespace PROYEK_SDP
             //Load Login.xml
             XmlTextReader baca = new XmlTextReader(Application.StartupPath + "\\login.xml");
             baca.ReadStartElement("data");
-            string user = baca.ReadElementString("user");
-            string pass = baca.ReadElementString("pass");
-            path = "user id=" + user + ";password=" + pass + ";";
+             logins.user = baca.ReadElementString("user");
+            logins.pass = baca.ReadElementString("pass");
+            path = "user id=" + logins.user + ";password=" + logins.pass + ";";
             baca.ReadEndElement();
             baca.Close();
         }
@@ -132,9 +132,21 @@ namespace PROYEK_SDP
 class logins
 {
     private static string h_username="ADMIN";
+    private static string h_user="n217116624";
+    private static string h_pass="217116624";
     public static string username
     {
-        get { return h_username; }
+        get { return h_user; }
         set { h_username = value; }
+    }
+    public static string user
+    {
+        get { return h_user; }
+        set { h_user= value; }
+    }
+    public static string pass
+    {
+        get { return h_pass; }
+        set { h_pass = value; }
     }
 }
