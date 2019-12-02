@@ -66,7 +66,7 @@ namespace PROYEK_SDP
                 String gudang = cbgudang.Text;
                 int hargabeli = Convert.ToInt32(numbeli.Value);
                 int hargajual = Convert.ToInt32(numjual.Value);
-                
+                MessageBox.Show("Test");
                 if (hargabeli < hargajual && richTextBox1.Text != "")
                 {
                     OracleCommand cmd2 = new OracleCommand();
@@ -78,7 +78,7 @@ namespace PROYEK_SDP
                     cmd2.Parameters.Add("harga_beli_baru", hargabeli);
                     cmd2.Parameters.Add("harga_jual_awal", hargajuallama);
                     cmd2.Parameters.Add("harga_jual_baru", hargajual);
-                    cmd2.Parameters.Add("deskripsi", richTextBox1.Text);
+                    cmd2.Parameters.Add("deskripsi", "tebase".ToString());
                     cmd2.Connection = conn;
                     cmd2.CommandText = inserthtrans;
                     cmd2.ExecuteNonQuery();

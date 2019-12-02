@@ -73,7 +73,6 @@ create table htrans_in (
 	id_supplier varchar2(6) constraint fk_idSupp references supplier(id_supplier),
 	id_gudang varchar2(6) constraint fk_gudHin references gudang(id_gudang),
 	tanggal_trans date,
-	laba number,
 	total_harga number
 );
 
@@ -91,7 +90,8 @@ create table htrans_out (
 	id_htrans_out varchar2(12) primary key, --- HO + DD + MM + YY + autogenerate
 	id_buyer varchar2(6) constraint fk_idBuy references buyer(id_buyer),
 	tanggal_trans date,
-	total_harga number
+	total_harga number,
+    total_laba number
 );
 
 create table dtrans_out (
@@ -100,7 +100,7 @@ create table dtrans_out (
 	stock_keluar number,
 	harga_jual number,
 	subtotal number,
-	sisa_stock number,
+	laba number,
 	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai) --- pengurus
 );
 
@@ -125,9 +125,10 @@ create table dPengiriman (
 	id_hPengiriman varchar2(12) constraint fk_hKirim references hPengiriman(id_hPengiriman),
 	id_htrans_out varchar2(12) constraint fk_hKirim_out references htrans_out(id_htrans_out)
 );
-create table history_penyesuaian(
+create table history_perubahan(
 id_barang varchar(8) constraint fk_brghp references barang(id_barang),
-tanggal_penyesuaian date,
+tanggal_perubahan date,
+jenis_perubahan varchar2(11),
 stock_awal number,
 stock_baru  number,
 harga_beli_awal number,
