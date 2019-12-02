@@ -12,30 +12,30 @@ drop table hPengiriman cascade constraint purge;
 drop table dPengiriman cascade constraint purge;
 drop table gudang cascade constraint purge;
 drop table mobil cascade constraint purge;
-
+drop table history_penyesuaian cascade constraint purge;
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
-	nama_pegawai varchar2(20),
+	nama_pegawai varchar2(255),
 	jabatan varchar2(15),
-	alamat_pegawai varchar2(20),
-	password varchar2(15),
+	alamat_pegawai varchar2(255),
+	password varchar2(255),
 	nomor_telp varchar2(13)
 );
 
 create table jenis_barang (
 	id_jenis_barang varchar2(6) primary key, --- substr(nama_jenis_barang,1,2) + autogenerate
-	nama_jenis_barang varchar2(20)
+	nama_jenis_barang varchar2(255)
 );
 
 create table gudang (
 	id_gudang varchar2(6) primary key, --- GD + autogenerate
-	lokasi_gudang varchar2(20)
+	lokasi_gudang varchar2(255)
 );
 
 create table mobil (
 	id_mobil varchar2(6) primary key,
-	plat_nomor varchar2(6) unique,
-	nama_mobil varchar2(25),
+	plat_nomor varchar2(9) unique,
+	nama_mobil varchar2(255),
 	kapasitas number
 );
 
@@ -43,8 +43,8 @@ create table barang (
 	id_barang varchar2(8) primary key,
 	id_jenis_barang varchar2(6) constraint fk_idJenis references jenis_barang(id_jenis_barang),
 	id_gudang varchar2(6) constraint fk_idGud references gudang(id_gudang),
-	nama_barang varchar2(25),
-	warna_barang varchar2(15),
+	nama_barang varchar2(255),
+	warna_barang varchar2(255),
 	ukuran varchar2(3),
 	stock number,
 	harga_beli number,
@@ -53,17 +53,19 @@ create table barang (
 
 create table buyer (
 	id_buyer varchar2(6) primary key, --- BY + autogenerate
-	nama_buyer varchar2(20),
-	alamat_buyer varchar2(20),
-	email_buyer varchar2(20),
-	jenis_buyer number --- 0: pribadi, 1: perusahaan
+	nama_buyer varchar2(255),
+	alamat_buyer varchar2(255),
+	email_buyer varchar2(255),
+	jenis_buyer varchar2(10),
+	status_buyer number --- 0:dihapus, 1: aktif
 );
 
 create table supplier (
 	id_supplier varchar2(6) primary key, --- SP + autogenerate
-	nama_supplier varchar2(20),
-	alamat_supplier varchar2(20),
-	email_supplier varchar2(20)
+	nama_supplier varchar2(255),
+	alamat_supplier varchar2(255),
+	email_supplier varchar2(255),
+    status_delete number 
 );
 
 create table htrans_in (
@@ -88,7 +90,7 @@ create table dtrans_in (
 create table htrans_out (
 	id_htrans_out varchar2(12) primary key, --- HO + DD + MM + YY + autogenerate
 	id_buyer varchar2(6) constraint fk_idBuy references buyer(id_buyer),
-	tanggal_trans date ,
+	tanggal_trans date,
 	total_harga number
 );
 
@@ -99,7 +101,6 @@ create table dtrans_out (
 	harga_jual number,
 	subtotal number,
 	sisa_stock number,
-	status number, --- 0: default, 1: cancel
 	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai) --- pengurus
 );
 
@@ -124,6 +125,31 @@ create table dPengiriman (
 	id_hPengiriman varchar2(12) constraint fk_hKirim references hPengiriman(id_hPengiriman),
 	id_htrans_out varchar2(12) constraint fk_hKirim_out references htrans_out(id_htrans_out)
 );
+create table history_penyesuaian(
+id_barang varchar(8) constraint fk_brghp references barang(id_barang),
+tanggal_penyesuaian date,
+stock_awal number,
+stock_baru  number,
+harga_beli_awal number,
+harga_beli_baru number,
+harga_jual_awal number,
+harga_jual_baru number,
+deskripsi varchar2(255)
+);
+
+create or replace view tampil_flow_barang as
+select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Beli' as "Jenis Transaksi", total_stock as "Total Stock",h.tanggal_trans as"Tanggal Transaksi",concat('ID Nota :',d.id_htrans_in) as"Keterangan"
+from dtrans_in d , barang b,htrans_in h
+where b.id_barang=d.id_barang and h.id_htrans_in=d.id_htrans_in
+union all
+select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Jual' as "Jenis Transaksi", stock_baru as "Total Stock",tanggal_penyesuaian as"Tanggal Transaksi",deskripsi as"Keterangan"
+from  barang b ,history_penyesuaian h
+where b.id_barang=h.id_barang
+union all
+select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Penyesuaian' as "Jenis Transaksi", sisa_stock as "Total Stock",h.tanggal_trans as"Tanggal Transaksi",concat('ID Nota :',d.id_htrans_out) as"Keterangan"
+from dtrans_out d , barang b,htrans_out h
+where b.id_barang=d.id_barang and h.id_htrans_out=d.id_htrans_out
+order by 6 desc;
 
 insert into pegawai values('MAN001','Lee Philpott','Manager','Ngagel Jaya 54','MAN001','03160600606');
 insert into pegawai values('PEG001','Jonathan Dean','Pegawai','Darmokali V/10','PEG001','081323242089');
@@ -154,15 +180,18 @@ insert into barang values('CPBL1001','CP0002','GD0002','Celana Pendek Jeans','Bi
 insert into barang values('KKYE3001','KE0001','GD0003','Kemeja Kotak','Kuning','L',15,70000,85000);
 insert into barang values('CPBL2001','CP0001','GD0002','Celana Panjang Jeans','Hitam','M',10,80000,95000);
 
-insert into buyer values('BY0001','David Bosumtwe','Ngagel Tengah IV/9','david1@gmail.com',1);
-insert into buyer values('BY0002','Adam Bouskouchi','Kupang Krajan V/2','adam1@gmail.com',0);
-insert into buyer values('BY0003','David Currie','Barata Jaya III/18','david2@gmail.com',0);
-insert into buyer values('BY0004','Curtis Dawes','Ngagel Jaya 53','curtis1@gmail.com',1);
-insert into buyer values('BY0005','Frederik De Jong','Gayungsari VII/7','frederik1@gmail.com',0);
-insert into buyer values('BY0006','Joseph Chenwi','Ketintang Barat V/19','joseph1@gmail.com',1);
+insert into buyer values('BY0001','David Bosumtwe','Ngagel Tengah IV/9','david1@gmail.com','perusahaan',1);
+insert into buyer values('BY0002','Adam Bouskouchi','Kupang Krajan V/2','adam1@gmail.com','pribadi',1);
+insert into buyer values('BY0003','David Currie','Barata Jaya III/18','david2@gmail.com','pribadi',1);
+insert into buyer values('BY0004','Curtis Dawes','Ngagel Jaya 53','curtis1@gmail.com','perusahaan',1);
+insert into buyer values('BY0005','Frederik De Jong','Gayungsari VII/7','frederik1@gmail.com','pribadi',1);
+insert into buyer values('BY0006','Joseph Chenwi','Ketintang Barat V/19','joseph1@gmail.com','perusahaan',1);
 
-insert into supplier values('SP0001','Peter Bint','Siwalankerto X/20','peter1@gmail.com');
-insert into supplier values('SP0002','Lionel Foy','Semolowaru Barat 53','lionel1@gmail.com');
-insert into supplier values('SP0003','Mark Gibbon','Nginden Utara II/83','mark1@gmail.com');
-insert into supplier values('SP0004','Diomansy Kamara','Dharmawangsa 74','diomansy1@gmail.com');
-insert into supplier values('SP0005','Olusola Omole','Dharmahusada 19','olusola1@gmail.com');
+insert into supplier values('SP0001','Peter Bint','Siwalankerto X/20','peter1@gmail.com',0);
+insert into supplier values('SP0002','Lionel Foy','Semolowaru Barat 53','lionel1@gmail.com',1);
+insert into supplier values('SP0003','Mark Gibbon','Nginden Utara II/83','mark1@gmail.com',0);
+insert into supplier values('SP0004','Diomansy Kamara','Dharmawangsa 74','diomansy1@gmail.com',0);
+insert into supplier values('SP0005','Olusola Omole','Dharmahusada 19','olusola1@gmail.com',0);
+
+commit;
+

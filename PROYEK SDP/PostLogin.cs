@@ -13,6 +13,7 @@ namespace PROYEK_SDP
     public partial class PostLogin : Form
     {
         public Master parent;
+        
         public PostLogin()
         {
             InitializeComponent();
@@ -58,6 +59,12 @@ namespace PROYEK_SDP
         private void button7_Click(object sender, EventArgs e)
         {
             parent.showLogin();
+            this.Close();
+        }
+
+        private void bunifuTileButton1_Click(object sender, EventArgs e)
+        {
+            parent.showPostSuratJalan();
             this.Close();
         }
     }
