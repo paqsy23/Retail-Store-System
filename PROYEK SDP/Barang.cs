@@ -237,7 +237,7 @@ namespace PROYEK_SDP
                         indexkosong = "0" + indexkosong;
                     }
                     id = id + indexkosong;
-                    cmd.CommandText = "insert into barang(id_barang, id_jenis_barang, id_gudang, nama_barang, warna_barang, ukuran, stock ,harga_beli, harga_jual) values(:id_barang, :id_jenis_barang, :id_gudang, :nama_barang, :warna_barang, 'm', :stock, :harga_beli, :harga_jual)";
+                    cmd.CommandText = "insert into barang(id_barang, id_jenis_barang, id_gudang, nama_barang, warna_barang, ukuran, stock ,harga_beli, harga_jual) values(:id_barang, :id_jenis_barang, :id_gudang, :nama_barang, :warna_barang, :ukuran, :stock, :harga_beli, :harga_jual)";
                     cmd.Parameters.Add("id_barang", id);
                     cmd.Parameters.Add("id_jenis_barang", combojenis.SelectedValue);
                     cmd.Parameters.Add("id_gudang", combogudang.SelectedValue);
@@ -248,7 +248,7 @@ namespace PROYEK_SDP
                     cmd.Parameters.Add("harga_beli", numericbeli.Value);
                     cmd.Parameters.Add("harga_jual", numericjual.Value);
                     MessageBox.Show(comboukuran.SelectedItem.ToString());
-                    //cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
                 DateTime dateTime = DateTime.UtcNow.Date;
                 int total = (int)numericbeli.Value * (int)numericstock.Value;
@@ -266,7 +266,7 @@ namespace PROYEK_SDP
                 cmds.Parameters.Add("id_gudang", combogudang.SelectedValue);
                 cmds.Parameters.Add("total_harga", (int)numericbeli.Value * (int)numericstock.Value);
                 cmds.ExecuteNonQuery();
-                cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + id + "'," + (int)numericstock.Value + "," + numericbeli.Value + "," + total + ","+numericstock.Value+",'" + logins.username + "')";
+                cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + id + "'," + 0 + "," + numericbeli.Value + "," + total + ","+numericstock.Value+",'" + logins.username + "')";
                 cmds.ExecuteNonQuery();
                // cmds.CommandText = "insert into dtrans_in (id_htrans_in, id_barang, stock_masuk, harga_beli, subtotal,total_stock, id_penanggungjawab) values ( :id_htrans_in, :id_barang, :stock_masuk, :harga_beli, :subtotal,:totalstock, :id_penanggungjawab)";
                 //cmds.Parameters.Add("id_htrans_in", id_htrans);

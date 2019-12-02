@@ -136,7 +136,7 @@ class logins
     private static string h_pass="217116624";
     public static string username
     {
-        get { return h_user; }
+        get { return h_username; }
         set { h_username = value; }
     }
     public static string user
