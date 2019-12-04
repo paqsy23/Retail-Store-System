@@ -12,7 +12,7 @@ drop table hPengiriman cascade constraint purge;
 drop table dPengiriman cascade constraint purge;
 drop table gudang cascade constraint purge;
 drop table mobil cascade constraint purge;
-drop table history_penyesuaian cascade constraint purge;
+drop table history_perubahan cascade constraint purge;
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
 	nama_pegawai varchar2(255),
@@ -86,7 +86,7 @@ create table dtrans_in (
 	id_penanggungjawab varchar(6) constraint fk_pegHin references pegawai(id_pegawai) --- pengurus
 );
 
-create table htrans_out (
+create table htrans_out (HO 22 29 1999
 	id_htrans_out varchar2(12) primary key, --- HO + DD + MM + YY + autogenerate
 	id_buyer varchar2(6) constraint fk_idBuy references buyer(id_buyer),
 	tanggal_trans date,
@@ -126,16 +126,16 @@ create table dPengiriman (
 	id_htrans_out varchar2(12) constraint fk_hKirim_out references htrans_out(id_htrans_out)
 );
 create table history_perubahan(
-id_barang varchar(8) constraint fk_brghp references barang(id_barang),
-tanggal_perubahan date,
-jenis_perubahan varchar2(11),
-stock_awal number,
-stock_baru  number,
-harga_beli_awal number,
-harga_beli_baru number,
-harga_jual_awal number,
-harga_jual_baru number,
-deskripsi varchar2(255)
+    id_barang varchar(8) constraint fk_brghp references barang(id_barang),
+    tanggal_perubahan date,
+    jenis_perubahan varchar2(12),
+    stock_awal number,
+    stock_baru  number,
+    harga_beli_awal number,
+    harga_beli_baru number,
+    harga_jual_awal number,
+    harga_jual_baru number,
+    deskripsi varchar2(255)
 );
 
 create or replace view tampil_flow_barang as

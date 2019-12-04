@@ -70,15 +70,16 @@ namespace PROYEK_SDP
                 if (hargabeli < hargajual && richTextBox1.Text != "")
                 {
                     OracleCommand cmd2 = new OracleCommand();
-                    string inserthtrans = "insert into history_penyesuaian(id_barang, tanggal_penyesuaian, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi) values(:id_barang, current_timestamp , :stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi)";
+                    string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi) values(:id_barang, current_timestamp ,:jenis_perubahan, :stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi)";
                     cmd2.Parameters.Add("id_barang", dataGridView1.Rows[index].Cells[0].Value.ToString());
+                    cmd2.Parameters.Add("jenis_perubahan", "Penyesuaian".ToString());
                     cmd2.Parameters.Add("stock_awal", stock);
                     cmd2.Parameters.Add("stock_baru", numstock.Value);
                     cmd2.Parameters.Add("harga_beli_awal", hargabelilama);
                     cmd2.Parameters.Add("harga_beli_baru", hargabeli);
                     cmd2.Parameters.Add("harga_jual_awal", hargajuallama);
                     cmd2.Parameters.Add("harga_jual_baru", hargajual);
-                    cmd2.Parameters.Add("deskripsi", "tebase".ToString());
+                    cmd2.Parameters.Add("deskripsi", richTextBox1.Text+" ");
                     cmd2.Connection = conn;
                     cmd2.CommandText = inserthtrans;
                     cmd2.ExecuteNonQuery();
