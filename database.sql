@@ -118,7 +118,8 @@ create table temp_hpp ( --- untuk history update harga
 create table hPengiriman (
 	id_hPengiriman varchar2(12) primary key,
 	tanggal_pengiriman date,
-	id_supir varchar2(6) constraint fk_pegKirim references pegawai(id_pegawai)
+	id_supir varchar2(6) constraint fk_pegKirim references pegawai(id_pegawai),
+	id_mobil varchar2(6) constraint fk_mobilKirim references mobil(id_mobil)
 );
 
 create table dPengiriman (
