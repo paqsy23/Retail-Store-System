@@ -152,6 +152,12 @@
     <Compile Include="suratjalan.Designer.cs">
       <DependentUpon>suratjalan.cs</DependentUpon>
     </Compile>
+    <Compile Include="SuratJalan1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SuratJalan.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Barang.resx">
       <DependentUpon>Barang.cs</DependentUpon>
     </EmbeddedResource>
@@ -211,6 +217,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="suratjalan.resx">
       <DependentUpon>suratjalan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuratJalan.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SuratJalan1.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
