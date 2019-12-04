@@ -250,8 +250,8 @@ namespace PROYEK_SDP
                         refresh();
                     
                     conn.Close();
-                   // reportNota nota = new reportNota();
-                   // nota.ShowDialog();
+                   reportNota nota = new reportNota();
+                   nota.ShowDialog();
                 }
                 catch (Exception ex)
                 {

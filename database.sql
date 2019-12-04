@@ -86,7 +86,7 @@ create table dtrans_in (
 	id_penanggungjawab varchar(6) constraint fk_pegHin references pegawai(id_pegawai) --- pengurus
 );
 
-create table htrans_out (HO 22 29 1999
+create table htrans_out (
 	id_htrans_out varchar2(12) primary key, --- HO + DD + MM + YY + autogenerate
 	id_buyer varchar2(6) constraint fk_idBuy references buyer(id_buyer),
 	tanggal_trans date,
@@ -138,19 +138,6 @@ create table history_perubahan(
     deskripsi varchar2(255)
 );
 
-create or replace view tampil_flow_barang as
-select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Beli' as "Jenis Transaksi", total_stock as "Total Stock",h.tanggal_trans as"Tanggal Transaksi",concat('ID Nota :',d.id_htrans_in) as"Keterangan"
-from dtrans_in d , barang b,htrans_in h
-where b.id_barang=d.id_barang and h.id_htrans_in=d.id_htrans_in
-union all
-select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Jual' as "Jenis Transaksi", stock_baru as "Total Stock",tanggal_penyesuaian as"Tanggal Transaksi",deskripsi as"Keterangan"
-from  barang b ,history_penyesuaian h
-where b.id_barang=h.id_barang
-union all
-select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Penyesuaian' as "Jenis Transaksi", sisa_stock as "Total Stock",h.tanggal_trans as"Tanggal Transaksi",concat('ID Nota :',d.id_htrans_out) as"Keterangan"
-from dtrans_out d , barang b,htrans_out h
-where b.id_barang=d.id_barang and h.id_htrans_out=d.id_htrans_out
-order by 6 desc;
 
 insert into pegawai values('MAN001','Lee Philpott','Manager','Ngagel Jaya 54','MAN001','03160600606');
 insert into pegawai values('PEG001','Jonathan Dean','Pegawai','Darmokali V/10','PEG001','081323242089');
