@@ -28,5 +28,15 @@ namespace PROYEK_SDP
             cr.SetParameterValue("Htrans_out", id_htrans);
             crystalReportViewer1.ReportSource = cr;
         }
+
+        private void crystalReportViewer1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reportNota_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

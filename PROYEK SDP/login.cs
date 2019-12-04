@@ -51,5 +51,10 @@ namespace PROYEK_SDP
         {
             textBox2.isPassword = true;
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

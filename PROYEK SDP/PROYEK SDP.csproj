@@ -72,6 +72,18 @@
     <Compile Include="beli.Designer.cs">
       <DependentUpon>beli.cs</DependentUpon>
     </Compile>
+    <Compile Include="laba.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>laba.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportLaba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportLaba.Designer.cs">
+      <DependentUpon>ReportLaba.cs</DependentUpon>
+    </Compile>
     <Compile Include="Nota.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -171,6 +183,10 @@
     <EmbeddedResource Include="Jual.resx">
       <DependentUpon>Jual.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="laba.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>laba.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +218,9 @@
     </Compile>
     <EmbeddedResource Include="reportbarang.resx">
       <DependentUpon>reportbarang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportLaba.resx">
+      <DependentUpon>ReportLaba.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reportNota.resx">
       <DependentUpon>reportNota.cs</DependentUpon>

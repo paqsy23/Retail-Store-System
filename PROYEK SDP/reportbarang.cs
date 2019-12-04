@@ -23,8 +23,8 @@ namespace PROYEK_SDP
             
             cr.SetDatabaseLogon(logins.user, logins.pass);
             cr.SetParameterValue("tanggal", "");
-            cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
-            cr.SetParameterValue("tanggal2", dateTimePicker1.Value);
+            cr.SetParameterValue("tanggal1", dateTimePicker1.Value.ToShortDateString());
+            cr.SetParameterValue("tanggal2", dateTimePicker1.Value.ToShortDateString());
             dateTimePicker1.Value = new DateTime(2000, 1, 1, 00, 00, 0);
             dateTimePicker2.Value = new DateTime(2019, 1, 1, 23, 59, 59);
             crystalReportViewer1.ReportSource = cr;
@@ -48,6 +48,11 @@ namespace PROYEK_SDP
             cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
             cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
             crystalReportViewer1.ReportSource = cr;
+        }
+
+        private void crystalReportViewer1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

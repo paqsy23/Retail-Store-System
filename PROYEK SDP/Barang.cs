@@ -330,5 +330,11 @@ namespace PROYEK_SDP
             }
             conn.Close();
         }
+
+        private void bunifuFlatButton2_Click(object sender, EventArgs e)
+        {
+            reportbarang rb = new reportbarang();
+            rb.ShowDialog();
+        }
     }
 }
