@@ -201,7 +201,7 @@ namespace PROYEK_SDP
                             command3.CommandText = getstok;
                             int stocksekarang = Convert.ToInt32(command3.ExecuteScalar().ToString());
                             int tempsisa = stocksekarang - Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString());
-                            if (tempsisa > 0)
+                            if (tempsisa > -1)
                             {
                                 String update = "update barang set stock=" + tempsisa + "where id_barang = '" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'";
                                 command3.CommandText = update;
@@ -222,9 +222,26 @@ namespace PROYEK_SDP
                                 cmd3.Parameters.Add("id_kasir", logins.username);
                                 cmd3.CommandText = insert;
                                 cmd3.ExecuteNonQuery();
-                                tempcheckout.Rows[i].Delete();
+                            inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi) values(:id_barang, current_timestamp ,:jenis_perubahan,:stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi)";
+                            cmd2.Parameters.Clear();
+                            cmd2.Parameters.Add("id_barang", bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString());
+                            cmd2.Parameters.Add("jenis_perubahan", "Jual".ToString());
+                            cmd2.Parameters.Add("stock_awal", stocksekarang);
+                            cmd2.Parameters.Add("stock_baru", tempsisa);
+                            cmd2.Parameters.Add("harga_beli_awal", hargabeli);
+                            cmd2.Parameters.Add("harga_beli_baru", hargabeli);
+                            cmd2.Parameters.Add("harga_jual_awal", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString()));
+                            cmd2.Parameters.Add("harga_jual_baru", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString()));
+                            cmd2.Parameters.Add("deskripsi", id_htrans.ToString());
+                            cmd2.CommandText = inserthtrans;
+                            cmd2.ExecuteNonQuery();
+                            tempcheckout.Rows[i].Delete();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Stock Tidak Cukup");
+                        }
 
-                            }
                         }
                         cmds.CommandText = "update htrans_out set total_laba="+acclaba+"where id_htrans_out='"+id_htrans+"'";
                         cmds.ExecuteNonQuery();
@@ -233,8 +250,8 @@ namespace PROYEK_SDP
                         refresh();
                     
                     conn.Close();
-                   // reportNota nota = new reportNota();
-                   // nota.ShowDialog();
+                   reportNota nota = new reportNota();
+                   nota.ShowDialog();
                 }
                 catch (Exception ex)
                 {
