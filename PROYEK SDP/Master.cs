@@ -127,6 +127,14 @@ namespace PROYEK_SDP
             ps.Show();
 
         }
+        public void showReportLaba()
+        {
+            ReportLaba p1 = new ReportLaba();
+            p1.MdiParent = this;
+            p1.parent = this;
+            p1.Location = new Point(0, 0);
+            p1.Show();
+        }
     }
 }
 class logins

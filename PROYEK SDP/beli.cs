@@ -122,7 +122,7 @@ namespace PROYEK_SDP
                 cmd2.CommandText="select harga_jual from barang where id_barang='"+textBox2.Text+"'";
                 MessageBox.Show(cmd2.ExecuteScalar().ToString());
                 int harga_jual =Int32.Parse( cmd2.ExecuteScalar().ToString());
-                string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi) values(:id_barang, current_timestamp ,:jenis_perubahan,:stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi)";
+                string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_barang, current_timestamp ,:jenis_perubahan,:stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
                 cmd2.Parameters.Clear();
                 cmd2.Parameters.Add("id_barang", textBox2.Text);
                 cmd2.Parameters.Add("jenis_perubahan", "Beli".ToString());
@@ -133,6 +133,7 @@ namespace PROYEK_SDP
                 cmd2.Parameters.Add("harga_jual_awal",harga_jual);
                 cmd2.Parameters.Add("harga_jual_baru",harga_jual);
                 cmd2.Parameters.Add("deskripsi", id_htrans.ToString());
+                cmd2.Parameters.Add("id_pegawai", logins.username);
                 cmd2.CommandText = inserthtrans;
                 cmd2.ExecuteNonQuery();
                 tampilbarang();

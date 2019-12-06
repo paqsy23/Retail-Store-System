@@ -269,7 +269,7 @@ namespace PROYEK_SDP
                 cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + id + "'," + numericstock.Value + "," + numericbeli.Value + "," + total + ","+numericstock.Value+",'" + logins.username + "')";
                 cmds.ExecuteNonQuery();
                 OracleCommand cmd2 = new OracleCommand();
-                string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi) values(:id_barang, current_timestamp ,:jenis_perubahan, :stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi)";
+                string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_barang, current_timestamp ,:jenis_perubahan, :stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
                 cmd2.Parameters.Add("id_barang", id);
                 cmd2.Parameters.Add("jenis_perubahan", "Beli".ToString());
                 cmd2.Parameters.Add("stock_awal", "0".ToString());
@@ -278,7 +278,8 @@ namespace PROYEK_SDP
                 cmd2.Parameters.Add("harga_beli_baru", numericbeli.Value);
                 cmd2.Parameters.Add("harga_jual_awal", "0".ToString());
                 cmd2.Parameters.Add("harga_jual_baru", numericjual.Value);
-                cmd2.Parameters.Add("deskripsi", "tebase".ToString());
+                cmd2.Parameters.Add("deskripsi", id_htrans.ToString());
+                cmd2.Parameters.Add("id_pegawai", logins.username);
                 cmd2.Connection = conn;
                 cmd2.CommandText = inserthtrans;
                 cmd2.ExecuteNonQuery();

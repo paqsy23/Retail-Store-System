@@ -12,6 +12,7 @@ namespace PROYEK_SDP
 {
     public partial class ReportLaba : Form
     {
+        public Master parent;
         public ReportLaba()
         {
             InitializeComponent();
@@ -19,61 +20,50 @@ namespace PROYEK_SDP
         laba cr = new laba();
         private void ReportLaba_Load(object sender, EventArgs e)
         {
-
-            InitializeComponent();
-            
             cr.SetDatabaseLogon(logins.user, logins.pass);
-            this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-
             cr.SetParameterValue("tanggal", "");
             cr.SetParameterValue("tanggal1", dateTimePicker1.Value.ToShortDateString());
             cr.SetParameterValue("tanggal2", dateTimePicker1.Value.ToShortDateString());
-            dateTimePicker1.Value = new DateTime(2019, 1, 1, 00, 00, 0);
+            dateTimePicker1.Value = new DateTime(2000, 1, 1, 00, 00, 0);
             dateTimePicker2.Value = new DateTime(2019, 1, 1, 23, 59, 59);
             crystalReportViewer1.ReportSource = cr;
             crystalReportViewer1.Zoom(90);
             this.MinimumSize = new Size(this.Width, this.Height);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            cr.SetParameterValue("tanggal", "isi");
-            cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
-            cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
-            crystalReportViewer1.ReportSource = cr;
+            int value = DateTime.Compare(dateTimePicker1.Value, dateTimePicker2.Value);
+            if (value < 0)
+            {
+                cr.SetParameterValue("tanggal", "isi");
+                cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
+                cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
+                crystalReportViewer1.ReportSource = cr;
+            }
+            else
+            {   if (dateTimePicker1.Value.ToShortDateString() == dateTimePicker2.Value.ToShortDateString())
+                {
+                    cr.SetParameterValue("tanggal", "isi");
+                    cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
+                    cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
+                    crystalReportViewer1.ReportSource = cr;
+                }
+                else
+                {
+                    MessageBox.Show("Tanggal Awal tidak bisa lebih besar dari Pada tanggal akhir");
+                }
+            }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click_1(object sender, EventArgs e)
         {
             cr.SetParameterValue("tanggal", "");
             cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
             cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
             crystalReportViewer1.ReportSource = cr;
-        }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
