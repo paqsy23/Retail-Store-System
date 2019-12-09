@@ -19,9 +19,9 @@ namespace PROYEK_SDP
 
         private void reportbarang_Load(object sender, EventArgs e)
         {
-            CrystalReport1 cr = new CrystalReport1();
-            cr.SetDatabaseLogon(logins.user, logins.pass);
-            crystalReportViewer1.ReportSource = cr;
+            //CrystalReport1 cr = new CrystalReport1();
+            //cr.SetDatabaseLogon(logins.user, logins.pass);
+            //crystalReportViewer1.ReportSource = cr;
 
         }
     }
