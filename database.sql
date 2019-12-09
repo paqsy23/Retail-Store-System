@@ -68,6 +68,13 @@ create table supplier (
     status_delete number 
 );
 
+create table pengiriman (
+	id_hPengiriman varchar2(12) primary key,
+	tanggal_pengiriman date,
+	id_supir varchar2(6) constraint fk_pegKirim references pegawai(id_pegawai),
+	id_mobil varchar2(6) constraint fk_mobilKirim references mobil(id_mobil)
+);
+
 create table htrans_in (
 	id_htrans_in varchar2(12) primary key, --- HI + DD + MM + YY + autogenerate
 	id_supplier varchar2(6) constraint fk_idSupp references supplier(id_supplier),
@@ -101,7 +108,8 @@ create table dtrans_out (
 	harga_jual number,
 	subtotal number,
 	laba number,
-	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai) --- pengurus
+	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai), --- pengurus
+	id_hPengiriman varchar2(12) constraint fk_pengKirim references pengiriman(id_hPengiriman)
 );
 
 create table temp_hpp ( --- untuk history update harga
@@ -115,17 +123,6 @@ create table temp_hpp ( --- untuk history update harga
 	harga_baru number --- hasil perhitungan
 );
 
-create table hPengiriman (
-	id_hPengiriman varchar2(12) primary key,
-	tanggal_pengiriman date,
-	id_supir varchar2(6) constraint fk_pegKirim references pegawai(id_pegawai),
-	id_mobil varchar2(6) constraint fk_mobilKirim references mobil(id_mobil)
-);
-
-create table dPengiriman (
-	id_hPengiriman varchar2(12) constraint fk_hKirim references hPengiriman(id_hPengiriman),
-	id_htrans_out varchar2(12) constraint fk_hKirim_out references htrans_out(id_htrans_out)
-);
 create table history_perubahan(
     id_barang varchar(8) constraint fk_brghp references barang(id_barang),
     tanggal_perubahan date,
