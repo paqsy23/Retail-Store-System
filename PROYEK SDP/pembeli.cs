@@ -14,7 +14,6 @@ namespace PROYEK_SDP
     public partial class pembeli : Form
     {
         OracleConnection conn;
-        int jum = 0;
         public pembeli(String path)
         {
             InitializeComponent();
@@ -59,7 +58,8 @@ namespace PROYEK_SDP
             conn.Open();
             OracleCommand cmds = new OracleCommand("select count(nama_buyer) from buyer where nama_buyer='"+name+"'", conn);
             int tempangka =  Convert.ToInt32(cmds.ExecuteScalar().ToString());
-            if(tempangka > 0)
+            conn.Close();
+            if (tempangka > 0)
             {
                 return false;
             }
@@ -67,7 +67,6 @@ namespace PROYEK_SDP
             {
                 return true;
             }
-            conn.Close();
         }
         private void btntambah_Click(object sender, EventArgs e)
         {

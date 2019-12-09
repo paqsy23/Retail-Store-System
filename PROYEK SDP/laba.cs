@@ -16,14 +16,14 @@ namespace PROYEK_SDP {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport1 : ReportClass {
+    public class laba : ReportClass {
         
-        public CrystalReport1() {
+        public laba() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport1.rpt";
+                return "laba.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace PROYEK_SDP {
         
         public override string FullResourceName {
             get {
-                return "PROYEK_SDP.CrystalReport1.rpt";
+                return "PROYEK_SDP.laba.rpt";
             }
             set {
                 // Do nothing
@@ -114,9 +114,9 @@ namespace PROYEK_SDP {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport1 : Component, ICachedReport {
+    public class Cachedlaba : Component, ICachedReport {
         
-        public CachedCrystalReport1() {
+        public Cachedlaba() {
         }
         
         [Browsable(false)]
@@ -153,7 +153,7 @@ namespace PROYEK_SDP {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport1 rpt = new CrystalReport1();
+            laba rpt = new laba();
             rpt.Site = this.Site;
             return rpt;
         }

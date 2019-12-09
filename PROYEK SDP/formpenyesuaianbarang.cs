@@ -15,7 +15,6 @@ namespace PROYEK_SDP
     {
         OracleConnection conn;
         public Master parent;
-        int a;
         public formpenyesuaianbarang(String path)
         {
             InitializeComponent(); 
@@ -63,28 +62,29 @@ namespace PROYEK_SDP
                 int stocklama = Convert.ToInt32(dataGridView1.Rows[index].Cells[6].Value.ToString());
                 int hargabelilama = Convert.ToInt32(dataGridView1.Rows[index].Cells[7].Value.ToString());
                 int hargajuallama = Convert.ToInt32(dataGridView1.Rows[index].Cells[8].Value.ToString());
-                int stock = Convert.ToInt32(numstock.Value);
                 String gudang = cbgudang.Text;
                 int hargabeli = Convert.ToInt32(numbeli.Value);
                 int hargajual = Convert.ToInt32(numjual.Value);
-                
+                MessageBox.Show("Test");
                 if (hargabeli < hargajual && richTextBox1.Text != "")
                 {
                     OracleCommand cmd2 = new OracleCommand();
-                    string inserthtrans = "insert into history_penyesuaian(id_barang, tanggal_penyesuaian, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi) values(:id_barang, current_timestamp , :stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi)";
+                    string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_barang, current_timestamp ,:jenis_perubahan, :stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
                     cmd2.Parameters.Add("id_barang", dataGridView1.Rows[index].Cells[0].Value.ToString());
-                    cmd2.Parameters.Add("stock_awal", stock);
+                    cmd2.Parameters.Add("jenis_perubahan", "Penyesuaian".ToString());
+                    cmd2.Parameters.Add("stock_awal", stocklama);
                     cmd2.Parameters.Add("stock_baru", numstock.Value);
                     cmd2.Parameters.Add("harga_beli_awal", hargabelilama);
                     cmd2.Parameters.Add("harga_beli_baru", hargabeli);
                     cmd2.Parameters.Add("harga_jual_awal", hargajuallama);
                     cmd2.Parameters.Add("harga_jual_baru", hargajual);
-                    cmd2.Parameters.Add("deskripsi", richTextBox1.Text);
+                    cmd2.Parameters.Add("deskripsi", richTextBox1.Text+" ");
+                    cmd2.Parameters.Add("id_pegawai", logins.username);
                     cmd2.Connection = conn;
                     cmd2.CommandText = inserthtrans;
                     cmd2.ExecuteNonQuery();
 
-                    String query = "update barang set stock='" + stock + "',harga_jual='" + hargajual + "',harga_beli='" + hargabeli + "',id_gudang='" + gudang + "' where id_barang='" + edid.Text + "'";
+                    String query = "update barang set stock='" + numstock.Value + "',harga_jual='" + hargajual + "',harga_beli='" + hargabeli + "',id_gudang='" + gudang + "' where id_barang='" + edid.Text + "'";
                     OracleCommand cmd = new OracleCommand(query, conn);
                     cmd.ExecuteNonQuery();
                 }
@@ -117,6 +117,11 @@ namespace PROYEK_SDP
         {
             PictureBox ini = (PictureBox)sender;
             ini.Cursor = Cursors.Hand;
+        }
+
+        private void formpenyesuaianbarang_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

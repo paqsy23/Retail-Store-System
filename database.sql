@@ -12,7 +12,7 @@ drop table hPengiriman cascade constraint purge;
 drop table dPengiriman cascade constraint purge;
 drop table gudang cascade constraint purge;
 drop table mobil cascade constraint purge;
-drop table history_penyesuaian cascade constraint purge;
+drop table history_perubahan cascade constraint purge;
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
 	nama_pegawai varchar2(255),
@@ -68,12 +68,18 @@ create table supplier (
     status_delete number 
 );
 
+create table pengiriman (
+	id_hPengiriman varchar2(12) primary key,
+	tanggal_pengiriman date,
+	id_supir varchar2(6) constraint fk_pegKirim references pegawai(id_pegawai),
+	id_mobil varchar2(6) constraint fk_mobilKirim references mobil(id_mobil)
+);
+
 create table htrans_in (
 	id_htrans_in varchar2(12) primary key, --- HI + DD + MM + YY + autogenerate
 	id_supplier varchar2(6) constraint fk_idSupp references supplier(id_supplier),
 	id_gudang varchar2(6) constraint fk_gudHin references gudang(id_gudang),
 	tanggal_trans date,
-	laba number,
 	total_harga number
 );
 
@@ -91,7 +97,8 @@ create table htrans_out (
 	id_htrans_out varchar2(12) primary key, --- HO + DD + MM + YY + autogenerate
 	id_buyer varchar2(6) constraint fk_idBuy references buyer(id_buyer),
 	tanggal_trans date,
-	total_harga number
+	total_harga number,
+    total_laba number
 );
 
 create table dtrans_out (
@@ -100,8 +107,9 @@ create table dtrans_out (
 	stock_keluar number,
 	harga_jual number,
 	subtotal number,
-	sisa_stock number,
-	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai) --- pengurus
+	laba number,
+	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai), --- pengurus
+	id_hPengiriman varchar2(12) constraint fk_pengKirim references pengiriman(id_hPengiriman)
 );
 
 create table temp_hpp ( --- untuk history update harga
@@ -115,41 +123,20 @@ create table temp_hpp ( --- untuk history update harga
 	harga_baru number --- hasil perhitungan
 );
 
-create table hPengiriman (
-	id_hPengiriman varchar2(12) primary key,
-	tanggal_pengiriman date,
-	id_supir varchar2(6) constraint fk_pegKirim references pegawai(id_pegawai)
+create table history_perubahan(
+    id_barang varchar(8) constraint fk_brghp references barang(id_barang),
+    tanggal_perubahan date,
+    jenis_perubahan varchar2(12),
+    stock_awal number,
+    stock_baru  number,
+    harga_beli_awal number,
+    harga_beli_baru number,
+    harga_jual_awal number,
+    harga_jual_baru number,
+    deskripsi varchar2(255),
+    id_pegawai varchar(6) constraint fk_pegHp references pegawai(id_pegawai)
 );
 
-create table dPengiriman (
-	id_hPengiriman varchar2(12) constraint fk_hKirim references hPengiriman(id_hPengiriman),
-	id_htrans_out varchar2(12) constraint fk_hKirim_out references htrans_out(id_htrans_out)
-);
-create table history_penyesuaian(
-id_barang varchar(8) constraint fk_brghp references barang(id_barang),
-tanggal_penyesuaian date,
-stock_awal number,
-stock_baru  number,
-harga_beli_awal number,
-harga_beli_baru number,
-harga_jual_awal number,
-harga_jual_baru number,
-deskripsi varchar2(255)
-);
-
-create or replace view tampil_flow_barang as
-select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Beli' as "Jenis Transaksi", total_stock as "Total Stock",h.tanggal_trans as"Tanggal Transaksi",concat('ID Nota :',d.id_htrans_in) as"Keterangan"
-from dtrans_in d , barang b,htrans_in h
-where b.id_barang=d.id_barang and h.id_htrans_in=d.id_htrans_in
-union all
-select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Jual' as "Jenis Transaksi", stock_baru as "Total Stock",tanggal_penyesuaian as"Tanggal Transaksi",deskripsi as"Keterangan"
-from  barang b ,history_penyesuaian h
-where b.id_barang=h.id_barang
-union all
-select b.id_barang as "ID Barang",b.nama_barang as "Nama Barang",'Penyesuaian' as "Jenis Transaksi", sisa_stock as "Total Stock",h.tanggal_trans as"Tanggal Transaksi",concat('ID Nota :',d.id_htrans_out) as"Keterangan"
-from dtrans_out d , barang b,htrans_out h
-where b.id_barang=d.id_barang and h.id_htrans_out=d.id_htrans_out
-order by 6 desc;
 
 insert into pegawai values('MAN001','Lee Philpott','Manager','Ngagel Jaya 54','MAN001','03160600606');
 insert into pegawai values('PEG001','Jonathan Dean','Pegawai','Darmokali V/10','PEG001','081323242089');

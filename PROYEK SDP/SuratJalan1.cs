@@ -16,14 +16,14 @@ namespace PROYEK_SDP {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport1 : ReportClass {
+    public class SuratJalan : ReportClass {
         
-        public CrystalReport1() {
+        public SuratJalan() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport1.rpt";
+                return "SuratJalan.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace PROYEK_SDP {
         
         public override string FullResourceName {
             get {
-                return "PROYEK_SDP.CrystalReport1.rpt";
+                return "PROYEK_SDP.SuratJalan.rpt";
             }
             set {
                 // Do nothing
@@ -90,33 +90,17 @@ namespace PROYEK_SDP {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_tanggal {
+        public CrystalDecisions.Shared.IParameterField Parameter_idHpengiriman {
             get {
                 return this.DataDefinition.ParameterFields[0];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_tanggal1 {
-            get {
-                return this.DataDefinition.ParameterFields[1];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_tanggal2 {
-            get {
-                return this.DataDefinition.ParameterFields[2];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport1 : Component, ICachedReport {
+    public class CachedSuratJalan : Component, ICachedReport {
         
-        public CachedCrystalReport1() {
+        public CachedSuratJalan() {
         }
         
         [Browsable(false)]
@@ -153,7 +137,7 @@ namespace PROYEK_SDP {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport1 rpt = new CrystalReport1();
+            SuratJalan rpt = new SuratJalan();
             rpt.Site = this.Site;
             return rpt;
         }

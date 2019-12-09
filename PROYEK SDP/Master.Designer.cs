@@ -40,7 +40,7 @@
             this.IsMdiContainer = true;
             this.Name = "Master";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "login";
+            this.Text = "Distribusi Barang";
             this.Load += new System.EventHandler(this.Master_Load);
             this.ResumeLayout(false);
 

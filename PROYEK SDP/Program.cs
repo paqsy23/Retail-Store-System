@@ -16,7 +16,7 @@ namespace PROYEK_SDP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Master());
+            Application.Run(new  Master());
         }
     }
 }

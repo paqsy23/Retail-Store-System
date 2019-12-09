@@ -127,16 +127,24 @@ namespace PROYEK_SDP
             ps.Show();
 
         }
+        public void showReportLaba()
+        {
+            ReportLaba p1 = new ReportLaba();
+            p1.MdiParent = this;
+            p1.parent = this;
+            p1.Location = new Point(0, 0);
+            p1.Show();
+        }
     }
 }
 class logins
 {
     private static string h_username="ADMIN";
-    private static string h_user="n217116624";
-    private static string h_pass="217116624";
+    private static string h_user="admin1";
+    private static string h_pass="admin";
     public static string username
     {
-        get { return h_user; }
+        get { return h_username; }
         set { h_username = value; }
     }
     public static string user

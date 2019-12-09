@@ -72,11 +72,35 @@
     <Compile Include="beli.Designer.cs">
       <DependentUpon>beli.cs</DependentUpon>
     </Compile>
+    <Compile Include="laba.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>laba.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportLaba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportLaba.Designer.cs">
+      <DependentUpon>ReportLaba.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nota.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Nota.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="reportbarang.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="reportbarang.Designer.cs">
       <DependentUpon>reportbarang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReport1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="formpenyesuaianbarang.cs">
       <SubType>Form</SubType>
@@ -122,6 +146,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="reportNota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reportNota.Designer.cs">
+      <DependentUpon>reportNota.cs</DependentUpon>
+    </Compile>
     <Compile Include="supplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,11 +164,24 @@
     <Compile Include="suratjalan.Designer.cs">
       <DependentUpon>suratjalan.cs</DependentUpon>
     </Compile>
+    <Compile Include="SuratJalan1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SuratJalan.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Barang.resx">
       <DependentUpon>Barang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="beli.resx">
       <DependentUpon>beli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport1.resx">
+      <DependentUpon>CrystalReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="formpenyesuaianbarang.resx">
       <DependentUpon>formpenyesuaianbarang.cs</DependentUpon>
@@ -146,11 +189,19 @@
     <EmbeddedResource Include="Jual.resx">
       <DependentUpon>Jual.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="laba.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>laba.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master.resx">
       <DependentUpon>Master.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nota.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Nota.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Pegawai.resx">
       <DependentUpon>Pegawai.cs</DependentUpon>
@@ -174,11 +225,21 @@
     <EmbeddedResource Include="reportbarang.resx">
       <DependentUpon>reportbarang.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportLaba.resx">
+      <DependentUpon>ReportLaba.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reportNota.resx">
+      <DependentUpon>reportNota.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="supplier.resx">
       <DependentUpon>supplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="suratjalan.resx">
       <DependentUpon>suratjalan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SuratJalan.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>SuratJalan1.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
