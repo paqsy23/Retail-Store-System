@@ -37,6 +37,7 @@
             this.button4 = new Bunifu.Framework.UI.BunifuTileButton();
             this.button7 = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
+            this.bunifuTileButton2 = new Bunifu.Framework.UI.BunifuTileButton();
             this.SuspendLayout();
             // 
             // button1
@@ -199,11 +200,32 @@
             this.bunifuTileButton1.TabIndex = 8;
             this.bunifuTileButton1.Click += new System.EventHandler(this.bunifuTileButton1_Click);
             // 
+            // bunifuTileButton2
+            // 
+            this.bunifuTileButton2.BackColor = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton2.color = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton2.colorActive = System.Drawing.Color.MediumSeaGreen;
+            this.bunifuTileButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTileButton2.Font = new System.Drawing.Font("Century Gothic", 15.75F);
+            this.bunifuTileButton2.ForeColor = System.Drawing.Color.White;
+            this.bunifuTileButton2.Image = ((System.Drawing.Image)(resources.GetObject("bunifuTileButton2.Image")));
+            this.bunifuTileButton2.ImagePosition = 20;
+            this.bunifuTileButton2.ImageZoom = 50;
+            this.bunifuTileButton2.LabelPosition = 41;
+            this.bunifuTileButton2.LabelText = "Report Laba";
+            this.bunifuTileButton2.Location = new System.Drawing.Point(445, 351);
+            this.bunifuTileButton2.Margin = new System.Windows.Forms.Padding(6);
+            this.bunifuTileButton2.Name = "bunifuTileButton2";
+            this.bunifuTileButton2.Size = new System.Drawing.Size(128, 129);
+            this.bunifuTileButton2.TabIndex = 9;
+            this.bunifuTileButton2.Click += new System.EventHandler(this.bunifuTileButton2_Click);
+            // 
             // PostLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.Controls.Add(this.bunifuTileButton2);
             this.Controls.Add(this.bunifuTileButton1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -230,5 +252,6 @@
         private Bunifu.Framework.UI.BunifuTileButton button4;
         private Bunifu.Framework.UI.BunifuTileButton button7;
         private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton1;
+        private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton2;
     }
 }

@@ -137,7 +137,7 @@ create table history_perubahan(
     harga_jual_awal number,
     harga_jual_baru number,
     deskripsi varchar2(255),
-	id_pegawai varchar2(6) constraint fk_pegRubah references pegawai(id_pegawai)
+    id_pegawai varchar(6) constraint fk_pegHp references pegawai(id_pegawai)
 );
 
 

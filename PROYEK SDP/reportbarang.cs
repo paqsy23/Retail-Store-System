@@ -16,7 +16,7 @@ namespace PROYEK_SDP
         {
             InitializeComponent();
         }
-        CrystalReport1 cr = new CrystalReport1();
+        CrystalReport1 cr = new CrystalReport1 ();
         private void reportbarang_Load(object sender, EventArgs e)
         {
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
@@ -36,10 +36,28 @@ namespace PROYEK_SDP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cr.SetParameterValue("tanggal", "isi");
-            cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
-            cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
-            crystalReportViewer1.ReportSource = cr;
+            int value = DateTime.Compare(dateTimePicker1.Value, dateTimePicker2.Value);
+            if (value < 0)
+            {
+                cr.SetParameterValue("tanggal", "isi");
+                cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
+                cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
+                crystalReportViewer1.ReportSource = cr;
+            }
+            else
+            {
+                if (dateTimePicker1.Value.ToShortDateString() == dateTimePicker2.Value.ToShortDateString())
+                {
+                    cr.SetParameterValue("tanggal", "isi");
+                    cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
+                    cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
+                    crystalReportViewer1.ReportSource = cr;
+                }
+                else
+                {
+                    MessageBox.Show("Tanggal Awal tidak bisa lebih besar dari Pada tanggal akhir");
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
