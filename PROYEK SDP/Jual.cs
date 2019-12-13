@@ -128,8 +128,12 @@ namespace PROYEK_SDP
                     }
                     if(index > -1)
                     {
+                        
                         int tempstock = Convert.ToInt32(tempcheckout.Rows[index].ItemArray[3].ToString()) +(int) numericUpDown1.Value;
                         tempcheckout.Rows[index][3] = tempstock.ToString();
+
+                        int subtotal = Convert.ToInt32(tempcheckout.Rows[index].ItemArray[4].ToString()) + total;
+                        tempcheckout.Rows[index][4] = subtotal.ToString();
                         index = -1;
                     }
                     else
@@ -209,7 +213,8 @@ namespace PROYEK_SDP
                                 command3.CommandText = "select  harga_beli from barang where id_barang='" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'";
                                 int hargabeli = Int32.Parse( command3.ExecuteScalar().ToString());
                                 int laba = Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[4].Value.ToString()) - (hargabeli * Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString()));
-                                acclaba += laba;
+                            MessageBox.Show(laba+"");
+                            acclaba += laba;
                                 OracleCommand cmd3 = new OracleCommand();
                                 string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_keluar, harga_jual,subtotal,laba,id_penanggungjawab) values(:id_htrans_out,:id_barang, :stock_keluar ,:harga_jual,:laba,:subtotal,:id_kasir)";
                                 cmd3.Connection = conn;
