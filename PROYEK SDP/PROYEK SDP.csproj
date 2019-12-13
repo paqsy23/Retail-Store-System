@@ -158,6 +158,12 @@
     <Compile Include="reportNota.Designer.cs">
       <DependentUpon>reportNota.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportPerubahanHarga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportPerubahanHarga.Designer.cs">
+      <DependentUpon>ReportPerubahanHarga.cs</DependentUpon>
+    </Compile>
     <Compile Include="reportSuratJalan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reportNota.resx">
       <DependentUpon>reportNota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPerubahanHarga.resx">
+      <DependentUpon>ReportPerubahanHarga.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reportSuratJalan.resx">
       <DependentUpon>reportSuratJalan.cs</DependentUpon>

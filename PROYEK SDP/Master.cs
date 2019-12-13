@@ -121,6 +121,7 @@ namespace PROYEK_SDP
         {
             suratjalan ps = new suratjalan(path);
             ps.MdiParent = this;
+            ps.parent = this;
             ps.Location = new Point(0, 0);
             this.Width = ps.Width + 20;
             this.Height = ps.Height + 44;

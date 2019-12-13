@@ -13,6 +13,7 @@ namespace PROYEK_SDP
 {
     public partial class suratjalan : Form
     {
+        public Master parent;
         OracleConnection conn;
         DataTable tempcheckout = new DataTable();
         public suratjalan(String path)
@@ -199,12 +200,20 @@ namespace PROYEK_SDP
                     MessageBox.Show("tanggal pengiriman harus diatas tanggal sekarang");
                 }
                 conn.Close();
+            reportSuratJalan report = new reportSuratJalan();
+            report.ShowDialog();
             //}
             //catch(Exception ex)
             //{
             //    conn.Close();
             //    MessageBox.Show(ex.Message);
             //}
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            parent.showPostLogin();
+            this.Close();
         }
     }
 }
