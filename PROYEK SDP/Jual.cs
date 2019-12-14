@@ -72,7 +72,7 @@ namespace PROYEK_SDP
         public void isi_pembeli()
         {
             cbpembeli.Items.Clear();
-            OracleCommand cmd = new OracleCommand("select * from buyer", conn);
+            OracleCommand cmd = new OracleCommand("select * from buyer where status_buyer=1", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
