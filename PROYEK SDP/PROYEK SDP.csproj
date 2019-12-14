@@ -78,6 +78,12 @@
       <DependentUpon>laba.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PerubahanHarga.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PerubahanHarga.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportLaba.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,12 @@
     <Compile Include="reportNota.Designer.cs">
       <DependentUpon>reportNota.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportPerubahanHarga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportPerubahanHarga.Designer.cs">
+      <DependentUpon>ReportPerubahanHarga.cs</DependentUpon>
+    </Compile>
     <Compile Include="reportSuratJalan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +227,10 @@
     <EmbeddedResource Include="pembeli.resx">
       <DependentUpon>pembeli.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PerubahanHarga.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PerubahanHarga.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="PostLogin.resx">
       <DependentUpon>PostLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reportNota.resx">
       <DependentUpon>reportNota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPerubahanHarga.resx">
+      <DependentUpon>ReportPerubahanHarga.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reportSuratJalan.resx">
       <DependentUpon>reportSuratJalan.cs</DependentUpon>

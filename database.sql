@@ -14,6 +14,7 @@ drop table mobil cascade constraint purge;
 drop table history_perubahan cascade constraint purge;
 drop view headerSuratJalan;
 drop view detailSuratJalan;
+drop view historyHarga;
 
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
@@ -191,6 +192,9 @@ create view detailSuratJalan as
 select d.id_htrans_out, rpad(nama_barang, 20) as "NAMA_BARANG", rpad(nama_jenis_barang, 20) as "NAMA_JENIS_BARANG", rpad(warna_barang, 20) as "WARNA_BARANG", ukuran, stock_keluar, rpad(nama_buyer, 20) as "NAMA_BUYER", rpad(alamat_buyer, 20) as "ALAMAT_BUYER", id_hPengiriman
 from dtrans_out d, htrans_out h, barang brg, jenis_barang jb, buyer b
 where d.id_htrans_out = h.id_htrans_out and d.id_barang = brg.id_barang and brg.id_jenis_barang = jb.id_jenis_barang and h.id_buyer = b.id_buyer;
+
+create view historyHarga as
+select * from history_perubahan where jenis_perubahan='Penyesuaian';
 
 commit;
 

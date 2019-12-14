@@ -65,9 +65,9 @@ namespace PROYEK_SDP
                 String gudang = cbgudang.Text;
                 int hargabeli = Convert.ToInt32(numbeli.Value);
                 int hargajual = Convert.ToInt32(numjual.Value);
-                MessageBox.Show("Test");
                 if (hargabeli < hargajual && richTextBox1.Text != "")
                 {
+                    MessageBox.Show("Test");
                     OracleCommand cmd2 = new OracleCommand();
                     string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_barang, current_timestamp ,:jenis_perubahan, :stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
                     cmd2.Parameters.Add("id_barang", dataGridView1.Rows[index].Cells[0].Value.ToString());
@@ -122,6 +122,12 @@ namespace PROYEK_SDP
         private void formpenyesuaianbarang_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void bunifuFlatButton2_Click(object sender, EventArgs e)
+        {
+            ReportPerubahanHarga report = new ReportPerubahanHarga();
+            report.ShowDialog();
         }
     }
 }
