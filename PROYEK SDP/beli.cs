@@ -115,7 +115,7 @@ namespace PROYEK_SDP
                 cmds.Parameters.Add("id_gudang", idgudang);
                 cmds.Parameters.Add("total_harga", (int)numericUpDown1.Value * (int)numericUpDown2.Value);
                 cmds.ExecuteNonQuery();
-                cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + textBox2.Text + "'," + (stock_total-stock_tambahan) + "," + numericUpDown2.Value + "," + total + "," + stock_total+ ",'" + logins.username + "')";
+                cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + textBox2.Text + "'," + numericUpDown1.Value + "," + numericUpDown2.Value + "," + total + "," + stock_total+ ",'" + logins.username + "')";
                 cmds.ExecuteNonQuery();
                 OracleCommand cmd2 = new OracleCommand();
                 cmd2.Connection = conn;

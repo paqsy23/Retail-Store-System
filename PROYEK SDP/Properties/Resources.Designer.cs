@@ -69,5 +69,15 @@ namespace PROYEK_SDP.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap delivery_truck_icon_png_17 {
+            get {
+                object obj = ResourceManager.GetObject("delivery-truck-icon-png-17", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

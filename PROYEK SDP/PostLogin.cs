@@ -18,6 +18,16 @@ namespace PROYEK_SDP
         {
             InitializeComponent();
             this.Location = new Point(0, 0);
+            panelAdmin.Location = new Point(this.Width / 2 - panelAdmin.Width / 2, this.Height / 2 - panelAdmin.Height / 2);
+            panelPegawai.Location = new Point(this.Width / 2 - panelPegawai.Width / 2, this.Height / 2 - panelPegawai.Height / 2);
+            if (logins.username == "ADMIN")
+            {
+                panelPegawai.Hide();
+            }
+            else
+            {
+                panelAdmin.Hide();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,8 +80,8 @@ namespace PROYEK_SDP
 
         private void bunifuTileButton2_Click(object sender, EventArgs e)
         {
-            parent.showReportLaba();
-            this.Close();
+            ReportLaba report = new ReportLaba();
+            report.ShowDialog();
         }
     }
 }
