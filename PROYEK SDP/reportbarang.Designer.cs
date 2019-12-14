@@ -36,6 +36,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.cachedCrystalReport11 = new PROYEK_SDP.CachedCrystalReport1();
+            this.cachedCrystalReport12 = new PROYEK_SDP.CachedCrystalReport1();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -93,7 +95,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(216, 194);
+            this.button1.Location = new System.Drawing.Point(215, 194);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 28);
             this.button1.TabIndex = 6;
@@ -142,5 +144,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private CachedCrystalReport1 cachedCrystalReport11;
+        private CachedCrystalReport1 cachedCrystalReport12;
     }
 }
