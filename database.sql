@@ -8,11 +8,13 @@ drop table dtrans_in cascade constraint purge;
 drop table htrans_out cascade constraint purge;
 drop table dtrans_out cascade constraint purge;
 drop table temp_hpp cascade constraint purge;
-drop table hPengiriman cascade constraint purge;
-drop table dPengiriman cascade constraint purge;
+drop table pengiriman cascade constraint purge;
 drop table gudang cascade constraint purge;
 drop table mobil cascade constraint purge;
 drop table history_perubahan cascade constraint purge;
+drop view headerSuratJalan;
+drop view detailSuratJalan;
+
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
 	nama_pegawai varchar2(255),
@@ -68,6 +70,13 @@ create table supplier (
     status_delete number 
 );
 
+create table pengiriman (
+	id_hPengiriman varchar2(12) primary key,
+	tanggal_pengiriman date,
+	id_supir varchar2(6) constraint fk_pegKirim references pegawai(id_pegawai),
+	id_mobil varchar2(6) constraint fk_mobilKirim references mobil(id_mobil)
+);
+
 create table htrans_in (
 	id_htrans_in varchar2(12) primary key, --- HI + DD + MM + YY + autogenerate
 	id_supplier varchar2(6) constraint fk_idSupp references supplier(id_supplier),
@@ -101,7 +110,8 @@ create table dtrans_out (
 	harga_jual number,
 	subtotal number,
 	laba number,
-	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai) --- pengurus
+	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai), --- pengurus
+	id_hPengiriman varchar2(12) constraint fk_pengKirim references pengiriman(id_hPengiriman)
 );
 
 create table temp_hpp ( --- untuk history update harga
@@ -115,17 +125,6 @@ create table temp_hpp ( --- untuk history update harga
 	harga_baru number --- hasil perhitungan
 );
 
-create table hPengiriman (
-	id_hPengiriman varchar2(12) primary key,
-	tanggal_pengiriman date,
-	id_supir varchar2(6) constraint fk_pegKirim references pegawai(id_pegawai),
-	id_mobil varchar2(6) constraint fk_mobilKirim references mobil(id_mobil)
-);
-
-create table dPengiriman (
-	id_hPengiriman varchar2(12) constraint fk_hKirim references hPengiriman(id_hPengiriman),
-	id_htrans_out varchar2(12) constraint fk_hKirim_out references htrans_out(id_htrans_out)
-);
 create table history_perubahan(
     id_barang varchar(8) constraint fk_brghp references barang(id_barang),
     tanggal_perubahan date,
@@ -182,6 +181,16 @@ insert into supplier values('SP0002','Lionel Foy','Semolowaru Barat 53','lionel1
 insert into supplier values('SP0003','Mark Gibbon','Nginden Utara II/83','mark1@gmail.com',0);
 insert into supplier values('SP0004','Diomansy Kamara','Dharmawangsa 74','diomansy1@gmail.com',0);
 insert into supplier values('SP0005','Olusola Omole','Dharmahusada 19','olusola1@gmail.com',0);
+
+create view headerSuratJalan as
+select id_hPengiriman, tanggal_pengiriman, id_mobil, nama_pegawai
+from pengiriman p, pegawai peg
+where p.id_supir = peg.id_pegawai;
+
+create view detailSuratJalan as
+select d.id_htrans_out, rpad(nama_barang, 20) as "NAMA_BARANG", rpad(nama_jenis_barang, 20) as "NAMA_JENIS_BARANG", rpad(warna_barang, 20) as "WARNA_BARANG", ukuran, stock_keluar, rpad(nama_buyer, 20) as "NAMA_BUYER", rpad(alamat_buyer, 20) as "ALAMAT_BUYER", id_hPengiriman
+from dtrans_out d, htrans_out h, barang brg, jenis_barang jb, buyer b
+where d.id_htrans_out = h.id_htrans_out and d.id_barang = brg.id_barang and brg.id_jenis_barang = jb.id_jenis_barang and h.id_buyer = b.id_buyer;
 
 commit;
 
