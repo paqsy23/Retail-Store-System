@@ -166,5 +166,54 @@ namespace PROYEK_SDP
             PictureBox ini = (PictureBox)sender;
             ini.Cursor = Cursors.Hand;
         }
+        private bool checksearch()
+        {
+            foreach (Control c in groupBox2.Controls)
+            {
+                if (c is ComboBox)
+                {
+                    ComboBox ComboBox = c as ComboBox;
+                    if (ComboBox.Text == "" || ComboBox.Text == string.Empty || ComboBox.SelectedIndex == -1)
+                    {
+                        return false;
+                    }
+                }
+                else if (c is TextBox)
+                {
+                    TextBox textBox = c as TextBox;
+                    if (textBox.Text == "")
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            if (checksearch() == true)
+            {
+                string query = "select * from barang where upper(" + keysearch.Text + ")=upper('" + valuetext.text + "')";
+                OracleCommand cmd = new OracleCommand(query, conn);
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                bunifuCustomDataGrid1.DataSource = ds.Tables[0];
+            }
+            else
+            {
+                MessageBox.Show("Pastikan Form Terisi Dengan Benar");
+            }
+            conn.Close();
+        }
+
+        private void bunifuTileButton1_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            tampilbarang();
+            conn.Close();
+        }
     }
 }
