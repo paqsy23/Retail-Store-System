@@ -215,5 +215,10 @@ namespace PROYEK_SDP
             parent.showPostLogin();
             this.Close();
         }
+
+        private void suratjalan_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

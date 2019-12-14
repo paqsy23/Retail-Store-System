@@ -104,7 +104,7 @@ namespace PROYEK_SDP
         }
         private void isisupplier()
         {
-            OracleCommand cmd = new OracleCommand("select ID_SUPPLIER,NAMA_SUPPLIER from SUPPLIER   ", conn);
+            OracleCommand cmd = new OracleCommand("select ID_SUPPLIER,NAMA_SUPPLIER from SUPPLIER where status_delete=0", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataTable ds = new DataTable();
             da.Fill(ds);
