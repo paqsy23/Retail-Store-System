@@ -80,8 +80,8 @@ namespace PROYEK_SDP
 
         private void bunifuTileButton2_Click(object sender, EventArgs e)
         {
-            parent.showReportLaba();
-            this.Close();
+            ReportLaba report = new ReportLaba();
+            report.ShowDialog();
         }
     }
 }
