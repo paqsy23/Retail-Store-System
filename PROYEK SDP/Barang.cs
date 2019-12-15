@@ -302,14 +302,15 @@ namespace PROYEK_SDP
             conn.Open();
             if (checksearch() == true)
             {
-                string query = "select * from barang where upper(" + keysearch.Text + ")=upper('" + valuetext.text + "')";
+                string query = "select * from barang where upper(" + keysearch.Text + ") LIKE upper('%" + valuetext.text + "%')";
                 OracleCommand cmd = new OracleCommand(query, conn);
-                MessageBox.Show(query);
+                //MessageBox.Show(query);
 
                 OracleDataAdapter da = new OracleDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0];
+                
             }
             else
             {
@@ -326,9 +327,11 @@ namespace PROYEK_SDP
 
         private void bunifuTileButton1_Click(object sender, EventArgs e)
         {
+            valuetext.text = "";
             conn.Open();
             tampilbarang();
             conn.Close();
+            
         }
     }
 }
