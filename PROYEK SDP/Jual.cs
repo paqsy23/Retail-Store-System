@@ -74,12 +74,11 @@ namespace PROYEK_SDP
             cbpembeli.Items.Clear();
             OracleCommand cmd = new OracleCommand("select * from buyer where status_buyer=1", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
-            DataSet ds = new DataSet();
+            DataTable ds = new DataTable();
             da.Fill(ds);
-            foreach (DataRow item in ds.Tables[0].Rows)
-            {
-                cbpembeli.Items.Add(item[0].ToString());
-            }
+            cbpembeli.DataSource = ds.AsDataView();
+            cbpembeli.DisplayMember = "NAMA_BUYER";
+            cbpembeli.ValueMember = "ID_BUYER";
         }
         
         private void Jual_Load(object sender, EventArgs e)
@@ -191,7 +190,7 @@ namespace PROYEK_SDP
                         OracleCommand cmd2 = new OracleCommand();
                         string inserthtrans = "insert into htrans_out(id_htrans_out, id_buyer, tanggal_trans, total_harga) values(:id_htrans_out,:id_buyer, current_timestamp,:total_harga)";
                         cmd2.Parameters.Add("id_htrans_out", id_htrans);
-                        cmd2.Parameters.Add("id_buyer", cbpembeli.Text.ToString());
+                        cmd2.Parameters.Add("id_buyer", cbpembeli.SelectedValue.ToString());
                         cmd2.Parameters.Add("total_harga", total.Text);
                         cmd2.Connection = conn;
                         cmd2.CommandText = inserthtrans;

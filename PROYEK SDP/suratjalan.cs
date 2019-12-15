@@ -164,13 +164,13 @@ namespace PROYEK_SDP
 
         private void bunifuFlatButton2_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 conn.Open();
                 DateTime dateTime = DateTime.UtcNow.Date;
 
-                string id_htrans = "ST" + (dateTime.ToString("ddMMyyyy"));
-                OracleCommand cmds = new OracleCommand("select count(id_hpengiriman)+1 from pengiriman where id_pengiriman LIKE '%" + id_htrans + "%'", conn);
+                string id_htrans = "HP" + (dateTime.ToString("ddMMyyyy"));
+                OracleCommand cmds = new OracleCommand("select count(id_hpengiriman)+1 from pengiriman where id_hpengiriman LIKE '%" + id_htrans + "%'", conn);
                 string indexkosongs = cmds.ExecuteScalar().ToString();
                 for (int i = indexkosongs.Length; i < 2; i++)
                 {
@@ -214,12 +214,12 @@ namespace PROYEK_SDP
                 conn.Close();
                 reportSuratJalan report = new reportSuratJalan();
                 report.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                conn.Close();
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    conn.Close();
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
