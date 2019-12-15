@@ -302,7 +302,7 @@ namespace PROYEK_SDP
             conn.Open();
             if (checksearch() == true)
             {
-                string query = "select * from barang where upper(" + keysearch.Text + ")=upper('" + valuetext.text + "')";
+                string query = "select * from barang where upper(" + keysearch.Text + ") LIKE upper('%" + valuetext.text + "%')";
                 OracleCommand cmd = new OracleCommand(query, conn);
                 MessageBox.Show(query);
 
