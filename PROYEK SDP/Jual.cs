@@ -71,7 +71,6 @@ namespace PROYEK_SDP
         }
         public void isi_pembeli()
         {
-            cbpembeli.Items.Clear();
             OracleCommand cmd = new OracleCommand("select * from buyer where status_buyer=1", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataTable ds = new DataTable();
@@ -89,8 +88,8 @@ namespace PROYEK_SDP
 
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 OracleCommand cmd = new OracleCommand("select * from barang where id_barang = '" + comboBox1.Text.ToString() + "'", conn);
                 OracleDataAdapter da = new OracleDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -150,13 +149,13 @@ namespace PROYEK_SDP
                     refresh();
                     conn.Close();
                 }
-            }
-            catch(Exception ex)
-            {
-                conn.Close();
-                MessageBox.Show(ex.Message);
-                MessageBox.Show("pilih id barang terlebih dahulu");
-            }
+            //}
+            //catch(Exception ex)
+            //{
+            //    conn.Close();
+            //    MessageBox.Show(ex.Message);
+            //    MessageBox.Show("pilih id barang terlebih dahulu");
+            //}
 
 
 }
