@@ -86,17 +86,7 @@ namespace PROYEK_SDP
                 int hargabaru = (stock_awal * harga_awal + harga_barang_baru * stock_tambahan) / stock_total;
                 cmd.CommandText = "update barang set stock=" + stock_total + ", harga_beli=" + hargabaru + " where id_barang='" + textBox2.Text + "'";
                 cmd.ExecuteNonQuery();
-                cmd.CommandText = "insert into temp_hpp(id_barang, id_nota, stock_masuk, stock_awal, stock_total, harga_beli_baru, harga_beli_awal , harga_baru) values(:id_barang, :id_nota, :stock_masuk, :stock_awal, :stock_total, :harga_beli_baru, :harga_beli_awal , :harga_baru)";
-                cmd.Parameters.Add("id_barang", textBox2.Text);
-                cmd.Parameters.Add("id_nota", textBox1.Text);
-                cmd.Parameters.Add("stock_masuk", stock_tambahan);
-                cmd.Parameters.Add("stock_awal", stock_awal);
-                cmd.Parameters.Add("stock_total", stock_total);
-                cmd.Parameters.Add("harga_beli_baru", harga_barang_baru);
-                cmd.Parameters.Add("harga_beli_awal", harga_awal);
-                cmd.Parameters.Add("harga_baru", hargabaru);
-                cmd.ExecuteNonQuery();
-                
+
                 DateTime dateTime = DateTime.UtcNow.Date;
                 string id_htrans = "HI" + (dateTime.ToString("ddMMyyyy"));
                 OracleCommand cmds = new OracleCommand("select count(id_htrans_in)+1 from htrans_in where id_htrans_in LIKE '%" + id_htrans + "%'", conn);

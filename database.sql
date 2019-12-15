@@ -7,7 +7,6 @@ drop table htrans_in cascade constraint purge;
 drop table dtrans_in cascade constraint purge;
 drop table htrans_out cascade constraint purge;
 drop table dtrans_out cascade constraint purge;
-drop table temp_hpp cascade constraint purge;
 drop table pengiriman cascade constraint purge;
 drop table gudang cascade constraint purge;
 drop table mobil cascade constraint purge;
@@ -115,16 +114,6 @@ create table dtrans_out (
 	id_hPengiriman varchar2(12) constraint fk_pengKirim references pengiriman(id_hPengiriman)
 );
 
-create table temp_hpp ( --- untuk history update harga
-	id_barang varchar2(8) constraint fk_brgHPP references barang(id_barang),
-    id_nota varchar2(20),
-	stock_masuk number, --- stock barang masuk di htrans
-	stock_awal number, --- stock awal barang di table barang
-	stock_total number,
-	harga_beli_baru number, --- harga beli di htrans
-	harga_beli_awal number, --- harga beli di table barang
-	harga_baru number --- hasil perhitungan
-);
 
 create table history_perubahan(
     id_barang varchar(8) constraint fk_brghp references barang(id_barang),
