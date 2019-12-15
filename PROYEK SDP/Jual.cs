@@ -88,8 +88,8 @@ namespace PROYEK_SDP
 
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 OracleCommand cmd = new OracleCommand("select * from barang where id_barang = '" + comboBox1.Text.ToString() + "'", conn);
                 OracleDataAdapter da = new OracleDataAdapter(cmd);
                 DataSet ds = new DataSet();
@@ -149,16 +149,16 @@ namespace PROYEK_SDP
                     refresh();
                     conn.Close();
                 }
-            //}
-            //catch(Exception ex)
-            //{
-            //    conn.Close();
-            //    MessageBox.Show(ex.Message);
-            //    MessageBox.Show("pilih id barang terlebih dahulu");
-            //}
+            }
+            catch (Exception ex)
+            {
+                conn.Close();
+                MessageBox.Show(ex.Message);
+                MessageBox.Show("pilih id barang terlebih dahulu");
+            }
 
 
-}
+        }
 
         private void btnBack(object sender, EventArgs e)
         {
