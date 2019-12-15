@@ -166,23 +166,6 @@ namespace PROYEK_SDP
             }
             return true;
         }
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            conn.Open();
-            if (checksearch() == true)
-            {
-                OracleCommand cmd = new OracleCommand("select * from barang where " + keysearch.Text + "='" + valuetext.Text + "'", conn);
-                OracleDataAdapter da = new OracleDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                dataGridView1.DataSource = ds.Tables[0];
-            }
-            else
-            {
-                MessageBox.Show("Pastikan Form Terisi Dengan Benar");
-            }
-            conn.Close();
-        }
 
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
@@ -319,7 +302,10 @@ namespace PROYEK_SDP
             conn.Open();
             if (checksearch() == true)
             {
-                OracleCommand cmd = new OracleCommand("select * from barang where " + keysearch.Text + "='" + valuetext.Text + "'", conn);
+                string query = "select * from barang where upper(" + keysearch.Text + ")=upper('" + valuetext.text + "')";
+                OracleCommand cmd = new OracleCommand(query, conn);
+                MessageBox.Show(query);
+
                 OracleDataAdapter da = new OracleDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
@@ -336,6 +322,13 @@ namespace PROYEK_SDP
         {
             reportbarang rb = new reportbarang();
             rb.ShowDialog();
+        }
+
+        private void bunifuTileButton1_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            tampilbarang();
+            conn.Close();
         }
     }
 }
