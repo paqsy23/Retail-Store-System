@@ -327,10 +327,11 @@ namespace PROYEK_SDP
 
         private void bunifuTileButton1_Click(object sender, EventArgs e)
         {
+            valuetext.text = "";
             conn.Open();
             tampilbarang();
             conn.Close();
-            valuetext.text = "";
+            
         }
     }
 }
