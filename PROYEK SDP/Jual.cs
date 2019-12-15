@@ -128,13 +128,21 @@ namespace PROYEK_SDP
                     }
                     if(index > -1)
                     {
-                        
-                        int tempstock = Convert.ToInt32(tempcheckout.Rows[index].ItemArray[3].ToString()) +(int) numericUpDown1.Value;
-                        tempcheckout.Rows[index][3] = tempstock.ToString();
+                        stok -= Convert.ToInt32(tempcheckout.Rows[index].ItemArray[3].ToString());
 
-                        int subtotal = Convert.ToInt32(tempcheckout.Rows[index].ItemArray[4].ToString()) + total;
-                        tempcheckout.Rows[index][4] = subtotal.ToString();
-                        index = -1;
+                        if (stok < 0)
+                        {
+                            MessageBox.Show("Stok Tidak Mencukupi");
+                        }
+                        else
+                        {
+                            int tempstock = Convert.ToInt32(tempcheckout.Rows[index].ItemArray[3].ToString()) + (int)numericUpDown1.Value;
+                            tempcheckout.Rows[index][3] = tempstock.ToString();
+
+                            int subtotal = Convert.ToInt32(tempcheckout.Rows[index].ItemArray[4].ToString()) + total;
+                            tempcheckout.Rows[index][4] = subtotal.ToString();
+                            index = -1;
+                        }
                     }
                     else
                     {
@@ -173,8 +181,8 @@ namespace PROYEK_SDP
         }
 
         private void bunifuFlatButton2_Click(object sender, EventArgs e)
-        {
-            if (tempcheckout.Rows.Count > 0)
+        {   
+            if (tempcheckout.Rows.Count > 0 && cbpembeli.Text!="")
             {
                 try
                 {
