@@ -86,17 +86,7 @@ namespace PROYEK_SDP
                 int hargabaru = (stock_awal * harga_awal + harga_barang_baru * stock_tambahan) / stock_total;
                 cmd.CommandText = "update barang set stock=" + stock_total + ", harga_beli=" + hargabaru + " where id_barang='" + textBox2.Text + "'";
                 cmd.ExecuteNonQuery();
-                cmd.CommandText = "insert into temp_hpp(id_barang, id_nota, stock_masuk, stock_awal, stock_total, harga_beli_baru, harga_beli_awal , harga_baru) values(:id_barang, :id_nota, :stock_masuk, :stock_awal, :stock_total, :harga_beli_baru, :harga_beli_awal , :harga_baru)";
-                cmd.Parameters.Add("id_barang", textBox2.Text);
-                cmd.Parameters.Add("id_nota", textBox1.Text);
-                cmd.Parameters.Add("stock_masuk", stock_tambahan);
-                cmd.Parameters.Add("stock_awal", stock_awal);
-                cmd.Parameters.Add("stock_total", stock_total);
-                cmd.Parameters.Add("harga_beli_baru", harga_barang_baru);
-                cmd.Parameters.Add("harga_beli_awal", harga_awal);
-                cmd.Parameters.Add("harga_baru", hargabaru);
-                cmd.ExecuteNonQuery();
-                
+
                 DateTime dateTime = DateTime.UtcNow.Date;
                 string id_htrans = "HI" + (dateTime.ToString("ddMMyyyy"));
                 OracleCommand cmds = new OracleCommand("select count(id_htrans_in)+1 from htrans_in where id_htrans_in LIKE '%" + id_htrans + "%'", conn);
@@ -165,6 +155,55 @@ namespace PROYEK_SDP
         {
             PictureBox ini = (PictureBox)sender;
             ini.Cursor = Cursors.Hand;
+        }
+        private bool checksearch()
+        {
+            foreach (Control c in groupBox2.Controls)
+            {
+                if (c is ComboBox)
+                {
+                    ComboBox ComboBox = c as ComboBox;
+                    if (ComboBox.Text == "" || ComboBox.Text == string.Empty || ComboBox.SelectedIndex == -1)
+                    {
+                        return false;
+                    }
+                }
+                else if (c is TextBox)
+                {
+                    TextBox textBox = c as TextBox;
+                    if (textBox.Text == "")
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            if (checksearch() == true)
+            {
+                string query = "select * from barang where upper(" + keysearch.Text + ")=upper('" + valuetext.text + "')";
+                OracleCommand cmd = new OracleCommand(query, conn);
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                bunifuCustomDataGrid1.DataSource = ds.Tables[0];
+            }
+            else
+            {
+                MessageBox.Show("Pastikan Form Terisi Dengan Benar");
+            }
+            conn.Close();
+        }
+
+        private void bunifuTileButton1_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            tampilbarang();
+            conn.Close();
         }
     }
 }
