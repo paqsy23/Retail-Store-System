@@ -99,11 +99,12 @@ namespace PROYEK_SDP
                 }
                 int total = (int)numericUpDown1.Value * (int)numericUpDown2.Value;
                 id_htrans += indexkosongs;
-                cmds.CommandText = "insert into htrans_in(id_htrans_in, id_supplier, id_gudang, tanggal_trans, total_harga) values(:id_htrans_in, :id_supplier, :id_gudang, CURRENT_TIMESTAMP, :total_harga)";
+                cmds.CommandText = "insert into htrans_in(id_htrans_in, id_supplier, id_gudang, tanggal_trans, total_harga,id_nota) values(:id_htrans_in, :id_supplier, :id_gudang, CURRENT_TIMESTAMP, :total_harga,:id_nota)";
                 cmds.Parameters.Add("id_htrans_in", id_htrans);
                 cmds.Parameters.Add("id_supplier", combosupplier.SelectedValue);
                 cmds.Parameters.Add("id_gudang", idgudang);
                 cmds.Parameters.Add("total_harga", (int)numericUpDown1.Value * (int)numericUpDown2.Value);
+                cmds.Parameters.Add("id_nota", textBox1.Text);
                 cmds.ExecuteNonQuery();
                 cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + textBox2.Text + "'," + numericUpDown1.Value + "," + numericUpDown2.Value + "," + total + "," + stock_total+ ",'" + logins.username + "')";
                 cmds.ExecuteNonQuery();
@@ -204,6 +205,11 @@ namespace PROYEK_SDP
             conn.Open();
             tampilbarang();
             conn.Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

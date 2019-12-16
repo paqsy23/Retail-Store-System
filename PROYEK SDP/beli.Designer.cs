@@ -46,12 +46,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.valuetext = new Bunifu.Framework.UI.BunifuTextbox();
             this.button1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.keysearch = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -110,6 +110,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(193, 20);
             this.textBox1.TabIndex = 24;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // numericUpDown1
             // 
@@ -265,6 +266,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search";
             // 
+            // bunifuTileButton1
+            // 
+            this.bunifuTileButton1.BackColor = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton1.color = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton1.colorActive = System.Drawing.Color.MediumSeaGreen;
+            this.bunifuTileButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTileButton1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
+            this.bunifuTileButton1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuTileButton1.Image")));
+            this.bunifuTileButton1.ImagePosition = 10;
+            this.bunifuTileButton1.ImageZoom = 20;
+            this.bunifuTileButton1.LabelPosition = 29;
+            this.bunifuTileButton1.LabelText = "Reset";
+            this.bunifuTileButton1.Location = new System.Drawing.Point(188, 85);
+            this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bunifuTileButton1.Name = "bunifuTileButton1";
+            this.bunifuTileButton1.Size = new System.Drawing.Size(86, 54);
+            this.bunifuTileButton1.TabIndex = 18;
+            this.bunifuTileButton1.Click += new System.EventHandler(this.bunifuTileButton1_Click);
+            // 
             // valuetext
             // 
             this.valuetext.BackColor = System.Drawing.Color.Silver;
@@ -328,26 +349,6 @@
             this.label7.Size = new System.Drawing.Size(34, 13);
             this.label7.TabIndex = 13;
             this.label7.Text = "Value";
-            // 
-            // bunifuTileButton1
-            // 
-            this.bunifuTileButton1.BackColor = System.Drawing.Color.SeaGreen;
-            this.bunifuTileButton1.color = System.Drawing.Color.SeaGreen;
-            this.bunifuTileButton1.colorActive = System.Drawing.Color.MediumSeaGreen;
-            this.bunifuTileButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTileButton1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuTileButton1.Image")));
-            this.bunifuTileButton1.ImagePosition = 10;
-            this.bunifuTileButton1.ImageZoom = 20;
-            this.bunifuTileButton1.LabelPosition = 29;
-            this.bunifuTileButton1.LabelText = "Reset";
-            this.bunifuTileButton1.Location = new System.Drawing.Point(188, 85);
-            this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.bunifuTileButton1.Name = "bunifuTileButton1";
-            this.bunifuTileButton1.Size = new System.Drawing.Size(86, 54);
-            this.bunifuTileButton1.TabIndex = 18;
-            this.bunifuTileButton1.Click += new System.EventHandler(this.bunifuTileButton1_Click);
             // 
             // beli
             // 
