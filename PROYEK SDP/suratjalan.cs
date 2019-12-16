@@ -200,8 +200,6 @@ namespace PROYEK_SDP
 
                     for (int i = 0; i < GridCart.Rows.Count; i++)
                     {
-                        MessageBox.Show(GridCart.Rows[i].Cells[0].Value.ToString());
-                        MessageBox.Show(GridCart.Rows[i].Cells[1].Value.ToString());
                         OracleCommand command2 = new OracleCommand();
                         command2.Connection = conn;
                         String nama2 = "update dtrans_out set id_hpengiriman='" + id_htrans + "' where id_htrans_out='" + GridCart.Rows[i].Cells[0].Value.ToString() + "' and id_barang='" + GridCart.Rows[i].Cells[1].Value.ToString() + "'";
