@@ -207,13 +207,15 @@ namespace PROYEK_SDP
                         command2.ExecuteNonQuery();
                     }
                     tempcheckout.Clear();
+                    isi_barang();
+                    tampilBarang();
                 }
                 else
                 {
                     MessageBox.Show("tanggal pengiriman harus diatas tanggal sekarang");
                 }
                 conn.Close();
-                reportSuratJalan report = new reportSuratJalan();
+                reportSuratJalan report = new reportSuratJalan(id_htrans);
                 report.ShowDialog();
             }
             catch (Exception ex)
