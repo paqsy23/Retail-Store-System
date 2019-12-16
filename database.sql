@@ -82,7 +82,8 @@ create table htrans_in (
 	id_supplier varchar2(6) constraint fk_idSupp references supplier(id_supplier),
 	id_gudang varchar2(6) constraint fk_gudHin references gudang(id_gudang),
 	tanggal_trans date,
-	total_harga number
+	total_harga number,
+	id_nota varchar(50)
 );
 
 create table dtrans_in (
@@ -183,7 +184,7 @@ from dtrans_out d, htrans_out h, barang brg, jenis_barang jb, buyer b
 where d.id_htrans_out = h.id_htrans_out and d.id_barang = brg.id_barang and brg.id_jenis_barang = jb.id_jenis_barang and h.id_buyer = b.id_buyer;
 
 create view historyHarga as
-select * from history_perubahan where jenis_perubahan='Penyesuaian';
+select * from history_perubahan where jenis_perubahan='Penyesuaian' or jenis_perubahan='Beli';
 
 commit;
 
