@@ -39,17 +39,25 @@
             this.label4 = new System.Windows.Forms.Label();
             this.bunifuCustomDataGrid1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.combosupplier = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.combosupplier = new System.Windows.Forms.ComboBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.valuetext = new Bunifu.Framework.UI.BunifuTextbox();
+            this.button1 = new Bunifu.Framework.UI.BunifuTileButton();
+            this.keysearch = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.bunifuTileButton1 = new Bunifu.Framework.UI.BunifuTileButton();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuFlatButton1
@@ -184,6 +192,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Search";
             // 
+            // combosupplier
+            // 
+            this.combosupplier.FormattingEnabled = true;
+            this.combosupplier.Location = new System.Drawing.Point(81, 113);
+            this.combosupplier.Name = "combosupplier";
+            this.combosupplier.Size = new System.Drawing.Size(190, 21);
+            this.combosupplier.TabIndex = 35;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 113);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Supplier";
+            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(81, 27);
@@ -225,28 +250,111 @@
             this.pictureBox1.Click += new System.EventHandler(this.btnBack);
             this.pictureBox1.MouseEnter += new System.EventHandler(this.Hover_MouseEnter);
             // 
-            // label2
+            // groupBox2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 113);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
-            this.label2.TabIndex = 34;
-            this.label2.Text = "Supplier";
+            this.groupBox2.Controls.Add(this.bunifuTileButton1);
+            this.groupBox2.Controls.Add(this.valuetext);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.keysearch);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Location = new System.Drawing.Point(12, 310);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(288, 159);
+            this.groupBox2.TabIndex = 18;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Search";
             // 
-            // combosupplier
+            // valuetext
             // 
-            this.combosupplier.FormattingEnabled = true;
-            this.combosupplier.Location = new System.Drawing.Point(81, 113);
-            this.combosupplier.Name = "combosupplier";
-            this.combosupplier.Size = new System.Drawing.Size(190, 21);
-            this.combosupplier.TabIndex = 35;
+            this.valuetext.BackColor = System.Drawing.Color.Silver;
+            this.valuetext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("valuetext.BackgroundImage")));
+            this.valuetext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.valuetext.ForeColor = System.Drawing.Color.SeaGreen;
+            this.valuetext.Icon = ((System.Drawing.Image)(resources.GetObject("valuetext.Icon")));
+            this.valuetext.Location = new System.Drawing.Point(78, 46);
+            this.valuetext.Name = "valuetext";
+            this.valuetext.Size = new System.Drawing.Size(193, 32);
+            this.valuetext.TabIndex = 16;
+            this.valuetext.text = "";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.SeaGreen;
+            this.button1.color = System.Drawing.Color.SeaGreen;
+            this.button1.colorActive = System.Drawing.Color.MediumSeaGreen;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImagePosition = 10;
+            this.button1.ImageZoom = 20;
+            this.button1.LabelPosition = 29;
+            this.button1.LabelText = "Search";
+            this.button1.Location = new System.Drawing.Point(78, 85);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 54);
+            this.button1.TabIndex = 17;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // keysearch
+            // 
+            this.keysearch.FormattingEnabled = true;
+            this.keysearch.Items.AddRange(new object[] {
+            "ID_BARANG",
+            "NAMA_BARANG",
+            "WARNA_BARANG",
+            "UKURAN"});
+            this.keysearch.Location = new System.Drawing.Point(78, 19);
+            this.keysearch.Name = "keysearch";
+            this.keysearch.Size = new System.Drawing.Size(193, 21);
+            this.keysearch.TabIndex = 15;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 26);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(25, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Key";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Value";
+            // 
+            // bunifuTileButton1
+            // 
+            this.bunifuTileButton1.BackColor = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton1.color = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton1.colorActive = System.Drawing.Color.MediumSeaGreen;
+            this.bunifuTileButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTileButton1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuTileButton1.ForeColor = System.Drawing.Color.White;
+            this.bunifuTileButton1.Image = ((System.Drawing.Image)(resources.GetObject("bunifuTileButton1.Image")));
+            this.bunifuTileButton1.ImagePosition = 10;
+            this.bunifuTileButton1.ImageZoom = 20;
+            this.bunifuTileButton1.LabelPosition = 29;
+            this.bunifuTileButton1.LabelText = "Reset";
+            this.bunifuTileButton1.Location = new System.Drawing.Point(188, 85);
+            this.bunifuTileButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bunifuTileButton1.Name = "bunifuTileButton1";
+            this.bunifuTileButton1.Size = new System.Drawing.Size(86, 54);
+            this.bunifuTileButton1.TabIndex = 18;
+            this.bunifuTileButton1.Click += new System.EventHandler(this.bunifuTileButton1_Click);
             // 
             // beli
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bunifuCustomDataGrid1);
             this.Controls.Add(this.groupBox1);
@@ -261,6 +369,8 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -281,5 +391,12 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox combosupplier;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private Bunifu.Framework.UI.BunifuTextbox valuetext;
+        private Bunifu.Framework.UI.BunifuTileButton button1;
+        private System.Windows.Forms.ComboBox keysearch;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label7;
+        private Bunifu.Framework.UI.BunifuTileButton bunifuTileButton1;
     }
 }

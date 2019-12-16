@@ -164,8 +164,8 @@ namespace PROYEK_SDP
 
         private void bunifuFlatButton2_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 conn.Open();
                 DateTime dateTime = DateTime.UtcNow.Date;
 
@@ -193,33 +193,36 @@ namespace PROYEK_SDP
                 {
                     OracleCommand command = new OracleCommand();
                     command.Connection = conn;
-                    String nama = "insert into pengiriman values('"+id_htrans+"',to_date('"+dateTimePicker1.Value.Date.ToString("dd/MM/yyyy") +"', 'DD/M/YYYY'),'"+cbsupir.SelectedValue.ToString()+"','"+cbkendaraan.SelectedValue.ToString()+"')";
+                    String nama = "insert into pengiriman values('" + id_htrans + "','" + dateTimePicker1.Value.Date.ToString("dd/MMM/yyyy") + "','" + cbsupir.SelectedValue.ToString() + "','" + cbkendaraan.SelectedValue.ToString() + "')";
                     command.CommandText = nama;
                     command.ExecuteNonQuery();
 
 
                     for (int i = 0; i < GridCart.Rows.Count; i++)
                     {
+                        MessageBox.Show(GridCart.Rows[i].Cells[0].Value.ToString());
+                        MessageBox.Show(GridCart.Rows[i].Cells[1].Value.ToString());
                         OracleCommand command2 = new OracleCommand();
                         command2.Connection = conn;
                         String nama2 = "update dtrans_out set id_hpengiriman='" + id_htrans + "' where id_htrans_out='" + GridCart.Rows[i].Cells[0].Value.ToString() + "' and id_barang='" + GridCart.Rows[i].Cells[1].Value.ToString() + "'";
-                        command2.CommandText = nama;
+                        command2.CommandText = nama2;
                         command2.ExecuteNonQuery();
                     }
+                    tempcheckout.Clear();
                 }
                 else
                 {
                     MessageBox.Show("tanggal pengiriman harus diatas tanggal sekarang");
                 }
                 conn.Close();
-                //reportSuratJalan report = new reportSuratJalan();
-                //report.ShowDialog();
-            //}
-            //catch (Exception ex)
-            //{
-            //    conn.Close();
-            //    MessageBox.Show(ex.Message);
-            //}
+                reportSuratJalan report = new reportSuratJalan();
+                report.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                conn.Close();
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -228,9 +231,5 @@ namespace PROYEK_SDP
             this.Close();
         }
 
-        private void suratjalan_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
