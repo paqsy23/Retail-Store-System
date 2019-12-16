@@ -35,7 +35,6 @@ namespace PROYEK_SDP
         {
             this.WindowState = FormWindowState.Normal;
             this.Location = new Point(0, 0);
-            idtext.Enabled = false;
             groupBox1.Paint += PaintBorderlessGroupBox;
             groupBox2.Paint += PaintBorderlessGroupBox;
             ///ID tak perlu input(autogen)
@@ -127,7 +126,7 @@ namespace PROYEK_SDP
                 if(c is TextBox)
                 {
                     TextBox textBox = c as TextBox;
-                    if (textBox.Text == ""&&textBox.Name!="idtext")
+                    if (textBox.Text == "")
                     {
                         return false;
                     }
@@ -243,11 +242,12 @@ namespace PROYEK_SDP
                     indexkosongs = "0" + indexkosongs;
                 }
                 id_htrans += indexkosongs;
-                cmds.CommandText = "insert into htrans_in(id_htrans_in, id_supplier, id_gudang, tanggal_trans, total_harga) values(:id_htrans_in, :id_supplier, :id_gudang, CURRENT_TIMESTAMP, :total_harga)";
+                cmds.CommandText = "insert into htrans_in(id_htrans_in, id_supplier, id_gudang, tanggal_trans, total_harga,id_nota) values(:id_htrans_in, :id_supplier, :id_gudang, CURRENT_TIMESTAMP, :total_harga,:id_nota)";
                 cmds.Parameters.Add("id_htrans_in", id_htrans);
                 cmds.Parameters.Add("id_supplier", combosupplier.SelectedValue);
                 cmds.Parameters.Add("id_gudang", combogudang.SelectedValue);
                 cmds.Parameters.Add("total_harga", (int)numericbeli.Value * (int)numericstock.Value);
+                cmds.Parameters.Add("id_nota", idtext.Text);
                 cmds.ExecuteNonQuery();
                 cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + id + "'," + numericstock.Value + "," + numericbeli.Value + "," + total + ","+numericstock.Value+",'" + logins.username + "')";
                 cmds.ExecuteNonQuery();
@@ -332,6 +332,11 @@ namespace PROYEK_SDP
             tampilbarang();
             conn.Close();
             
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

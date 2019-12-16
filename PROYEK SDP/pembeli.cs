@@ -72,6 +72,7 @@ namespace PROYEK_SDP
         {
             try
             {
+                conn.Open();
                 bool email = IsValidEmail(edemail.Text);
                 bool ada = isValidName(ednama.Text);
                 if (ednama.Text != "" && edalamat.Text != "" && edemail.Text != "" && email == true && ada == true)
