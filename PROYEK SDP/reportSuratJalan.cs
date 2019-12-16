@@ -14,7 +14,7 @@ namespace PROYEK_SDP
     public partial class reportSuratJalan : Form
     {
         OracleConnection conn;
-        public reportSuratJalan()
+        public reportSuratJalan(string id)
         {
             InitializeComponent();
             conn = new OracleConnection("user id=" + logins.user + ";password=" + logins.pass + ";");
@@ -25,10 +25,15 @@ namespace PROYEK_SDP
             string id_hpengiriman = "";
             OracleCommand cmds = new OracleCommand("select h.ID from (select id_hpengiriman as ID from pengiriman order by tanggal_pengiriman desc) h WHERE rownum=1", conn);
             id_hpengiriman = cmds.ExecuteScalar().ToString();
-            cr.SetParameterValue("idHpengiriman", id_hpengiriman);
+            cr.SetParameterValue("idHpengiriman", id);
             crystalReportViewer1.ReportSource = cr;
             crystalReportViewer1.Zoom(90);
             this.MinimumSize = new Size(this.Width, this.Height);
+        }
+
+        private void crystalReportViewer1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
