@@ -164,13 +164,13 @@ namespace PROYEK_SDP
 
         private void bunifuFlatButton2_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 conn.Open();
                 DateTime dateTime = DateTime.UtcNow.Date;
 
-                string id_htrans = "ST" + (dateTime.ToString("ddMMyyyy"));
-                OracleCommand cmds = new OracleCommand("select count(id_hpengiriman)+1 from pengiriman where id_pengiriman LIKE '%" + id_htrans + "%'", conn);
+                string id_htrans = "HP" + (dateTime.ToString("ddMMyyyy"));
+                OracleCommand cmds = new OracleCommand("select count(id_hpengiriman)+1 from pengiriman where id_hpengiriman LIKE '%" + id_htrans + "%'", conn);
                 string indexkosongs = cmds.ExecuteScalar().ToString();
                 for (int i = indexkosongs.Length; i < 2; i++)
                 {
@@ -193,7 +193,7 @@ namespace PROYEK_SDP
                 {
                     OracleCommand command = new OracleCommand();
                     command.Connection = conn;
-                    String nama = "insert into pengiriman values('"+id_htrans+"','"+dateTimePicker1.Value.Date.ToString("dd/MMM/yyyy") +"','"+cbsupir.SelectedValue.ToString()+"','"+cbkendaraan.SelectedValue.ToString()+"')";
+                    String nama = "insert into pengiriman values('"+id_htrans+"',to_date('"+dateTimePicker1.Value.Date.ToString("dd/MM/yyyy") +"', 'DD/M/YYYY'),'"+cbsupir.SelectedValue.ToString()+"','"+cbkendaraan.SelectedValue.ToString()+"')";
                     command.CommandText = nama;
                     command.ExecuteNonQuery();
 
@@ -212,14 +212,14 @@ namespace PROYEK_SDP
                     MessageBox.Show("tanggal pengiriman harus diatas tanggal sekarang");
                 }
                 conn.Close();
-                reportSuratJalan report = new reportSuratJalan();
-                report.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                conn.Close();
-                MessageBox.Show(ex.Message);
-            }
+                //reportSuratJalan report = new reportSuratJalan();
+                //report.ShowDialog();
+            //}
+            //catch (Exception ex)
+            //{
+            //    conn.Close();
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
