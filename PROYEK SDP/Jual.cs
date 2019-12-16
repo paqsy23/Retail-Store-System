@@ -221,18 +221,18 @@ namespace PROYEK_SDP
                                 int laba = Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[4].Value.ToString()) - (hargabeli * Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString()));
                             MessageBox.Show(laba+"");
                             acclaba += laba;
-                                OracleCommand cmd3 = new OracleCommand();
-                                string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_keluar, harga_jual,subtotal,laba,id_penanggungjawab) values(:id_htrans_out,:id_barang, :stock_keluar ,:harga_jual,:laba,:subtotal,:id_kasir)";
-                                cmd3.Connection = conn;
-                                cmd3.Parameters.Add("id_htrans_out", id_htrans);
-                                cmd3.Parameters.Add("id_barang", bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString());
-                                cmd3.Parameters.Add("jumlah", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString()));
-                                cmd3.Parameters.Add("harga_jual", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString()));
-                                cmd3.Parameters.Add("subtotal", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[4].Value.ToString()));
-                                cmd3.Parameters.Add("laba",laba);
-                                cmd3.Parameters.Add("id_kasir", logins.username);
-                                cmd3.CommandText = insert;
-                                cmd3.ExecuteNonQuery();
+                            OracleCommand cmd3 = new OracleCommand();
+                            string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_keluar, harga_jual,subtotal,laba,id_penanggungjawab) values(:id_htrans_out,:id_barang, :stock_keluar ,:harga_jual,:laba,:subtotal,:id_kasir)";
+                            cmd3.Connection = conn;
+                            cmd3.Parameters.Add("id_htrans_out", id_htrans);
+                            cmd3.Parameters.Add("id_barang", bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString());
+                            cmd3.Parameters.Add("jumlah", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString()));
+                            cmd3.Parameters.Add("harga_jual", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[2].Value.ToString()));
+                            cmd3.Parameters.Add("subtotal", Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[4].Value.ToString()));
+                            cmd3.Parameters.Add("laba",laba);
+                            cmd3.Parameters.Add("id_kasir", logins.username);
+                            cmd3.CommandText = insert;
+                            cmd3.ExecuteNonQuery();
                             inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_barang, current_timestamp ,:jenis_perubahan,:stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
                             cmd2.Parameters.Clear();
                             cmd2.Parameters.Add("id_barang", bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString());
@@ -282,6 +282,24 @@ namespace PROYEK_SDP
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             comboBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+        }
+
+        private void bunifuTileButton2_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            string query = "select * from barang where upper(" + keysearch.Text + ") LIKE upper('%" + textBox1.Text + "%')";
+            OracleCommand cmd = new OracleCommand(query, conn);
+
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0];
+            conn.Close();
+        }
+
+        private void bunifuTileButton1_Click(object sender, EventArgs e)
+        {
+            tampilBarang();
         }
     }
 
