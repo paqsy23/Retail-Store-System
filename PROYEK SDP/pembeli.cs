@@ -77,6 +77,7 @@ namespace PROYEK_SDP
                 bool ada = isValidName(ednama.Text);
                 if (ednama.Text != "" && edalamat.Text != "" && edemail.Text != "" && email == true && ada == true)
                 {
+                    conn.Open();
                     OracleCommand cmds = new OracleCommand("select count(id_buyer) from buyer", conn);
                     string tempangka = cmds.ExecuteScalar().ToString();
                     String id = "BY";
@@ -203,6 +204,11 @@ namespace PROYEK_SDP
             edalamat.Text = "";
             edemail.Text = "";
             cbjenis.SelectedIndex = 0;
+        }
+
+        private void pembeli_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
