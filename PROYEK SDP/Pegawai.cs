@@ -49,7 +49,12 @@ namespace PROYEK_SDP
 
         private void tampilPegawai()
         {
-            OracleCommand cmd = new OracleCommand("select * from pegawai", conn);
+            OracleCommand cmd = new OracleCommand("select * from pegawai where not jabatan='Admin'", conn);
+            if (logins.jabatan == "Manager")
+            {
+                cmd.CommandText = "select * from pegawai where not jabatan='Manager' and not jabatan='Admin'";
+            }
+            
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
