@@ -143,10 +143,16 @@ class logins
     private static string h_username="ADMIN";
     private static string h_user="admin1";
     private static string h_pass="admin";
+    private static string h_jabatan = "admin";
     public static string username
     {
         get { return h_username; }
         set { h_username = value; }
+    }
+    public static string jabatan
+    {
+        get { return h_jabatan; }
+        set { h_jabatan = value; }
     }
     public static string user
     {

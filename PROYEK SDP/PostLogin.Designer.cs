@@ -40,10 +40,10 @@
             this.button1 = new Bunifu.Framework.UI.BunifuTileButton();
             this.panelAdmin = new System.Windows.Forms.Panel();
             this.panelPegawai = new System.Windows.Forms.Panel();
-            this.bunifuTileButton3 = new Bunifu.Framework.UI.BunifuTileButton();
-            this.bunifuTileButton4 = new Bunifu.Framework.UI.BunifuTileButton();
-            this.bunifuTileButton5 = new Bunifu.Framework.UI.BunifuTileButton();
             this.bunifuTileButton6 = new Bunifu.Framework.UI.BunifuTileButton();
+            this.bunifuTileButton5 = new Bunifu.Framework.UI.BunifuTileButton();
+            this.bunifuTileButton4 = new Bunifu.Framework.UI.BunifuTileButton();
+            this.bunifuTileButton3 = new Bunifu.Framework.UI.BunifuTileButton();
             this.panelAdmin.SuspendLayout();
             this.panelPegawai.SuspendLayout();
             this.SuspendLayout();
@@ -255,45 +255,25 @@
             this.panelPegawai.Size = new System.Drawing.Size(420, 282);
             this.panelPegawai.TabIndex = 11;
             // 
-            // bunifuTileButton3
+            // bunifuTileButton6
             // 
-            this.bunifuTileButton3.BackColor = System.Drawing.Color.SeaGreen;
-            this.bunifuTileButton3.color = System.Drawing.Color.SeaGreen;
-            this.bunifuTileButton3.colorActive = System.Drawing.Color.MediumSeaGreen;
-            this.bunifuTileButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTileButton3.Font = new System.Drawing.Font("Century Gothic", 15.75F);
-            this.bunifuTileButton3.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton3.Image = ((System.Drawing.Image)(resources.GetObject("bunifuTileButton3.Image")));
-            this.bunifuTileButton3.ImagePosition = 20;
-            this.bunifuTileButton3.ImageZoom = 50;
-            this.bunifuTileButton3.LabelPosition = 41;
-            this.bunifuTileButton3.LabelText = "Jual";
-            this.bunifuTileButton3.Location = new System.Drawing.Point(6, 6);
-            this.bunifuTileButton3.Margin = new System.Windows.Forms.Padding(6);
-            this.bunifuTileButton3.Name = "bunifuTileButton3";
-            this.bunifuTileButton3.Size = new System.Drawing.Size(128, 129);
-            this.bunifuTileButton3.TabIndex = 10;
-            this.bunifuTileButton3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // bunifuTileButton4
-            // 
-            this.bunifuTileButton4.BackColor = System.Drawing.Color.SeaGreen;
-            this.bunifuTileButton4.color = System.Drawing.Color.SeaGreen;
-            this.bunifuTileButton4.colorActive = System.Drawing.Color.MediumSeaGreen;
-            this.bunifuTileButton4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTileButton4.Font = new System.Drawing.Font("Century Gothic", 15.75F);
-            this.bunifuTileButton4.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton4.Image = ((System.Drawing.Image)(resources.GetObject("bunifuTileButton4.Image")));
-            this.bunifuTileButton4.ImagePosition = 20;
-            this.bunifuTileButton4.ImageZoom = 50;
-            this.bunifuTileButton4.LabelPosition = 41;
-            this.bunifuTileButton4.LabelText = "Beli";
-            this.bunifuTileButton4.Location = new System.Drawing.Point(146, 6);
-            this.bunifuTileButton4.Margin = new System.Windows.Forms.Padding(6);
-            this.bunifuTileButton4.Name = "bunifuTileButton4";
-            this.bunifuTileButton4.Size = new System.Drawing.Size(128, 129);
-            this.bunifuTileButton4.TabIndex = 10;
-            this.bunifuTileButton4.Click += new System.EventHandler(this.button5_Click);
+            this.bunifuTileButton6.BackColor = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton6.color = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton6.colorActive = System.Drawing.Color.MediumSeaGreen;
+            this.bunifuTileButton6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTileButton6.Font = new System.Drawing.Font("Century Gothic", 15.75F);
+            this.bunifuTileButton6.ForeColor = System.Drawing.Color.White;
+            this.bunifuTileButton6.Image = ((System.Drawing.Image)(resources.GetObject("bunifuTileButton6.Image")));
+            this.bunifuTileButton6.ImagePosition = 20;
+            this.bunifuTileButton6.ImageZoom = 50;
+            this.bunifuTileButton6.LabelPosition = 41;
+            this.bunifuTileButton6.LabelText = "LogOut";
+            this.bunifuTileButton6.Location = new System.Drawing.Point(146, 147);
+            this.bunifuTileButton6.Margin = new System.Windows.Forms.Padding(6);
+            this.bunifuTileButton6.Name = "bunifuTileButton6";
+            this.bunifuTileButton6.Size = new System.Drawing.Size(128, 129);
+            this.bunifuTileButton6.TabIndex = 10;
+            this.bunifuTileButton6.Click += new System.EventHandler(this.button7_Click);
             // 
             // bunifuTileButton5
             // 
@@ -315,25 +295,45 @@
             this.bunifuTileButton5.TabIndex = 10;
             this.bunifuTileButton5.Click += new System.EventHandler(this.bunifuTileButton1_Click);
             // 
-            // bunifuTileButton6
+            // bunifuTileButton4
             // 
-            this.bunifuTileButton6.BackColor = System.Drawing.Color.SeaGreen;
-            this.bunifuTileButton6.color = System.Drawing.Color.SeaGreen;
-            this.bunifuTileButton6.colorActive = System.Drawing.Color.MediumSeaGreen;
-            this.bunifuTileButton6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuTileButton6.Font = new System.Drawing.Font("Century Gothic", 15.75F);
-            this.bunifuTileButton6.ForeColor = System.Drawing.Color.White;
-            this.bunifuTileButton6.Image = ((System.Drawing.Image)(resources.GetObject("bunifuTileButton6.Image")));
-            this.bunifuTileButton6.ImagePosition = 20;
-            this.bunifuTileButton6.ImageZoom = 50;
-            this.bunifuTileButton6.LabelPosition = 41;
-            this.bunifuTileButton6.LabelText = "LogOut";
-            this.bunifuTileButton6.Location = new System.Drawing.Point(146, 147);
-            this.bunifuTileButton6.Margin = new System.Windows.Forms.Padding(6);
-            this.bunifuTileButton6.Name = "bunifuTileButton6";
-            this.bunifuTileButton6.Size = new System.Drawing.Size(128, 129);
-            this.bunifuTileButton6.TabIndex = 10;
-            this.bunifuTileButton6.Click += new System.EventHandler(this.button7_Click);
+            this.bunifuTileButton4.BackColor = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton4.color = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton4.colorActive = System.Drawing.Color.MediumSeaGreen;
+            this.bunifuTileButton4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTileButton4.Font = new System.Drawing.Font("Century Gothic", 15.75F);
+            this.bunifuTileButton4.ForeColor = System.Drawing.Color.White;
+            this.bunifuTileButton4.Image = ((System.Drawing.Image)(resources.GetObject("bunifuTileButton4.Image")));
+            this.bunifuTileButton4.ImagePosition = 20;
+            this.bunifuTileButton4.ImageZoom = 50;
+            this.bunifuTileButton4.LabelPosition = 41;
+            this.bunifuTileButton4.LabelText = "Beli";
+            this.bunifuTileButton4.Location = new System.Drawing.Point(146, 6);
+            this.bunifuTileButton4.Margin = new System.Windows.Forms.Padding(6);
+            this.bunifuTileButton4.Name = "bunifuTileButton4";
+            this.bunifuTileButton4.Size = new System.Drawing.Size(128, 129);
+            this.bunifuTileButton4.TabIndex = 10;
+            this.bunifuTileButton4.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // bunifuTileButton3
+            // 
+            this.bunifuTileButton3.BackColor = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton3.color = System.Drawing.Color.SeaGreen;
+            this.bunifuTileButton3.colorActive = System.Drawing.Color.MediumSeaGreen;
+            this.bunifuTileButton3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuTileButton3.Font = new System.Drawing.Font("Century Gothic", 15.75F);
+            this.bunifuTileButton3.ForeColor = System.Drawing.Color.White;
+            this.bunifuTileButton3.Image = ((System.Drawing.Image)(resources.GetObject("bunifuTileButton3.Image")));
+            this.bunifuTileButton3.ImagePosition = 20;
+            this.bunifuTileButton3.ImageZoom = 50;
+            this.bunifuTileButton3.LabelPosition = 41;
+            this.bunifuTileButton3.LabelText = "Jual";
+            this.bunifuTileButton3.Location = new System.Drawing.Point(6, 6);
+            this.bunifuTileButton3.Margin = new System.Windows.Forms.Padding(6);
+            this.bunifuTileButton3.Name = "bunifuTileButton3";
+            this.bunifuTileButton3.Size = new System.Drawing.Size(128, 129);
+            this.bunifuTileButton3.TabIndex = 10;
+            this.bunifuTileButton3.Click += new System.EventHandler(this.button3_Click);
             // 
             // PostLogin
             // 
@@ -346,6 +346,7 @@
             this.Name = "PostLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "PostLogin";
+            this.Load += new System.EventHandler(this.PostLogin_Load);
             this.panelAdmin.ResumeLayout(false);
             this.panelPegawai.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -20,7 +20,7 @@ namespace PROYEK_SDP
             this.Location = new Point(0, 0);
             panelAdmin.Location = new Point(this.Width / 2 - panelAdmin.Width / 2, this.Height / 2 - panelAdmin.Height / 2);
             panelPegawai.Location = new Point(this.Width / 2 - panelPegawai.Width / 2, this.Height / 2 - panelPegawai.Height / 2);
-            if (logins.username == "ADMIN")
+            if (logins.jabatan == "Admin" || logins.jabatan == "Manager")
             {
                 panelPegawai.Hide();
             }
@@ -82,6 +82,11 @@ namespace PROYEK_SDP
         {
             ReportLaba report = new ReportLaba();
             report.ShowDialog();
+        }
+
+        private void PostLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
