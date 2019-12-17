@@ -39,9 +39,7 @@ namespace PROYEK_SDP
                 {
                     logins.username = textBox1.Text;
                     OracleCommand cmd2 = new OracleCommand("select jabatan from pegawai where id_pegawai='" + textBox1.Text + "'", conn);
-                    String a = cmd2.ExecuteScalar().ToString();
-                    logins.jabatan = a;
-                    MessageBox.Show(a);
+                    logins.jabatan = cmd2.ExecuteScalar().ToString();
                     parent.showPostLogin();
                     this.Close();
                     cek = true;
