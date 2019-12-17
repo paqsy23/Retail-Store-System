@@ -73,66 +73,73 @@ namespace PROYEK_SDP
         }
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
-            if (checkform() == true)
+            if (numericUpDown2.Value.ToString() != "0")
             {
-                conn.Open();
-                OracleCommand cmd = new OracleCommand("select stock from barang where id_barang='" + textBox2.Text + "'", conn);
-                int stock_awal = Int32.Parse(cmd.ExecuteScalar().ToString());
-                cmd.CommandText = "select harga_beli from barang where id_barang='" + textBox2.Text + "'";
-                int harga_awal = Int32.Parse(cmd.ExecuteScalar().ToString());
-                int harga_barang_baru = (int)numericUpDown2.Value;
-                int stock_tambahan = (int)numericUpDown1.Value;
-                int stock_total = stock_awal + stock_tambahan;
-                int hargabaru = (stock_awal * harga_awal + harga_barang_baru * stock_tambahan) / stock_total;
-                cmd.CommandText = "update barang set stock=" + stock_total + ", harga_beli=" + hargabaru + " where id_barang='" + textBox2.Text + "'";
-                cmd.ExecuteNonQuery();
-
-                DateTime dateTime = DateTime.UtcNow.Date;
-                string id_htrans = "HI" + (dateTime.ToString("ddMMyyyy"));
-                OracleCommand cmds = new OracleCommand("select count(id_htrans_in)+1 from htrans_in where id_htrans_in LIKE '%" + id_htrans + "%'", conn);
-                string indexkosongs = cmds.ExecuteScalar().ToString();
-                cmds.CommandText = "select id_gudang from barang where id_barang='" + textBox2.Text+"'";
-                string idgudang = cmds.ExecuteScalar().ToString();
-                for (int i = indexkosongs.Length; i < 2; i++)
+                if (checkform() == true)
                 {
-                    indexkosongs = "0" + indexkosongs;
+                    conn.Open();
+                    OracleCommand cmd = new OracleCommand("select stock from barang where id_barang='" + textBox2.Text + "'", conn);
+                    int stock_awal = Int32.Parse(cmd.ExecuteScalar().ToString());
+                    cmd.CommandText = "select harga_beli from barang where id_barang='" + textBox2.Text + "'";
+                    int harga_awal = Int32.Parse(cmd.ExecuteScalar().ToString());
+                    int harga_barang_baru = (int)numericUpDown2.Value;
+                    int stock_tambahan = (int)numericUpDown1.Value;
+                    int stock_total = stock_awal + stock_tambahan;
+                    int hargabaru = (stock_awal * harga_awal + harga_barang_baru * stock_tambahan) / stock_total;
+                    cmd.CommandText = "update barang set stock=" + stock_total + ", harga_beli=" + hargabaru + " where id_barang='" + textBox2.Text + "'";
+                    cmd.ExecuteNonQuery();
+
+                    DateTime dateTime = DateTime.UtcNow.Date;
+                    string id_htrans = "HI" + (dateTime.ToString("ddMMyyyy"));
+                    OracleCommand cmds = new OracleCommand("select count(id_htrans_in)+1 from htrans_in where id_htrans_in LIKE '%" + id_htrans + "%'", conn);
+                    string indexkosongs = cmds.ExecuteScalar().ToString();
+                    cmds.CommandText = "select id_gudang from barang where id_barang='" + textBox2.Text + "'";
+                    string idgudang = cmds.ExecuteScalar().ToString();
+                    for (int i = indexkosongs.Length; i < 2; i++)
+                    {
+                        indexkosongs = "0" + indexkosongs;
+                    }
+                    int total = (int)numericUpDown1.Value * (int)numericUpDown2.Value;
+                    id_htrans += indexkosongs;
+                    cmds.CommandText = "insert into htrans_in(id_htrans_in, id_supplier, id_gudang, tanggal_trans, total_harga,id_nota) values(:id_htrans_in, :id_supplier, :id_gudang, CURRENT_TIMESTAMP, :total_harga,:id_nota)";
+                    cmds.Parameters.Add("id_htrans_in", id_htrans);
+                    cmds.Parameters.Add("id_supplier", combosupplier.SelectedValue);
+                    cmds.Parameters.Add("id_gudang", idgudang);
+                    cmds.Parameters.Add("total_harga", (int)numericUpDown1.Value * (int)numericUpDown2.Value);
+                    cmds.Parameters.Add("id_nota", textBox1.Text);
+                    cmds.ExecuteNonQuery();
+                    cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + textBox2.Text + "'," + numericUpDown1.Value + "," + numericUpDown2.Value + "," + total + "," + stock_total + ",'" + logins.username + "')";
+                    cmds.ExecuteNonQuery();
+                    OracleCommand cmd2 = new OracleCommand();
+                    cmd2.Connection = conn;
+                    cmd2.CommandText = "select harga_jual from barang where id_barang='" + textBox2.Text + "'";
+                    MessageBox.Show(cmd2.ExecuteScalar().ToString());
+                    int harga_jual = Int32.Parse(cmd2.ExecuteScalar().ToString());
+                    string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_barang, current_timestamp ,:jenis_perubahan,:stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
+                    cmd2.Parameters.Clear();
+                    cmd2.Parameters.Add("id_barang", textBox2.Text);
+                    cmd2.Parameters.Add("jenis_perubahan", "Beli".ToString());
+                    cmd2.Parameters.Add("stock_awal", stock_awal);
+                    cmd2.Parameters.Add("stock_baru", stock_total);
+                    cmd2.Parameters.Add("harga_beli_awal", harga_awal);
+                    cmd2.Parameters.Add("harga_beli_baru", harga_barang_baru);
+                    cmd2.Parameters.Add("harga_jual_awal", harga_jual);
+                    cmd2.Parameters.Add("harga_jual_baru", harga_jual);
+                    cmd2.Parameters.Add("deskripsi", id_htrans.ToString());
+                    cmd2.Parameters.Add("id_pegawai", logins.username);
+                    cmd2.CommandText = inserthtrans;
+                    cmd2.ExecuteNonQuery();
+                    tampilbarang();
+                    conn.Close();
                 }
-                int total = (int)numericUpDown1.Value * (int)numericUpDown2.Value;
-                id_htrans += indexkosongs;
-                cmds.CommandText = "insert into htrans_in(id_htrans_in, id_supplier, id_gudang, tanggal_trans, total_harga,id_nota) values(:id_htrans_in, :id_supplier, :id_gudang, CURRENT_TIMESTAMP, :total_harga,:id_nota)";
-                cmds.Parameters.Add("id_htrans_in", id_htrans);
-                cmds.Parameters.Add("id_supplier", combosupplier.SelectedValue);
-                cmds.Parameters.Add("id_gudang", idgudang);
-                cmds.Parameters.Add("total_harga", (int)numericUpDown1.Value * (int)numericUpDown2.Value);
-                cmds.Parameters.Add("id_nota", textBox1.Text);
-                cmds.ExecuteNonQuery();
-                cmds.CommandText = "insert into dtrans_in values('" + id_htrans + "','" + textBox2.Text + "'," + numericUpDown1.Value + "," + numericUpDown2.Value + "," + total + "," + stock_total+ ",'" + logins.username + "')";
-                cmds.ExecuteNonQuery();
-                OracleCommand cmd2 = new OracleCommand();
-                cmd2.Connection = conn;
-                cmd2.CommandText="select harga_jual from barang where id_barang='"+textBox2.Text+"'";
-                MessageBox.Show(cmd2.ExecuteScalar().ToString());
-                int harga_jual =Int32.Parse( cmd2.ExecuteScalar().ToString());
-                string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_barang, current_timestamp ,:jenis_perubahan,:stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
-                cmd2.Parameters.Clear();
-                cmd2.Parameters.Add("id_barang", textBox2.Text);
-                cmd2.Parameters.Add("jenis_perubahan", "Beli".ToString());
-                cmd2.Parameters.Add("stock_awal", stock_awal);
-                cmd2.Parameters.Add("stock_baru", stock_total);
-                cmd2.Parameters.Add("harga_beli_awal", harga_awal);
-                cmd2.Parameters.Add("harga_beli_baru", harga_barang_baru);
-                cmd2.Parameters.Add("harga_jual_awal",harga_jual);
-                cmd2.Parameters.Add("harga_jual_baru",harga_jual);
-                cmd2.Parameters.Add("deskripsi", id_htrans.ToString());
-                cmd2.Parameters.Add("id_pegawai", logins.username);
-                cmd2.CommandText = inserthtrans;
-                cmd2.ExecuteNonQuery();
-                tampilbarang();
-                conn.Close();
+                else
+                {
+                    MessageBox.Show("Pastikan Semua Form Terisi Dengan Benar");
+                }
             }
             else
             {
-                MessageBox.Show("Pastikan Semua Form Terisi Dengan Benar");
+                MessageBox.Show("Pastikan Stock Beli lebih dari 0");
             }
         }
 
