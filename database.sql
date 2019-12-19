@@ -11,6 +11,9 @@ drop table pengiriman cascade constraint purge;
 drop table gudang cascade constraint purge;
 drop table mobil cascade constraint purge;
 drop table history_perubahan cascade constraint purge;
+drop table history_penyesuian cascade constraint purge;
+drop table dpengiriman cascade constraint purge;
+drop table hpengiriman cascade constraint purge;
 drop view headerSuratJalan;
 drop view detailSuratJalan;
 drop view historyHarga;
@@ -21,7 +24,8 @@ create table pegawai (
 	jabatan varchar2(15),
 	alamat_pegawai varchar2(255),
 	password varchar2(255),
-	nomor_telp varchar2(13)
+	nomor_telp varchar2(13),
+	status_pegawai number --- 0:dihapus, 1: aktif
 );
 
 create table jenis_barang (
@@ -131,13 +135,13 @@ create table history_perubahan(
 );
 
 
-insert into pegawai values('MAN001','Lee Philpott','Manager','Ngagel Jaya 54','MAN001','03160600606');
-insert into pegawai values('PEG001','Jonathan Dean','Pegawai','Darmokali V/10','PEG001','081323242089');
-insert into pegawai values('PEG002','Chris Greenhill','Pegawai','Ketintang II/35','PEG002','08793287610');
-insert into pegawai values('PEG003','Jonny Hughes','Pegawai','Jetis Wetan 97','PEG003','03170070770');
-insert into pegawai values('SUP001','Graham Duffield','Supir','Dukuh Pakis X/76','SUP001','0317325638');
-insert into pegawai values('SUP002','Magno Vieira','Supir','Raya Darmo 59','SUP001','088880829101');
-insert into pegawai values('ADMIN','Admin','Admin','-','admin','-');
+insert into pegawai values('MAN001','Lee Philpott','Manager','Ngagel Jaya 54','MAN001','03160600606',1);
+insert into pegawai values('PEG001','Jonathan Dean','Pegawai','Darmokali V/10','PEG001','081323242089',1);
+insert into pegawai values('PEG002','Chris Greenhill','Pegawai','Ketintang II/35','PEG002','08793287610',1);
+insert into pegawai values('PEG003','Jonny Hughes','Pegawai','Jetis Wetan 97','PEG003','03170070770',0);
+insert into pegawai values('SUP001','Graham Duffield','Supir','Dukuh Pakis X/76','SUP001','0317325638',1);
+insert into pegawai values('SUP002','Magno Vieira','Supir','Raya Darmo 59','SUP001','088880829101',0);
+insert into pegawai values('ADMIN','Admin','Admin','-','admin','-',1);
 
 insert into mobil values('KD0001','L1234KL','Hilux',20);
 insert into mobil values('KD0002','L6834ZX','Grand Max',15);

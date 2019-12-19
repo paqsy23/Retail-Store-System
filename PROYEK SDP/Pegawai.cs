@@ -49,7 +49,7 @@ namespace PROYEK_SDP
 
         private void tampilPegawai()
         {
-            OracleCommand cmd = new OracleCommand("select * from pegawai where not jabatan='Admin'", conn);
+            OracleCommand cmd = new OracleCommand("select * from pegawai where not jabatan='Admin' or status_pegawai = 0", conn);
             if (logins.jabatan == "Manager")
             {
                 cmd.CommandText = "select * from pegawai where not jabatan='Manager' and not jabatan='Admin'";
@@ -119,6 +119,7 @@ namespace PROYEK_SDP
                         command.Parameters.Add("alamat_pegawai", textBox4.Text);
                         command.Parameters.Add("password", textBox2.Text);
                         command.Parameters.Add("nomor_telp", textBox5.Text);
+                        command.Parameters.Add("status_pegawai", 1);
                         command.ExecuteNonQuery();
                     }
                     catch (Exception ex)
@@ -160,13 +161,12 @@ namespace PROYEK_SDP
                     String nama = textBox1.Text;
                     OracleCommand command = new OracleCommand();
                     command.Connection = conn;
-                    String update = "update pegawai set nama_pegawai = : nama_pegawai, alamat_pegawai = :alamat_pegawai, password = :password, nomor_telp = :nomor_telp where id_pegawai = '" + textBox11.Text + "'";
+                    String update = "update pegawai set nama_pegawai = : nama_pegawai, alamat_pegawai = :alamat_pegawai, password = :password, nomor_telp = :nomor_telp, status_pegawai = 1 where id_pegawai = '" + textBox11.Text + "'";
                     command.CommandText = update;
                     command.Parameters.Add("nama_pegawai", nama);
                     command.Parameters.Add("alamat_pegawai", textBox4.Text);
                     command.Parameters.Add("password", textBox2.Text);
                     command.Parameters.Add("nomor_telp", textBox5.Text);
-
                     command.ExecuteNonQuery();
                 }
                 else
@@ -186,7 +186,7 @@ namespace PROYEK_SDP
         {
             OracleCommand cmd = new OracleCommand();
             cmd.Connection = conn;
-            String delete = "delete from pegawai where id_pegawai = '" + textBox11.Text + "'";
+            String delete = "update pegawai set status_pegawai = 0 where id_pegawai = '" + textBox11.Text + "'";
             cmd.CommandText = delete;
             cmd.ExecuteNonQuery();
             tampilPegawai();
