@@ -28,7 +28,7 @@ namespace PROYEK_SDP
         private void button1_Click(object sender, EventArgs e)
         {
             bool cek = false;
-            OracleCommand cmd = new OracleCommand("select id_pegawai,password,jabatan from pegawai where id_pegawai= :isi", conn);
+            OracleCommand cmd = new OracleCommand("select id_pegawai,password,jabatan, status_pegawai from pegawai where id_pegawai= :isi", conn);
             cmd.Parameters.Add("isi", textBox1.Text);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
@@ -36,7 +36,7 @@ namespace PROYEK_SDP
             foreach (DataRow row in ds.Tables[0].Rows)
             {
                 
-                if (textBox1.Text== row["id_pegawai"].ToString()&&textBox2.Text== row["password"].ToString())
+                if (textBox1.Text== row["id_pegawai"].ToString()&&textBox2.Text== row["password"].ToString() && row["status_pegawai"].ToString() == "1")
                 {
                     logins.username = textBox1.Text;
                     OracleCommand cmd2 = new OracleCommand("select jabatan from pegawai where id_pegawai= :isi", conn);
@@ -48,7 +48,7 @@ namespace PROYEK_SDP
                 }
                 
             }
-            if (!cek) MessageBox.Show("Password Salah!");
+            if (!cek) MessageBox.Show("Password Salah! atau status sedang non aktif");
         }
 
         private void textBox2_OnValueChanged(object sender, EventArgs e)

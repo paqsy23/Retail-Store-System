@@ -41,7 +41,7 @@ namespace PROYEK_SDP
         public void isi_supir()
         {
             cbsupir.Items.Clear();
-            OracleCommand cmd = new OracleCommand("select * from pegawai where jabatan='Supir'", conn);
+            OracleCommand cmd = new OracleCommand("select * from pegawai where jabatan='Supir' AND status_pegawai = 1", conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataTable ds = new DataTable();
             da.Fill(ds);
