@@ -158,8 +158,11 @@ namespace PROYEK_SDP
         private void dataGrid1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int index = e.RowIndex;
-            cbbarang.Text = dataGrid1.Rows[index].Cells[1].Value.ToString();
-            
+            try
+            {
+                cbbarang.Text = dataGrid1.Rows[index].Cells[1].Value.ToString();
+            }
+            catch { }
         }
 
         private void bunifuFlatButton2_Click(object sender, EventArgs e)
