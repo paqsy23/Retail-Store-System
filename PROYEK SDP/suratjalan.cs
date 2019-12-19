@@ -166,57 +166,60 @@ namespace PROYEK_SDP
         {
             try
             {
-                conn.Open();
-                DateTime dateTime = DateTime.UtcNow.Date;
-
-                string id_htrans = "HP" + (dateTime.ToString("ddMMyyyy"));
-                OracleCommand cmds = new OracleCommand("select count(id_hpengiriman)+1 from pengiriman where id_hpengiriman LIKE '%" + id_htrans + "%'", conn);
-                string indexkosongs = cmds.ExecuteScalar().ToString();
-                for (int i = indexkosongs.Length; i < 2; i++)
+                if (GridCart.Rows.Count > 0)
                 {
-                    indexkosongs = "0" + indexkosongs;
-                }
-                id_htrans += indexkosongs;
+                    conn.Open();
+                    DateTime dateTime = DateTime.UtcNow.Date;
 
-
-
-                String temptgl = dateTimePicker1.Value.Date.ToString("dd/MMM/yyyy");
-                int tgl = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("dd"));
-                int bulan = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("MM"));
-                int tahun = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("yyyy"));
-                int tglsekarang = Convert.ToInt32(dateTime.ToString("dd"));
-                int bulansekarang = Convert.ToInt32(dateTime.ToString("MM"));
-                int tahunsekarang = Convert.ToInt32(dateTime.ToString("yyyy"));
-                int tglkirim = tgl + (bulan * 30) + (tahun * 365);
-                int tsekarang = tglsekarang + (bulansekarang * 30) + (tahunsekarang * 365);
-                if (tglkirim >= tsekarang && cbsupir.SelectedItem.ToString() != "" && cbkendaraan.SelectedItem.ToString() != "")
-                {
-                    OracleCommand command = new OracleCommand();
-                    command.Connection = conn;
-                    String nama = "insert into pengiriman values('" + id_htrans + "','" + dateTimePicker1.Value.Date.ToString("dd/MMM/yyyy") + "','" + cbsupir.SelectedValue.ToString() + "','" + cbkendaraan.SelectedValue.ToString() + "')";
-                    command.CommandText = nama;
-                    command.ExecuteNonQuery();
-
-
-                    for (int i = 0; i < GridCart.Rows.Count; i++)
+                    string id_htrans = "HP" + (dateTime.ToString("ddMMyyyy"));
+                    OracleCommand cmds = new OracleCommand("select count(id_hpengiriman)+1 from pengiriman where id_hpengiriman LIKE '%" + id_htrans + "%'", conn);
+                    string indexkosongs = cmds.ExecuteScalar().ToString();
+                    for (int i = indexkosongs.Length; i < 2; i++)
                     {
-                        OracleCommand command2 = new OracleCommand();
-                        command2.Connection = conn;
-                        String nama2 = "update dtrans_out set id_hpengiriman='" + id_htrans + "' where id_htrans_out='" + GridCart.Rows[i].Cells[0].Value.ToString() + "' and id_barang='" + GridCart.Rows[i].Cells[1].Value.ToString() + "'";
-                        command2.CommandText = nama2;
-                        command2.ExecuteNonQuery();
+                        indexkosongs = "0" + indexkosongs;
                     }
-                    tempcheckout.Clear();
-                    isi_barang();
-                    tampilBarang();
+                    id_htrans += indexkosongs;
+
+
+
+                    String temptgl = dateTimePicker1.Value.Date.ToString("dd/MMM/yyyy");
+                    int tgl = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("dd"));
+                    int bulan = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("MM"));
+                    int tahun = Convert.ToInt32(dateTimePicker1.Value.Date.ToString("yyyy"));
+                    int tglsekarang = Convert.ToInt32(dateTime.ToString("dd"));
+                    int bulansekarang = Convert.ToInt32(dateTime.ToString("MM"));
+                    int tahunsekarang = Convert.ToInt32(dateTime.ToString("yyyy"));
+                    int tglkirim = tgl + (bulan * 30) + (tahun * 365);
+                    int tsekarang = tglsekarang + (bulansekarang * 30) + (tahunsekarang * 365);
+                    if (tglkirim >= tsekarang && cbsupir.SelectedItem.ToString() != "" && cbkendaraan.SelectedItem.ToString() != "")
+                    {
+                        OracleCommand command = new OracleCommand();
+                        command.Connection = conn;
+                        String nama = "insert into pengiriman values('" + id_htrans + "','" + dateTimePicker1.Value.Date.ToString("dd/MMM/yyyy") + "','" + cbsupir.SelectedValue.ToString() + "','" + cbkendaraan.SelectedValue.ToString() + "')";
+                        command.CommandText = nama;
+                        command.ExecuteNonQuery();
+
+
+                        for (int i = 0; i < GridCart.Rows.Count; i++)
+                        {
+                            OracleCommand command2 = new OracleCommand();
+                            command2.Connection = conn;
+                            String nama2 = "update dtrans_out set id_hpengiriman='" + id_htrans + "' where id_htrans_out='" + GridCart.Rows[i].Cells[0].Value.ToString() + "' and id_barang='" + GridCart.Rows[i].Cells[1].Value.ToString() + "'";
+                            command2.CommandText = nama2;
+                            command2.ExecuteNonQuery();
+                        }
+                        tempcheckout.Clear();
+                        isi_barang();
+                        tampilBarang();
+                    }
+                    else
+                    {
+                        MessageBox.Show("tanggal pengiriman harus diatas tanggal sekarang");
+                    }
+                    conn.Close();
+                    reportSuratJalan report = new reportSuratJalan(id_htrans);
+                    report.ShowDialog();
                 }
-                else
-                {
-                    MessageBox.Show("tanggal pengiriman harus diatas tanggal sekarang");
-                }
-                conn.Close();
-                reportSuratJalan report = new reportSuratJalan(id_htrans);
-                report.ShowDialog();
             }
             catch (Exception ex)
             {

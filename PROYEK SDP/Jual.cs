@@ -82,6 +82,7 @@ namespace PROYEK_SDP
         
         private void Jual_Load(object sender, EventArgs e)
         {
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             refresh();
         }
 
@@ -287,9 +288,9 @@ namespace PROYEK_SDP
         private void bunifuTileButton2_Click(object sender, EventArgs e)
         {
             conn.Open();
-            string query = "select * from barang where upper(" + keysearch.Text + ") LIKE upper('%" + textBox1.Text + "%')";
+            string query = "select * from barang where upper(" + keysearch.Text + ") LIKE upper('%'|| :isi || '%')";
             OracleCommand cmd = new OracleCommand(query, conn);
-
+            cmd.Parameters.Add("isi", textBox1.Text);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
