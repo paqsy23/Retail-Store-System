@@ -112,7 +112,7 @@ namespace PROYEK_SDP
                     {
                         OracleCommand command = new OracleCommand();
                         command.Connection = conn;
-                        command.CommandText = "insert into pegawai(id_pegawai, nama_pegawai, jabatan, alamat_pegawai, password, nomor_telp) values(:id_pegawai, :nama_pegawai, :jabatan, :alamat_pegawai, :password, :nomor_telp)";
+                        command.CommandText = "insert into pegawai(id_pegawai, nama_pegawai, jabatan, alamat_pegawai, password, nomor_telp, status_pegawai) values(:id_pegawai, :nama_pegawai, :jabatan, :alamat_pegawai, :password, :nomor_telp, :status_pegawai)";
                         command.Parameters.Add("id_pegawai", id);
                         command.Parameters.Add("nama_pegawai", nama);
                         command.Parameters.Add("jabatan", comboBox1.SelectedItem.ToString());

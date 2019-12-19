@@ -190,7 +190,7 @@ namespace PROYEK_SDP
                     string id_htrans = "HO" + (dateTime.ToString("ddMMyyyy"));
                     OracleCommand cmds = new OracleCommand("select count(id_htrans_out)+1 from htrans_out where id_htrans_out LIKE '%" + id_htrans + "%'", conn);
                     string indexkosongs = cmds.ExecuteScalar().ToString();
-                    for (int i = indexkosongs.Length; i < 2; i++)
+                    for (int i = indexkosongs.Length; i < 5; i++)
                     {
                         indexkosongs = "0" + indexkosongs;
                     }

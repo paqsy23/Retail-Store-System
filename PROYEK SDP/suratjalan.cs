@@ -177,7 +177,7 @@ namespace PROYEK_SDP
                     string id_htrans = "HP" + (dateTime.ToString("ddMMyyyy"));
                     OracleCommand cmds = new OracleCommand("select count(id_hpengiriman)+1 from pengiriman where id_hpengiriman LIKE '%" + id_htrans + "%'", conn);
                     string indexkosongs = cmds.ExecuteScalar().ToString();
-                    for (int i = indexkosongs.Length; i < 2; i++)
+                    for (int i = indexkosongs.Length; i < 5; i++)
                     {
                         indexkosongs = "0" + indexkosongs;
                     }
