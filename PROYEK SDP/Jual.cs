@@ -287,8 +287,14 @@ namespace PROYEK_SDP
         private void bunifuTileButton2_Click(object sender, EventArgs e)
         {
             conn.Open();
-            string query = "select * from barang where upper(" + keysearch.Text + ") LIKE upper('%" + textBox1.Text + "%')";
-            OracleCommand cmd = new OracleCommand(query, conn);
+            string query = "select * from barang where upper('"+keysearch.Text+"') LIKE upper('%"+textBox1.Text+"%')";
+
+            OracleCommand cmd = new OracleCommand();
+            cmd.Parameters.Add("key", keysearch.Text);
+            cmd.Parameters.Add("text", textBox1.Text);
+            cmd.Connection = conn;
+            cmd.CommandText = query;
+            cmd.ExecuteNonQuery();
 
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
