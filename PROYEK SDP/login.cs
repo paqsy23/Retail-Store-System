@@ -28,7 +28,8 @@ namespace PROYEK_SDP
         private void button1_Click(object sender, EventArgs e)
         {
             bool cek = false;
-            OracleCommand cmd = new OracleCommand("select id_pegawai,password,jabatan from pegawai where id_pegawai='"+textBox1.Text+"'", conn);
+            OracleCommand cmd = new OracleCommand("select id_pegawai,password,jabatan from pegawai where id_pegawai= :isi", conn);
+            cmd.Parameters.Add("isi", textBox1.Text);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
             da.Fill(ds);
@@ -38,7 +39,8 @@ namespace PROYEK_SDP
                 if (textBox1.Text== row["id_pegawai"].ToString()&&textBox2.Text== row["password"].ToString())
                 {
                     logins.username = textBox1.Text;
-                    OracleCommand cmd2 = new OracleCommand("select jabatan from pegawai where id_pegawai='" + textBox1.Text + "'", conn);
+                    OracleCommand cmd2 = new OracleCommand("select jabatan from pegawai where id_pegawai= :isi", conn);
+                    cmd2.Parameters.Add("isi",textBox1.Text);
                     logins.jabatan = cmd2.ExecuteScalar().ToString();
                     parent.showPostLogin();
                     this.Close();

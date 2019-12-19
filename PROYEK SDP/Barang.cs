@@ -302,8 +302,9 @@ namespace PROYEK_SDP
             conn.Open();
             if (checksearch() == true)
             {
-                string query = "select * from barang where upper(" + keysearch.Text + ") LIKE upper('%" + valuetext.text + "%')";
+                string query = "select * from barang where upper(" + keysearch.Text + ") LIKE upper('%'|| :isi || '%')";
                 OracleCommand cmd = new OracleCommand(query, conn);
+                cmd.Parameters.Add("isi",valuetext.text);
                 //MessageBox.Show(query);
 
                 OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -335,6 +336,11 @@ namespace PROYEK_SDP
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void valuetext_OnTextChange(object sender, EventArgs e)
         {
 
         }

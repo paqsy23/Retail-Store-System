@@ -193,8 +193,9 @@ namespace PROYEK_SDP
             conn.Open();
             if (checksearch() == true)
             {
-                string query = "select * from barang where upper(" + keysearch.Text + ")=upper('" + valuetext.text + "')";
+                string query = "select * from barang where upper(" + keysearch.Text + ") LIKE upper('%'|| :isi || '%')";
                 OracleCommand cmd = new OracleCommand(query, conn);
+                cmd.Parameters.Add("isi", valuetext.text);
                 OracleDataAdapter da = new OracleDataAdapter(cmd);
                 DataSet ds = new DataSet();
                 da.Fill(ds);
