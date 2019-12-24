@@ -99,8 +99,18 @@ namespace PROYEK_SDP
                     {
                         indexkosongs = "0" + indexkosongs;
                     }
-                    int total = (int)numericUpDown1.Value * (int)numericUpDown2.Value;
                     id_htrans += indexkosongs;
+                    string idperubahan = "HT" + (dateTime.ToString("ddMMyyyy"));
+                    OracleCommand cmd1 = new OracleCommand("select count(id_perubahan)+1 from history_perubahan where id_perubahan LIKE '%" + idperubahan + "%'", conn);
+                    string indexkosongperubahan = cmd1.ExecuteScalar().ToString();
+
+                    for (int i = indexkosongperubahan.Length; i < 5; i++)
+                    {
+                        indexkosongperubahan = "0" + indexkosongperubahan;
+                    }
+                    idperubahan += indexkosongperubahan;
+                    int total = (int)numericUpDown1.Value * (int)numericUpDown2.Value;
+
                     cmds.CommandText = "insert into htrans_in(id_htrans_in, id_supplier, id_gudang, tanggal_trans, total_harga,id_nota) values(:id_htrans_in, :id_supplier, :id_gudang, CURRENT_TIMESTAMP, :total_harga,:id_nota)";
                     cmds.Parameters.Add("id_htrans_in", id_htrans);
                     cmds.Parameters.Add("id_supplier", combosupplier.SelectedValue);
@@ -115,8 +125,9 @@ namespace PROYEK_SDP
                     cmd2.CommandText = "select harga_jual from barang where id_barang='" + textBox2.Text + "'";
                     MessageBox.Show(cmd2.ExecuteScalar().ToString());
                     int harga_jual = Int32.Parse(cmd2.ExecuteScalar().ToString());
-                    string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_barang, current_timestamp ,:jenis_perubahan,:stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
+                    string inserthtrans = "insert into history_perubahan(id_perubahan,id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_perubahan,:id_barang, current_timestamp ,:jenis_perubahan,:stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
                     cmd2.Parameters.Clear();
+                    cmd2.Parameters.Add("id_perubahan", idperubahan);
                     cmd2.Parameters.Add("id_barang", textBox2.Text);
                     cmd2.Parameters.Add("jenis_perubahan", "Beli".ToString());
                     cmd2.Parameters.Add("stock_awal", stock_awal);

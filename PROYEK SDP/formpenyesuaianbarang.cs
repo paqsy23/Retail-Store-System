@@ -72,11 +72,22 @@ namespace PROYEK_SDP
                 String gudang = cbgudang.Text;
                 int hargabeli = Convert.ToInt32(numbeli.Value);
                 int hargajual = Convert.ToInt32(numjual.Value);
-                if (hargabeli < hargajual && richTextBox1.Text != "")
+                if (  richTextBox1.Text != "")
                 {
-                    MessageBox.Show("Test");
+                    
                     OracleCommand cmd2 = new OracleCommand();
-                    string inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_barang, current_timestamp ,:jenis_perubahan, :stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
+                    DateTime dateTime = DateTime.UtcNow.Date;
+                    string idperubahan = "HT" + (dateTime.ToString("ddMMyyyy"));
+                    OracleCommand cmd1 = new OracleCommand("select count(id_perubahan)+1 from history_perubahan where id_perubahan LIKE '%" + idperubahan + "%'", conn);
+                    string indexkosongperubahan = cmd1.ExecuteScalar().ToString();
+
+                    for (int i = indexkosongperubahan.Length; i < 5; i++)
+                    {
+                        indexkosongperubahan = "0" + indexkosongperubahan;
+                    }
+                    idperubahan += indexkosongperubahan;
+                    string inserthtrans = "insert into history_perubahan(id_perubahan,id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_perubahan,:id_barang, current_timestamp ,:jenis_perubahan, :stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
+                    cmd2.Parameters.Add("id_perubahan", idperubahan);
                     cmd2.Parameters.Add("id_barang", dataGridView1.Rows[index].Cells[0].Value.ToString());
                     cmd2.Parameters.Add("jenis_perubahan", "Penyesuaian".ToString());
                     cmd2.Parameters.Add("stock_awal", stocklama);
@@ -89,11 +100,13 @@ namespace PROYEK_SDP
                     cmd2.Parameters.Add("id_pegawai", logins.username);
                     cmd2.Connection = conn;
                     cmd2.CommandText = inserthtrans;
+            
                     cmd2.ExecuteNonQuery();
-
-                    String query = "update barang set stock='" + numstock.Value + "',harga_jual='" + hargajual + "',harga_beli='" + hargabeli + "',id_gudang='" + gudang + "' where id_barang='" + edid.Text + "'";
+                    string query = "update barang set stock='" + numstock.Value + "',harga_jual='" + hargajual + "',harga_beli='" + hargabeli + "',id_gudang='" + gudang + "' where id_barang='" + edid.Text + "'";
                     OracleCommand cmd = new OracleCommand(query, conn);
                     cmd.ExecuteNonQuery();
+                    
+                    
                 }
 
                 conn.Close();
