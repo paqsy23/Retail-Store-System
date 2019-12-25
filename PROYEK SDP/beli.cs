@@ -95,7 +95,7 @@ namespace PROYEK_SDP
                     string indexkosongs = cmds.ExecuteScalar().ToString();
                     cmds.CommandText = "select id_gudang from barang where id_barang='" + textBox2.Text + "'";
                     string idgudang = cmds.ExecuteScalar().ToString();
-                    for (int i = indexkosongs.Length; i < 2; i++)
+                    for (int i = indexkosongs.Length; i < 5; i++)
                     {
                         indexkosongs = "0" + indexkosongs;
                     }

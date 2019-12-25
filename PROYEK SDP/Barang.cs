@@ -200,7 +200,7 @@ namespace PROYEK_SDP
                     cmd.Parameters.Add("id_gudang", combogudang.SelectedValue);
                     cmd.Parameters.Add("nama_barang", namatext.Text);
                     cmd.Parameters.Add("warna_barang", warnatext.Text);
-                    cmd.Parameters.Add("ukuran", comboukuran.SelectedValue);
+                    cmd.Parameters.Add("ukuran", comboukuran.Text);
                     cmd.Parameters.Add("stock", numericstock.Value);
                     cmd.Parameters.Add("harga_beli", numericbeli.Value);
                     cmd.Parameters.Add("harga_jual", numericjual.Value);
@@ -237,7 +237,7 @@ namespace PROYEK_SDP
                 string id_htrans = "HI" + (dateTime.ToString("ddMMyyyy"));
                 OracleCommand cmds = new OracleCommand("select count(id_htrans_in)+1 from htrans_in where id_htrans_in LIKE '%" + id_htrans + "%'", conn);
                 string indexkosongs = cmds.ExecuteScalar().ToString();
-                for (int i = indexkosongs.Length; i < 2; i++)
+                for (int i = indexkosongs.Length; i < 5; i++)
                 {
                     indexkosongs = "0" + indexkosongs;
                 }
