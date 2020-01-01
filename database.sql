@@ -17,6 +17,7 @@ drop table hpengiriman cascade constraint purge;
 drop view headerSuratJalan;
 drop view detailSuratJalan;
 drop view historyHarga;
+drop view historybarang;
 
 create table pegawai (
 	id_pegawai varchar2(6) primary key, --- substr(jabatan,1,3) + autogenerate
@@ -164,6 +165,9 @@ where d.id_htrans_out = h.id_htrans_out and d.id_barang = brg.id_barang and brg.
 
 create or replace view historyHarga as
 select * from history_perubahan where (jenis_perubahan='Penyesuaian' or jenis_perubahan='Beli') and id_perubahan not in(select id_perubahan from history_perubahan where harga_jual_baru=harga_jual_awal  and harga_beli_awal=harga_beli_baru)  ;
+
+create or replace view historybarang as
+select * from history_perubahan where (jenis_perubahan='Penyesuaian' or jenis_perubahan='Beli') and id_perubahan not in(select id_perubahan from history_perubahan where stock_awal=stock_baru);
 
 commit;
 

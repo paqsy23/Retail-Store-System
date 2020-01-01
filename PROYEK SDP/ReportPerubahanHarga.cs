@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Oracle.DataAccess.Client;
 namespace PROYEK_SDP
 {
     public partial class ReportPerubahanHarga : Form
     {
+        OracleConnection conn;
         PerubahanHarga cr = new PerubahanHarga();
         public ReportPerubahanHarga()
         {
@@ -19,6 +20,7 @@ namespace PROYEK_SDP
             cr.SetDatabaseLogon(logins.user, logins.pass);
             cr.SetParameterValue("tanggal", "");
             cr.SetParameterValue("tanggal1", dateTimePicker1.Value.ToShortDateString());
+            cr.SetParameterValue("id_barang", "");
             cr.SetParameterValue("tanggal2", dateTimePicker1.Value.ToShortDateString());
             dateTimePicker1.Value = new DateTime(2000, 1, 1, 00, 00, 0);
             dateTimePicker2.Value = new DateTime(2019, 1, 1, 23, 59, 59);
@@ -36,6 +38,7 @@ namespace PROYEK_SDP
                 cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
                 cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
                 crystalReportViewer1.ReportSource = cr;
+                cr.SetParameterValue("id_barang", textBox1.Text);
             }
             else
             {
@@ -45,6 +48,7 @@ namespace PROYEK_SDP
                     cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
                     cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
                     crystalReportViewer1.ReportSource = cr;
+                    cr.SetParameterValue("id_barang", textBox1.Text);
                 }
                 else
                 {
@@ -59,6 +63,21 @@ namespace PROYEK_SDP
             cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
             cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
             crystalReportViewer1.ReportSource = cr;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ReportPerubahanHarga_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
