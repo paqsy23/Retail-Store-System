@@ -11,7 +11,6 @@ drop table pengiriman cascade constraint purge;
 drop table gudang cascade constraint purge;
 drop table mobil cascade constraint purge;
 drop table history_perubahan cascade constraint purge;
-drop table pengiriman cascade constraint purge;
 drop view headerSuratJalan;
 drop view detailSuratJalan;
 drop view historyHarga;
