@@ -234,8 +234,18 @@ namespace PROYEK_SDP
                             cmd3.Parameters.Add("id_kasir", logins.username);
                             cmd3.CommandText = insert;
                             cmd3.ExecuteNonQuery();
-                            inserthtrans = "insert into history_perubahan(id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_barang, current_timestamp ,:jenis_perubahan,:stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
+                            string idperubahan = "HT" + (dateTime.ToString("ddMMyyyy"));
+                            OracleCommand cmd1 = new OracleCommand("select count(id_perubahan)+1 from history_perubahan where id_perubahan LIKE '%" + idperubahan + "%'", conn);
+                            string indexkosongperubahan = cmd1.ExecuteScalar().ToString();
+
+                            for (int j = indexkosongperubahan.Length; j < 5; j++)
+                            {
+                                indexkosongperubahan = "0" + indexkosongperubahan;
+                            }
+                            idperubahan += indexkosongperubahan;
+                            inserthtrans = "insert into history_perubahan(id_perubahan ,id_barang, tanggal_perubahan,jenis_perubahan, stock_awal, stock_baru,harga_beli_awal,harga_beli_baru, harga_jual_awal, harga_jual_baru,deskripsi,id_pegawai) values(:id_perubahan,:id_barang, current_timestamp ,:jenis_perubahan,:stock_awal, :stock_baru,:harga_beli_awal,:harga_beli_baru, :harga_jual_awal, :harga_jual_baru, :deskripsi,:id_pegawai)";
                             cmd2.Parameters.Clear();
+                            cmd2.Parameters.Add("id_perubahan", idperubahan);
                             cmd2.Parameters.Add("id_barang", bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString());
                             cmd2.Parameters.Add("jenis_perubahan", "Jual".ToString());
                             cmd2.Parameters.Add("stock_awal", stocksekarang);

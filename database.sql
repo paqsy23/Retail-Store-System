@@ -118,6 +118,7 @@ create table dtrans_out (
 
 
 create table history_perubahan(
+    id_perubahan varchar2(15) primary key,
     id_barang varchar(8) constraint fk_brghp references barang(id_barang),
     tanggal_perubahan date,
     jenis_perubahan varchar2(12),
@@ -158,8 +159,8 @@ select d.id_htrans_out, rpad(nama_barang, 20) as "NAMA_BARANG", rpad(nama_jenis_
 from dtrans_out d, htrans_out h, barang brg, jenis_barang jb, buyer b
 where d.id_htrans_out = h.id_htrans_out and d.id_barang = brg.id_barang and brg.id_jenis_barang = jb.id_jenis_barang and h.id_buyer = b.id_buyer;
 
-create view historyHarga as
-select * from history_perubahan where jenis_perubahan='Penyesuaian' or jenis_perubahan='Beli';
+create or replace view historyHarga as
+select * from history_perubahan where (jenis_perubahan='Penyesuaian' or jenis_perubahan='Beli') and id_perubahan not in(select id_perubahan from history_perubahan where harga_jual_baru=harga_jual_awal  and harga_beli_awal=harga_beli_baru)  ;
 
 commit;
 
