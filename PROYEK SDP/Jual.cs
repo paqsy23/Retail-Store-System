@@ -176,6 +176,7 @@ namespace PROYEK_SDP
         private void button1_Click(object sender, EventArgs e)
         {
             pembeli p = new pembeli(path);
+            p.parent = this;
             p.ShowDialog();
         }
 

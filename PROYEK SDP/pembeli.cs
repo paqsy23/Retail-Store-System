@@ -14,6 +14,7 @@ namespace PROYEK_SDP
     public partial class pembeli : Form
     {
         OracleConnection conn;
+        public Jual parent;
         public pembeli(String path)
         {
             InitializeComponent();
@@ -210,6 +211,11 @@ namespace PROYEK_SDP
         private void pembeli_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void pembeli_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            parent.isi_pembeli();
         }
     }
 }
