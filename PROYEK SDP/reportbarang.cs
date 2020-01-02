@@ -22,6 +22,7 @@ namespace PROYEK_SDP
             this.Size = Screen.PrimaryScreen.WorkingArea.Size;
             
             cr.SetDatabaseLogon(logins.user, logins.pass);
+            cr.SetParameterValue("id_barang", "");
             cr.SetParameterValue("tanggal", "");
             cr.SetParameterValue("tanggal1", dateTimePicker1.Value.ToShortDateString());
             cr.SetParameterValue("tanggal2", dateTimePicker1.Value.ToShortDateString());
@@ -39,6 +40,7 @@ namespace PROYEK_SDP
             int value = DateTime.Compare(dateTimePicker1.Value, dateTimePicker2.Value);
             if (value < 0)
             {
+                cr.SetParameterValue("id_barang", textBox1.Text);
                 cr.SetParameterValue("tanggal", "isi");
                 cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
                 cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
@@ -48,6 +50,7 @@ namespace PROYEK_SDP
             {
                 if (dateTimePicker1.Value.ToShortDateString() == dateTimePicker2.Value.ToShortDateString())
                 {
+                    cr.SetParameterValue("id_barang",textBox1.Text);
                     cr.SetParameterValue("tanggal", "isi");
                     cr.SetParameterValue("tanggal1", dateTimePicker1.Value);
                     cr.SetParameterValue("tanggal2", dateTimePicker2.Value);
@@ -71,6 +74,11 @@ namespace PROYEK_SDP
         private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }
