@@ -114,7 +114,7 @@ create table dtrans_out (
 	subtotal number,
 	laba number,
 	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai), --- pengurus
-	id_hPengiriman varchar2(12) constraint fk_pengKirim references pengiriman(id_hPengiriman)
+	id_hPengiriman varchar2(15) constraint fk_pengKirim references pengiriman(id_hPengiriman)
 );
 
 

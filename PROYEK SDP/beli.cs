@@ -284,7 +284,6 @@ namespace PROYEK_SDP
                     {
                         index = i;
                     }
-                    MessageBox.Show(textBox2.Text);
                 }
 
                 if (index > -1)

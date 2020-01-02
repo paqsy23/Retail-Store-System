@@ -184,7 +184,6 @@ namespace PROYEK_SDP
                         ctr++;
                         temp = nama.Substring(nama.IndexOf(" ") + ctr, 1);
                     }
-                    MessageBox.Show(temp);
 
                     id = (nama.Substring(0, 1) + temp + warna.Substring(0, 2)).ToUpper() + comboukuran.SelectedIndex;
                     OracleCommand cmd = new OracleCommand("select count(id_barang)+1 from barang where id_barang LIKE '%" + id + "%'", conn);
@@ -205,7 +204,6 @@ namespace PROYEK_SDP
                     cmd.Parameters.Add("stock", numericstock.Value);
                     cmd.Parameters.Add("harga_beli", numericbeli.Value);
                     cmd.Parameters.Add("harga_jual", numericjual.Value);
-                    MessageBox.Show(cmd.CommandText);
                     cmd.ExecuteNonQuery();
 
                 }
@@ -230,7 +228,6 @@ namespace PROYEK_SDP
                     cmd.Parameters.Add("stock", numericstock.Value);
                     cmd.Parameters.Add("harga_beli", numericbeli.Value);
                     cmd.Parameters.Add("harga_jual", numericjual.Value);
-                    MessageBox.Show(comboukuran.SelectedItem.ToString());
                     cmd.ExecuteNonQuery();
                 }
                 DateTime dateTime = DateTime.UtcNow.Date;
