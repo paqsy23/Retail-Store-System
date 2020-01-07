@@ -11,9 +11,6 @@ drop table pengiriman cascade constraint purge;
 drop table gudang cascade constraint purge;
 drop table mobil cascade constraint purge;
 drop table history_perubahan cascade constraint purge;
-drop table history_penyesuian cascade constraint purge;
-drop table dpengiriman cascade constraint purge;
-drop table hpengiriman cascade constraint purge;
 drop view headerSuratJalan;
 drop view detailSuratJalan;
 drop view historyHarga;
@@ -117,7 +114,7 @@ create table dtrans_out (
 	subtotal number,
 	laba number,
 	id_penanggungjawab varchar2(6) constraint fk_pegHout references pegawai(id_pegawai), --- pengurus
-	id_hPengiriman varchar2(12) constraint fk_pengKirim references pengiriman(id_hPengiriman)
+	id_hPengiriman varchar2(15) constraint fk_pengKirim references pengiriman(id_hPengiriman)
 );
 
 

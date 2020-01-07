@@ -176,6 +176,7 @@ namespace PROYEK_SDP
         private void button1_Click(object sender, EventArgs e)
         {
             pembeli p = new pembeli(path);
+            p.parent = this;
             p.ShowDialog();
         }
 
@@ -220,7 +221,6 @@ namespace PROYEK_SDP
                                 command3.CommandText = "select  harga_beli from barang where id_barang='" + bunifuCustomDataGrid1.Rows[i].Cells[0].Value.ToString() + "'";
                                 int hargabeli = Int32.Parse( command3.ExecuteScalar().ToString());
                                 int laba = Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[4].Value.ToString()) - (hargabeli * Convert.ToInt32(bunifuCustomDataGrid1.Rows[i].Cells[3].Value.ToString()));
-                            MessageBox.Show(laba+"");
                             acclaba += laba;
                             OracleCommand cmd3 = new OracleCommand();
                             string insert = "insert into dtrans_out(id_htrans_out, id_barang, stock_keluar, harga_jual,subtotal,laba,id_penanggungjawab) values(:id_htrans_out,:id_barang, :stock_keluar ,:harga_jual,:laba,:subtotal,:id_kasir)";
