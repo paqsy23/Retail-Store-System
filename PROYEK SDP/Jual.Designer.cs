@@ -325,7 +325,7 @@
             this.groupBox2.Size = new System.Drawing.Size(300, 178);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Add To Cart";
+            this.groupBox2.Text = "Pilih Pembeli";
             // 
             // bunifuFlatButton2
             // 
